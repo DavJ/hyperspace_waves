@@ -12,15 +12,24 @@ import cmath
 #from gnuradio import fft
 
 
-
 def mfft(input, p=0):
     '''
       mfft
       calculates modified fft using modified Cooley-Tookey algorithm (recursive implementation)
       (note: algorithm is a bit slower than original Cooley-Tookey,  because generally for p<>0: E(k+N/2)<>E(k); O(k+N/2)<>O(k),
-             therefor periodicity could not be exploited and additional multiplication is needed
+             therefore periodicity could not be exploited and additional multiplication is needed
       
-      Arguments
+      :Arguments
+       input ... list of real or complex values of length 2^k 
+       p ...     exponential factor, defines rotation of "analysis axe" in complex plane (rotation angle fi=arctg(p))
+                for p=0  :same results as FFT are returned (searching for omega peak) 
+                for p=-1 :modified FFT - searching for divergent balanced hyperspace waves
+                for p=+1 :modified FFT - searching for convergent balanced hyperspace waves
+                other p  : searching for any (unbalanced hyperspace waves p>0 convergent, p<0 divergent)
+
+                 
+      :Returns 
+               modified fast fourier transform (analyses content of  complex frequencies in input signal
     '''
     N = len(input)
     even = np.asarray(input[::2])
