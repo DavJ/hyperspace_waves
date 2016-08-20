@@ -22,14 +22,13 @@ def mfft(input, p=0):
       :Arguments
        input ... list of real or complex values of length 2^k 
        p ...     exponential factor, defines rotation of "analysis axe" in complex plane (rotation angle fi=arctg(p))
-                for p=0  :same results as FFT are returned (searching for omega peak) 
-                for p=-1 :modified FFT - searching for divergent balanced hyperspace waves
-                for p=+1 :modified FFT - searching for convergent balanced hyperspace waves
-                other p  : searching for any (unbalanced hyperspace waves p>0 convergent, p<0 divergent)
+                 for p=0  :same results as FFT are returned (searching for regular EM waves with real frequency) 
+                 for p=-1 :modified FFT - searching for divergent balanced hyperspace waves
+                 for p=+1 :modified FFT - searching for convergent balanced hyperspace waves
+                 other p  : searching for any (unbalanced) hyperspace waves (p>0 convergent waves, p<0 divergent waves)
 
-                 
       :Returns 
-               modified fast fourier transform (analyses content of  complex frequencies in input signal
+               modified fast fourier transform (analyses content of  complex frequencies in input signal)
     '''
     N = len(input)
     even = np.asarray(input[::2])
