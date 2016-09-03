@@ -1,7 +1,0 @@
-/*!
- * \defgroup block GNU Radio HYPERSPACE_COMM C++ Signal Processing Blocks
- * \brief All C++ blocks that can be used from the HYPERSPACE_COMM GNU Radio
- *        module are listed here or in the subcategories below.
- *
- */
-
