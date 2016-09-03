@@ -4,7 +4,7 @@
   <key>hyperspace_comm_mfft_fc</key>
   <category>hyperspace_comm</category>
   <import>import hyperspace_comm</import>
-  <make>hyperspace_comm.mfft_fc($p, $N)</make>
+  <make>hyperspace_comm.mfft_fc($p, $N, $M)</make>
   <!-- Make one 'param' node for every Parameter you want settable from the GUI.
        Sub-nodes:
        * name
