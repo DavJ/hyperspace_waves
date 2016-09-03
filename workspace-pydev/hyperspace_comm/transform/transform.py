@@ -54,7 +54,3 @@ def mfft(input, p=0):
     
     return lower_result.tolist() + upper_result.tolist()
        
-a=[1,2,3,4]   
-print mfft(a)
-#results for p=0 can be checked here http://calculator.vhex.net/post/calculator-result/1d-discrete-fourier-transform
-#print gnuradio.fft

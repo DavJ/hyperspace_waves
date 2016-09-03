@@ -19,8 +19,7 @@ def real_exp(arg):
 
 def generate_hyperspace_wave(freq=2e6, fsample=25e6, s1=-1/math.sqrt(2), s2=1, N=1024):
     '''
-    This function creates invariant (or balanced) hyperspace waves, which propagate same way in normal space and hyperspace.
- 
+    This function creates invariant (or balanced) hyperspace pulss (waves), which propagate same way in normal space and hyperspace.
     
     Note: for s1>0 the pulse would have infinite energy, therefore s1 should be always equal to -1/sqrt(2). s2 can be either +1 or -1 
     

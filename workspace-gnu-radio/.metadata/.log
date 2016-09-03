@@ -1,0 +1,76 @@
+!SESSION 2016-08-27 23:07:52.462 -----------------------------------------------
+eclipse.buildId=4.6.0.I20160606-1100
+java.version=1.8.0_91
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.launchbar.core 2 0 2016-08-27 23:08:42.702
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.arduino.core.descriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2016-08-27 23:08:42.812
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.qt.core.launchDescriptorType
+
+!ENTRY org.eclipse.cdt.core 1 0 2016-08-27 23:11:07.329
+!MESSAGE Indexed 'hyperspace_waves' (0 sources, 0 headers) in 0.036 sec: 0 declarations; 0 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0%)
+!SESSION 2016-08-27 23:17:36.004 -----------------------------------------------
+eclipse.buildId=4.6.0.I20160606-1100
+java.version=1.8.0_91
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -data file:/home/david/hyperspace_waves/workspace-gnu-radio/ -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.launchbar.core 2 0 2016-08-27 23:17:54.027
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.arduino.core.descriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2016-08-27 23:17:54.035
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.qt.core.launchDescriptorType
+
+!ENTRY org.eclipse.cdt.core 4 0 2016-08-27 23:22:26.448
+!MESSAGE Error while evaluating enablement expression for null
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Resource '/gr-hyperspace_comm' does not exist.
+	at org.eclipse.core.internal.resources.Resource.checkExists(Resource.java:335)
+	at org.eclipse.core.internal.resources.Resource.checkAccessible(Resource.java:209)
+	at org.eclipse.core.internal.resources.Project.checkAccessible(Project.java:141)
+	at org.eclipse.core.internal.resources.Project.getDescription(Project.java:389)
+	at org.eclipse.cdt.internal.core.pdom.PDOMASTProcessorDesc.matches(PDOMASTProcessorDesc.java:100)
+	at org.eclipse.cdt.internal.core.pdom.PDOMASTProcessorDesc.getProcessorFor(PDOMASTProcessorDesc.java:146)
+	at org.eclipse.cdt.internal.core.pdom.PDOMASTProcessorManager.getProcessors(PDOMASTProcessorManager.java:49)
+	at org.eclipse.cdt.internal.core.pdom.AbstractIndexerTask.writeToIndex(AbstractIndexerTask.java:1297)
+	at org.eclipse.cdt.internal.core.pdom.AbstractIndexerTask.parseFile(AbstractIndexerTask.java:1097)
+	at org.eclipse.cdt.internal.core.pdom.AbstractIndexerTask.parseLinkage(AbstractIndexerTask.java:900)
+	at org.eclipse.cdt.internal.core.pdom.AbstractIndexerTask.runTask(AbstractIndexerTask.java:556)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMIndexerTask.run(PDOMIndexerTask.java:161)
+	at org.eclipse.cdt.internal.core.pdom.indexer.PDOMRebuildTask.run(PDOMRebuildTask.java:90)
+	at org.eclipse.cdt.internal.core.pdom.PDOMIndexerJob.run(PDOMIndexerJob.java:150)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+!SUBENTRY 1 org.eclipse.core.resources 4 368 2016-08-27 23:22:26.463
+!MESSAGE Resource '/gr-hyperspace_comm' does not exist.
+
+!ENTRY org.eclipse.cdt.core 1 0 2016-08-27 23:22:26.609
+!MESSAGE Indexed 'gr-hyperspace_comm' (4 sources, 123 headers) in 18.8 sec: 9,690 declarations; 16,474 references; 12 unresolved inclusions; 6 syntax errors; 53 unresolved names (0.2%)
+!SESSION 2016-08-27 23:36:01.441 -----------------------------------------------
+eclipse.buildId=4.6.0.I20160606-1100
+java.version=1.8.0_91
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.core.resources 2 10035 2016-08-27 23:36:16.720
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.launchbar.core 2 0 2016-08-27 23:36:20.840
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.arduino.core.descriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2016-08-27 23:36:20.841
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.qt.core.launchDescriptorType
+
+!ENTRY org.eclipse.cdt.core 1 0 2016-08-27 23:37:46.410
+!MESSAGE Indexed 'hyperspace_waves' (0 sources, 0 headers) in 0.032 sec: 0 declarations; 0 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2016-08-27 23:40:36.929
+!MESSAGE Indexed 'gr-hyperspace_comm' (4 sources, 123 headers) in 20.8 sec: 9,690 declarations; 16,474 references; 12 unresolved inclusions; 6 syntax errors; 53 unresolved names (0.2%)

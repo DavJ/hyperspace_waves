@@ -1,0 +1,3 @@
+15:22:33 **** Build of configuration Default for project gr-hs_com_tools ****
+make all 
+make: *** No rule to make target 'all'.  Stop.

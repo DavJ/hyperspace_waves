@@ -1,0 +1,6 @@
+23:40:36 **** Build of configuration Default for project gr-hyperspace_comm ****
+make all 
+make: *** No rule to make target 'all'.  Stop.
+
+23:40:37 Build Finished (took 203ms)
+
