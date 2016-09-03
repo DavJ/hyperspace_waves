@@ -43,24 +43,51 @@ class mfft_fc(gr.basic_block):
     def __init__(self, p, N, M):
         gr.basic_block.__init__(self,
             name="mfft_fc",
-            in_sig=[numpy32.float],
-            out_sig=[numpy.complex32])
+            in_sig=[numpy.float32],
+            out_sig=[(numpy.complex64)])
+
         self.p = p
         self.N = N
         self.M = M
+        self.set_relative_rate(N)
 
     def forecast(self, noutput_items, ninput_items_required):
+        #print "fcast noutput_items: " + str(noutput_items)
+
         #setup size of input_items[i] for work call
         for i in range(len(ninput_items_required)):
-            #ninput_items_required[i] = noutput_items
-	    ninput_items_required[i] = self.N
-             
+            #ninput_items_required[i] = max(noutput_items, self.N)
+            ninput_items_required[i] = max(self.N + (noutput_items/self.N - 1), self.N)
+
+            #print "ninput_items_required: " + str(ninput_items_required[i]) 
 
     def general_work(self, input_items, output_items):
-        output_items[0][:] = mfft(input_items[0], self.p)
-        #consume(0, len(input_items[0]))
-        #self.consume_each(len(input_items[0]))
-        self.consume_each(self.M)
+        print "Input_items" + str(input_items)
+        #print "XXLen output items: " + str((len(output_items[0])))
+        noutput_items=len(output_items[0])
+        ninput_items=len(input_items[0])
+
+
+        number_of_iterations = noutput_items/self.N
+        print "Number of iterations: " + str(number_of_iterations) 
+        print  "Number of output items: " + str(noutput_items)
+
+        for i in range(0, noutput_items/self.N):
+            sliced_input_items = input_items[0][ninput_items-self.N-i*self.M : ninput_items-i*self.M]
+            print "Sliced input items: " + str(sliced_input_items)
+
+            if i==0:
+                 out = mfft(sliced_input_items, self.p)
+            else:
+                 out = numpy.concatenate((out, mfft(sliced_input_items, self.p)), axis=0)
+
+            self.consume_each(self.M)
+       
+        if number_of_iterations>0:
+           output_items[0][:] = out 
+           print "Out: " + str(out)
+           return len(out)
+        else: return(0)
+     
 
         #return len(output_items[0])
-        return self.N

@@ -39,20 +39,20 @@ class qa_mfft_fc (gr_unittest.TestCase):
 
         """
         # set up fg
-        self.tb.run ()
+        #self.tb.run ()
         # check data
-        src_data = (-1.5, 2, 5.1, 6)
-        expected_results = fft(src_data) 
+        src_data = (1, 2, 3, 4, 5 ,6)
+        expected_results = fft((3,4)) 
         print "Expected data" + str(expected_results)
 
         #source - float _f  
         src = blocks.vector_source_f(src_data)
 
-        #p=0, N=4, M=4
-	mfft = mfft_fc(0, 4, 4)
+        #p=0, N=2, M=1
+	mfft = mfft_fc(0, 2, 1)
 
         #destination - complex sink _c!
-	dst = blocks.vector_sink_c(4)
+	dst = blocks.vector_sink_c(1)
 
         #connect everything together
 	self.tb.connect(src, mfft)
@@ -64,7 +64,8 @@ class qa_mfft_fc (gr_unittest.TestCase):
         print "Result data: " + str(result_data)
 
         #assert
-	#self.assertComplexTuplesAlmostEqual(expected_results, result_data, 4)
+	#self.assertComplexTuplesAlmostEqual(expected_results, result_data, 2)
+        print "TODO ASSERT"
 
 if __name__ == '__main__':
     gr_unittest.run(qa_mfft_fc, "qa_mfft_fc.xml")
