@@ -1,0 +1,37 @@
+Start testing: Sep 03 15:51 CEST
+----------------------------------------------------------
+1/1 Testing: qa_mfft_fc
+1/1 Test: qa_mfft_fc
+Command: "/bin/sh" "/home/david/hyperspace_waves/workspace-gnu-radio-python/gr-hyperspace_comm/build/python/qa_mfft_fc_test.sh"
+Directory: /home/david/hyperspace_waves/workspace-gnu-radio-python/gr-hyperspace_comm/build/python
+"qa_mfft_fc" start time: Sep 03 15:51 CEST
+Output:
+----------------------------------------------------------
+E
+======================================================================
+ERROR: test_001_mfft_0 (__main__.qa_mfft_fc)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/david/hyperspace_waves/workspace-gnu-radio-python/gr-hyperspace_comm/python/qa_mfft_fc.py", line 58, in test_001_mfft_0
+    self.tb.connect(mfft, dst)
+  File "/usr/lib/python2.7/dist-packages/gnuradio/gr/hier_block2.py", line 47, in wrapped
+    func(self, src, src_port, dst, dst_port)
+  File "/usr/lib/python2.7/dist-packages/gnuradio/gr/hier_block2.py", line 110, in connect
+    self.primitive_connect(*args)
+  File "/usr/lib/python2.7/dist-packages/gnuradio/gr/runtime_swig.py", line 4569, in primitive_connect
+    return _runtime_swig.top_block_sptr_primitive_connect(self, *args)
+ValueError: itemsize mismatch: mfft_fc1:0 using 16, vector_sink_c1:0 using 8
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+FAILED (errors=1)
+<end of output>
+Test time =   0.29 sec
+----------------------------------------------------------
+Test Failed.
+"qa_mfft_fc" end time: Sep 03 15:51 CEST
+"qa_mfft_fc" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Sep 03 15:51 CEST

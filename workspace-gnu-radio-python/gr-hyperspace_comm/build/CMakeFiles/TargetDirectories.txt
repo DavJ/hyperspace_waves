@@ -1,0 +1,4 @@
+/home/david/hyperspace_waves/workspace-gnu-radio-python/gr-hyperspace_comm/build/apps/CMakeFiles/pygen_apps_9a6dd.dir
+/home/david/hyperspace_waves/workspace-gnu-radio-python/gr-hyperspace_comm/build/CMakeFiles/uninstall.dir
+/home/david/hyperspace_waves/workspace-gnu-radio-python/gr-hyperspace_comm/build/python/CMakeFiles/pygen_python_1b540.dir
+/home/david/hyperspace_waves/workspace-gnu-radio-python/gr-hyperspace_comm/build/docs/doxygen/CMakeFiles/doxygen_target.dir

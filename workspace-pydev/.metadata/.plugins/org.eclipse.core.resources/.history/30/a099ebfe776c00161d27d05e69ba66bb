@@ -1,0 +1,4 @@
+MODULES_MANAGER_V2
+__init__|/home/david/hyperspace_waves/workspace-transform/transform/hyperspace_comm_py/__init__.py
+generate|/home/david/hyperspace_waves/workspace-transform/transform/hyperspace_comm_py/generate.py
+transform|/home/david/hyperspace_waves/workspace-transform/transform/hyperspace_comm_py/transform.py

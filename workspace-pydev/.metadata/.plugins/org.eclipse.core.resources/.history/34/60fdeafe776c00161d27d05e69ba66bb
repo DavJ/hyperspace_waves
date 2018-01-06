@@ -1,0 +1,22 @@
+-- VERSION_4
+-- START DISKCACHE_2
+/home/david/hyperspace_waves/workspace-transform/transform/.metadata/.plugins/org.eclipse.core.resources/.projects/hyperspace_comm_py/com.python.pydev.analysis/v2_indexcache
+transform|1471733242000000000|/home/david/hyperspace_waves/workspace-transform/transform/hyperspace_comm_py/transform.py
+__init__|1469298183000000000|/home/david/hyperspace_waves/workspace-transform/transform/hyperspace_comm_py/__init__.py
+generate|1471814065000000000|/home/david/hyperspace_waves/workspace-transform/transform/hyperspace_comm_py/generate.py
+-- END DISKCACHE
+-- START DICTIONARY
+2
+1=transform
+2=generate
+-- END DICTIONARY
+-- START TREE 1
+4
+a|1|a!11@
+gen|1|generate_hyperspace_wave!18@
+mff|1|mfft!10@
+rea|1|real_exp!18@
+-- END TREE
+-- START TREE 2
+0
+-- END TREE

@@ -1,0 +1,13 @@
+!SESSION 2016-08-28 10:16:56.099 -----------------------------------------------
+eclipse.buildId=4.6.0.I20160606-1100
+java.version=1.8.0_91
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.launchbar.core 2 0 2016-08-28 10:18:13.327
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.arduino.core.descriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2016-08-28 10:18:13.362
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.qt.core.launchDescriptorType
