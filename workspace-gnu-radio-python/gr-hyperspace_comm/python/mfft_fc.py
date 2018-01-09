@@ -73,7 +73,8 @@ class mfft_fc(gr.basic_block):
         print  "Number of output items: " + str(noutput_items)
 
         for i in range(0, noutput_items/self.N):
-            sliced_input_items = input_items[0][ninput_items-self.N-i*self.M : ninput_items-i*self.M]
+            #sliced_input_items = input_items[0][ninput_items-self.N-i*self.M : ninput_items-i*self.M]
+            sliced_input_items = input_items[0][ i*self.M : i*self.M + self.N]
             print "Sliced input items: " + str(sliced_input_items)
 
             if i==0:

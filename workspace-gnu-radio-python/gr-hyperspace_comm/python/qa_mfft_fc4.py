@@ -41,14 +41,22 @@ class qa_mfft_fc (gr_unittest.TestCase):
         # set up fg
         #self.tb.run ()
         # check data
-        src_data = (1, 2, 3, 4, 5 ,6)
-        expected_results = fft((3,4)) 
+        src_data = (0, 1, 2, 3, 4, 5, 6, 7)
+        
+        expected_source_data=[list(src_data)[i:i+2] for i in range(len(src_data)-1)]
+
+
+        print "Expected source data" + str(expected_source_data)
+ 
+        expected_results_nested=[list(fft(a)) for a in expected_source_data]
+        expected_results=[val for sublist in expected_results_nested for val in sublist]
+         
         print "Expected data" + str(expected_results)
 
         #source - float _f  
         src = blocks.vector_source_f(src_data)
 
-        #p=0, N=2, M=1
+        #regular fft p=0, number of items to analyze N=2, slice 1 sample after analysis M=1
 	mfft = mfft_fc(0, 2, 1)
 
         #destination - complex sink _c!
@@ -64,8 +72,7 @@ class qa_mfft_fc (gr_unittest.TestCase):
         print "Result data: " + str(result_data)
 
         #assert
-	#self.assertComplexTuplesAlmostEqual(expected_results, result_data, 2)
-        print "TODO ASSERT"
+	self.assertComplexTuplesAlmostEqual(expected_results, result_data, 2)
 
 if __name__ == '__main__':
     gr_unittest.run(qa_mfft_fc, "qa_mfft_fc.xml")
