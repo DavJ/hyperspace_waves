@@ -1,5 +1,7 @@
-<testsuite errors="0" failures="0" name="unittest.suite.TestSuite" tests="1" time="0.010">
-  <testcase classname="__main__.qa_mfft_fc" name="test_001_mfft_0" time="0.0098"></testcase>
+<testsuite errors="0" failures="0" name="unittest.suite.TestSuite" tests="3" time="0.038">
+  <testcase classname="__main__.qa_mfft_fc" name="test_001_mfft_0" time="0.0095"></testcase>
+  <testcase classname="__main__.qa_mfft_fc" name="test_002_mfft_0" time="0.0173"></testcase>
+  <testcase classname="__main__.qa_mfft_fc" name="test_003_mfft_0" time="0.0110"></testcase>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
