@@ -18,6 +18,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import math
 import cmath
+import tempfile
 
 sys.path.insert(0, os.path.dirname(__file__))
 
@@ -28,6 +29,10 @@ from biquaternion.theta_functions import (jacobi_theta3_complex, biquaternion_th
                                            reconstruct_wave_from_theta, 
                                            theta_expansion_coefficients)
 from generator.generate import generate_hyperspace_wave
+
+# Create output directory for plots
+OUTPUT_DIR = os.path.join(tempfile.gettempdir(), 'hyperspace_waves_output')
+os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 
 def demo_biquaternion_basics():
@@ -125,8 +130,8 @@ def demo_hyperspace_wave_bq():
     axes[1, 1].grid(True)
     
     plt.tight_layout()
-    plt.savefig('/tmp/hyperspace_wave_bq_components.png', dpi=150)
-    print("\nPlot saved to: /tmp/hyperspace_wave_bq_components.png")
+    plt.savefig(os.path.join(OUTPUT_DIR, 'hyperspace_wave_bq_components.png', dpi=150)
+    print("\nPlot saved to: " + OUTPUT_DIR + "/hyperspace_wave_bq_components.png")
 
 
 def demo_polarized_waves():
@@ -173,8 +178,8 @@ def demo_polarized_waves():
         print(f"  Total energy: {wave.total_energy(N):.6f}")
     
     plt.tight_layout()
-    plt.savefig('/tmp/hyperspace_wave_polarizations.png', dpi=150)
-    print("\nPlot saved to: /tmp/hyperspace_wave_polarizations.png")
+    plt.savefig(os.path.join(OUTPUT_DIR, 'hyperspace_wave_polarizations.png', dpi=150)
+    print("\nPlot saved to: " + OUTPUT_DIR + "/hyperspace_wave_polarizations.png")
 
 
 def demo_theta_functions():
@@ -241,8 +246,8 @@ def demo_theta_functions():
     axes[1].grid(True, alpha=0.3)
     
     plt.tight_layout()
-    plt.savefig('/tmp/theta_function_comparison.png', dpi=150)
-    print("Plot saved to: /tmp/theta_function_comparison.png")
+    plt.savefig(os.path.join(OUTPUT_DIR, 'theta_function_comparison.png', dpi=150)
+    print("Plot saved to: " + OUTPUT_DIR + "/theta_function_comparison.png")
 
 
 def demo_wave_superposition():
@@ -300,8 +305,8 @@ def demo_wave_superposition():
     axes[1].set_xlim([0, 5])
     
     plt.tight_layout()
-    plt.savefig('/tmp/wave_superposition.png', dpi=150)
-    print("Plot saved to: /tmp/wave_superposition.png")
+    plt.savefig(os.path.join(OUTPUT_DIR, 'wave_superposition.png', dpi=150)
+    print("Plot saved to: " + OUTPUT_DIR + "/wave_superposition.png")
 
 
 def demo_curved_space_concepts():
@@ -352,8 +357,8 @@ def demo_curved_space_concepts():
     plt.legend(fontsize=10)
     plt.grid(True, alpha=0.3)
     plt.tight_layout()
-    plt.savefig('/tmp/dispersion_relations.png', dpi=150)
-    print("\nDispersion relation plot saved to: /tmp/dispersion_relations.png")
+    plt.savefig(os.path.join(OUTPUT_DIR, 'dispersion_relations.png', dpi=150)
+    print("\nDispersion relation plot saved to: " + OUTPUT_DIR + "/dispersion_relations.png")
     
     print("\n5. Physical Implications:")
     print("   - Enhanced barrier penetration (tunneling)")
@@ -382,12 +387,12 @@ def main():
         print("\n" + "="*70)
         print("ALL DEMONSTRATIONS COMPLETED SUCCESSFULLY")
         print("="*70)
-        print("\nGenerated plots:")
-        print("  - /tmp/hyperspace_wave_bq_components.png")
-        print("  - /tmp/hyperspace_wave_polarizations.png")
-        print("  - /tmp/theta_function_comparison.png")
-        print("  - /tmp/wave_superposition.png")
-        print("  - /tmp/dispersion_relations.png")
+        print(f"\nGenerated plots in: {OUTPUT_DIR}")
+        print("  - hyperspace_wave_bq_components.png")
+        print("  - hyperspace_wave_polarizations.png")
+        print("  - theta_function_comparison.png")
+        print("  - wave_superposition.png")
+        print("  - dispersion_relations.png")
         print("\n")
         
     except Exception as e:

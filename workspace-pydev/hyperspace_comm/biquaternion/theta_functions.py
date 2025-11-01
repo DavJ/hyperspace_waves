@@ -197,10 +197,12 @@ def theta_quantization_condition(k_vec, L, tau_bq):
         Boolean indicating if the momentum satisfies quantization condition
     """
     # Momentum must satisfy: k_i = 2πn_i/L_i for integers n_i
-    tolerance = 1e-6
+    tolerance = 1e-8  # Relaxed tolerance for numerical precision
     
     for ki, Li in zip(k_vec, L):
-        ni_approx = ki * Li / (2 * math.pi)
+        # Handle complex momenta by using the real part
+        ki_real = ki.real if isinstance(ki, complex) else ki
+        ni_approx = ki_real * Li / (2 * math.pi)
         ni_int = round(ni_approx.real)
         
         if abs(ni_approx - ni_int) > tolerance:
@@ -234,7 +236,8 @@ def theta_zeros_spectrum(tau_bq, search_range=10):
                 theta_val = biquaternion_theta(z_bq, tau_bq, max_terms=20)
                 
                 # Check if norm is very small (near zero)
-                if theta_val.norm() < 0.1:
+                # Use a smaller threshold for better numerical precision
+                if theta_val.norm() < 1e-6:
                     zeros.append(z_bq)
             except:
                 pass

@@ -127,7 +127,10 @@ class Biquaternion:
         )
     
     def norm_squared(self):
-        """Return |q|² = w*w + x*x + y*y + z*z (considering complex norms)."""
+        """
+        Return |q|² = |w|² + |x|² + |y|² + |z|² 
+        where |·| denotes the complex absolute value (modulus).
+        """
         return (abs(self.w)**2 + abs(self.x)**2 + 
                 abs(self.y)**2 + abs(self.z)**2)
     
