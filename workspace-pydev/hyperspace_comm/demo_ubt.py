@@ -130,7 +130,7 @@ def demo_hyperspace_wave_bq():
     axes[1, 1].grid(True)
     
     plt.tight_layout()
-    plt.savefig(os.path.join(OUTPUT_DIR, 'hyperspace_wave_bq_components.png', dpi=150)
+    plt.savefig(os.path.join(OUTPUT_DIR, 'hyperspace_wave_bq_components.png'), dpi=150)
     print("\nPlot saved to: " + OUTPUT_DIR + "/hyperspace_wave_bq_components.png")
 
 
@@ -178,7 +178,7 @@ def demo_polarized_waves():
         print(f"  Total energy: {wave.total_energy(N):.6f}")
     
     plt.tight_layout()
-    plt.savefig(os.path.join(OUTPUT_DIR, 'hyperspace_wave_polarizations.png', dpi=150)
+    plt.savefig(os.path.join(OUTPUT_DIR, 'hyperspace_wave_polarizations.png'), dpi=150)
     print("\nPlot saved to: " + OUTPUT_DIR + "/hyperspace_wave_polarizations.png")
 
 
@@ -246,7 +246,7 @@ def demo_theta_functions():
     axes[1].grid(True, alpha=0.3)
     
     plt.tight_layout()
-    plt.savefig(os.path.join(OUTPUT_DIR, 'theta_function_comparison.png', dpi=150)
+    plt.savefig(os.path.join(OUTPUT_DIR, 'theta_function_comparison.png'), dpi=150)
     print("Plot saved to: " + OUTPUT_DIR + "/theta_function_comparison.png")
 
 
@@ -305,7 +305,7 @@ def demo_wave_superposition():
     axes[1].set_xlim([0, 5])
     
     plt.tight_layout()
-    plt.savefig(os.path.join(OUTPUT_DIR, 'wave_superposition.png', dpi=150)
+    plt.savefig(os.path.join(OUTPUT_DIR, 'wave_superposition.png'), dpi=150)
     print("Plot saved to: " + OUTPUT_DIR + "/wave_superposition.png")
 
 
@@ -357,7 +357,7 @@ def demo_curved_space_concepts():
     plt.legend(fontsize=10)
     plt.grid(True, alpha=0.3)
     plt.tight_layout()
-    plt.savefig(os.path.join(OUTPUT_DIR, 'dispersion_relations.png', dpi=150)
+    plt.savefig(os.path.join(OUTPUT_DIR, 'dispersion_relations.png'), dpi=150)
     print("\nDispersion relation plot saved to: " + OUTPUT_DIR + "/dispersion_relations.png")
     
     print("\n5. Physical Implications:")
