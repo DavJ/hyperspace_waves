@@ -233,6 +233,13 @@ It separates physical sector projectors from Fourier/prime labels, derives the
 transfer and return response, and checks the blocking charge selection rule.
 No physical adjacent universe or laboratory access map is inferred.
 
+The [action-to-source/readout follow-up](docs/source-detector-matching.md)
+now computes the conditional scalar-loop coefficient in terms of a charged
+mass matrix and its neutral-mode derivatives. It also identifies the exact
+left-phase/conjugation mismatch in the older neutrality argument. That
+matching result supplies neither the physical UBT representation nor its
+constrained Hessian.
+
 ## 6. Theta functions and measurement
 
 For central complex tau with Im(tau)>0, the scalar Jacobi theta series is

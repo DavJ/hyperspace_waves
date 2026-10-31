@@ -253,6 +253,11 @@ Determine whether a neutral intersector block survives. A numerical oscillator
 eta, a prime index difference, or an unexplained voltage residual is not that
 calculation.
 
+A subsequent [source/readout matching calculation](source-detector-matching.md)
+derives the effective eta and scalar-loop EM coefficients from a specified
+neutral/charged comparator. It audits the earlier left-phase neutrality
+assumption and keeps the UBT representation/constraint embedding open.
+
 ## 7. Verification and sources
 
 `segment_channel.py` implements the stable comparator, retarded symmetric

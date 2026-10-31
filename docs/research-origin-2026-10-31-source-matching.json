@@ -1,0 +1,38 @@
+{
+  "schema": "research-origin-summary/v1",
+  "decision_id": "UBT-SOURCE-DETECTOR-MATCHING-2026-10-31",
+  "date_recorded": "2026-10-31",
+  "status": "CONDITIONAL_AI_ASSISTED_WORKING_RESEARCH",
+  "human_direction": {
+    "contribution": "Requested completion of the missing physical coupling and transmitter/receiver derivation after the two-sector explanation.",
+    "evidence": "Current task instruction; no raw private prompt published.",
+    "attestation": "not_requested_not_claimed"
+  },
+  "prior_research": {
+    "contribution": "Existing UBT action registry, effective QED sector, potential audits, and full-Theta real-linear graded-jet phase boundary.",
+    "source_commit": "9b24d4b41cb486c01f2bfc4002588c85f8e691cd",
+    "historical_origin": "not_reconstructed"
+  },
+  "new_implementation": {
+    "contribution": "AI-proposed left-phase neutrality counterexample; explicitly scoped neutral/charged effective comparator; scalar threshold trace matching; one-potential mixing; reciprocal Maxwell source/readout; independent verification.",
+    "human_substantive_review": "not_claimed",
+    "physics_novelty": "Standard scalar-QED threshold method applied as a conditional matching target, not a new UBT discovery."
+  },
+  "negative_results": [
+    "Commuting with a central phase does not imply neutrality under left multiplication by it.",
+    "A neutral background with constant photon kinetic coefficient has no minimal tree h*A^2 source in the stated comparator.",
+    "A single ideal vacuum plane wave has F^2=0 and does not supply the leading proposed scalar source.",
+    "A classical linear readout at zero probe/background field vanishes at this order."
+  ],
+  "verification": {
+    "methods": [
+      "exact finite SymPy identities",
+      "proper-time and Feynman-parameter integral controls",
+      "matrix-log finite differences and unitary basis changes",
+      "one-potential Hessian finite differences"
+    ],
+    "lean_status": "LEAN-PENDING",
+    "limits": "Not a finalized UBT action, full one-loop propagator/vacuum, hardware calculation or historical-priority claim."
+  },
+  "human_signature": null
+}

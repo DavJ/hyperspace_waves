@@ -92,6 +92,19 @@ intersector coupling remain open.
 python scripts/verify_segment_channel.py --check
 ```
 
+## Matching a source and detector from one effective action
+
+The [source/readout calculation](docs/source-detector-matching.md) audits the
+left-phase neutrality assumption and derives a scalar-loop h*F² coefficient
+from a positive charged mass matrix and its neutral-mode derivatives. One
+explicit neutral effective potential supplies mixing and the required mass
+slopes; the same portal fixes source and Maxwell readout. This is a conditional
+ordinary EFT mechanism, not an established UBT spectrum or multiverse device.
+
+```sh
+python scripts/verify_source_matching.py --check
+```
+
 ## Research status and provenance
 
 [SUMMARY.md](SUMMARY.md) is the short ledger; [the numerical/exact check record](docs/results/wave-bridge.json)

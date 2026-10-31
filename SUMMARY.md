@@ -18,6 +18,10 @@ are superseded by [UBT_ANALYSIS.md](UBT_ANALYSIS.md).
   selection, Schur backreaction and the neutral-operator charge obstruction.
   [Derivation](docs/intersegment-channel.md); physical neighboring worlds and
   a source/receiver map remain unestablished.
+- New matching result: neutral mixing and a scalar-loop EM source/readout
+  coefficient follow from one specified effective comparator. A left-phase
+  neutrality counterexample blocks treating the old zero-mode argument as a
+  physical embedding. [Derivation](docs/source-detector-matching.md).
 - Open: final UBT action, nondegenerate on-shell background, complete constraint
   reduction, physical mode count, derived couplings and actual experimental data.
 
