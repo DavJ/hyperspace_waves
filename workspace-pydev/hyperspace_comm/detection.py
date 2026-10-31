@@ -16,7 +16,8 @@ from biquaternion.wave_bq import HyperspaceWaveBQ
 
 class HyperspaceDetector:
     """
-    Multi-method detector for hyperspace waves.
+    Ordinary waveform classification under a historical API name.
+    Detecting a ringdown does not identify its propagation mechanism.
     """
     
     def __init__(self, fsample=25e6):
@@ -28,7 +29,7 @@ class HyperspaceDetector:
         """
         self.fsample = fsample
     
-    def detect_mfft(self, signal, p=-1, threshold=None):
+    def detect_mfft(self, signal, p=0, threshold=None):
         """
         Detect hyperspace waves using modified FFT.
         
@@ -69,7 +70,9 @@ class HyperspaceDetector:
             'spectrum': spectrum,
             'power': power,
             'threshold': threshold,
-            'snr_db': 10*np.log10(peak_power / np.mean(power)) if detected else 0
+            'snr_db': 10*np.log10(peak_power / np.mean(power)) if detected else 0,
+            'statistic_scope': 'heuristic peak/mean ratio; no calibrated false-alarm rate',
+            'physical_validation': False
         }
     
     def detect_correlation(self, signal, expected_freq, N=None):
@@ -176,7 +179,7 @@ class HyperspaceDetector:
         results = {}
         
         # Method 1: mFFT
-        results['mfft'] = self.detect_mfft(signal, p=-1)
+        results['mfft'] = self.detect_mfft(signal, p=0)
         
         # Method 2: Correlation (if frequency known)
         if expected_freq is not None:
@@ -193,7 +196,9 @@ class HyperspaceDetector:
         ])
         
         results['combined_detected'] = votes >= 2
-        results['confidence'] = votes / (3 if expected_freq else 2)
+        results['vote_fraction'] = votes / (3 if expected_freq is not None else 2)
+        results['confidence'] = results['vote_fraction']  # legacy alias; not a probability
+        results['physical_validation'] = False
         
         return results
 
@@ -276,8 +281,8 @@ def compare_em_vs_hyperspace(em_signal, hs_signal, fsample=25e6):
     em_result = detector.detect_mfft(em_signal, p=0)
     
     # mFFT (hyperspace detection)
-    hs_result_em = detector.detect_mfft(em_signal, p=-1)
-    hs_result_hs = detector.detect_mfft(hs_signal, p=-1)
+    hs_result_em = detector.detect_mfft(em_signal, p=0)
+    hs_result_hs = detector.detect_mfft(hs_signal, p=0)
     
     # Compute penetration ratio
     em_power_baseline = em_result['peak_power']
@@ -294,3 +299,4 @@ def compare_em_vs_hyperspace(em_signal, hs_signal, fsample=25e6):
         'em_blocking_ratio': blocking_ratio,
         'hyperspace_advantage': penetration_ratio / (blocking_ratio + 1e-10)
     }
+

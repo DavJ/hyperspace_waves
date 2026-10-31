@@ -1,3 +1,10 @@
+> **SUPERSEDED HISTORICAL DOCUMENT (2025).** The completion, FTL, retrocausal,
+> barrier-penetration and detector-confidence claims below are not established
+> physical results. Some API behavior has changed. The active derivation,
+> counterexamples, supported interfaces and open UBT bridge are in
+> [UBT_ANALYSIS.md](UBT_ANALYSIS.md) and [README.md](README.md).
+> Retained for historical context; not an experimental protocol or validation report.
+
 # Detection and Applications of Hyperspace Waves
 
 ## Overview
@@ -688,3 +695,4 @@ Hyperspace waves provide unique capabilities:
 5. **Security**: Biquaternion encryption
 
 This document provides the theoretical foundation and practical implementation for detecting and utilizing hyperspace waves across various applications.
+

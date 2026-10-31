@@ -1,56 +1,30 @@
-'''
-Created on Jul 23, 2016
+"""Finite spiral transform, not a physical hyperspace detector.
 
-@author: david jaros
-site: www.octonion-multiverse.com
-
-(note: for numpy usage see http://www.scipy-lectures.org/intro/numpy/operations.html)
-'''
-
+mfft(x,p)[k] = sum_n x[n] exp[-2*pi*(p+i)*k*n/N].
+For p=0 use NumPy's FFT. For p!=0 this is a finite spiral transform with strongly
+unequal noise gains. Large growing kernels are rejected rather than overflow.
+Use causal_modes.matched_filter for a normalized, specified noise test.
+"""
 import numpy as np
-import cmath
-#from gnuradio import fft
 
 
 def mfft(input, p=0):
-    '''
-      mfft
-      calculates modified fft using modified Cooley-Tookey algorithm (recursive implementation)
-      (note: algorithm is a bit slower than original Cooley-Tookey,  because generally for p<>0: E(k+N/2)<>E(k); O(k+N/2)<>O(k),
-             therefore periodicity could not be exploited and additional multiplication is needed
-      
-      :Arguments
-       input ... list of real or complex values of length 2^k 
-       p ...     exponential factor, defines rotation of "analysis axe" in complex plane (rotation angle fi=arctg(p))
-                 for p=0  :same results as FFT are returned (searching for regular EM waves with real frequency) 
-                 for p=-1 :modified FFT - searching for divergent balanced hyperspace waves
-                 for p=+1 :modified FFT - searching for convergent balanced hyperspace waves
-                 other p  : searching for any (unbalanced) hyperspace waves (p>0 convergent waves, p<0 divergent waves)
-
-      :Returns 
-               modified fast fourier transform (analyses content of  complex frequencies in input signal)
-    '''
-    N = len(input)
-    even = np.asarray(input[::2])
-    odd =  np.asarray(input[1::2])
-    #np.zeros((2,2),dtype=np.complex_)
-    index_k = np.asarray(range(0, N/2))
-    arg_arr1 = -index_k * (2 * cmath.pi * (p+1j) / N)
-    vexp=np.vectorize(cmath.exp)
-
-    multiplicator1 = vexp(arg_arr1)
-    multiplicator2 = -cmath.exp(-p*cmath.pi)*vexp(arg_arr1)
-    
-    if N>2:
-        emfft = mfft(even.tolist(), p)
-        omfft = mfft(odd.tolist(), p)
-        lower_result = emfft + omfft*multiplicator1
-        upper_result = emfft + omfft*multiplicator2
-    elif N==2:
-        lower_result = even + odd*multiplicator1
-        upper_result = even + odd*multiplicator2
-    else: 
-        raise
-    
-    return lower_result.tolist() + upper_result.tolist()
-       
+    values = np.asarray(input, dtype=complex)
+    p = float(p)
+    if values.ndim != 1 or values.size == 0 or not np.isfinite(values).all() or not np.isfinite(p):
+        raise ValueError("input must be a nonempty finite 1D array and p finite")
+    if p == 0:
+        return np.fft.fft(values).tolist()
+    n = len(values)
+    # Bound the growing kernel before constructing a dense reference sum.
+    exponent = 2*np.pi*abs(p)*(n-1)**2/n
+    if exponent > 300:
+        raise ValueError("spiral transform dynamic range is unsafe; use a normalized matched filter")
+    if n > 2048:
+        raise ValueError("nonzero-p reference transform is limited to 2048 samples")
+    indices = np.arange(n)
+    kernel = np.exp(-2*np.pi*(p+1j)*np.outer(indices, indices)/n)
+    result = kernel @ values
+    if not np.isfinite(result).all():
+        raise ValueError("spiral transform is numerically ill-conditioned")
+    return result.tolist()

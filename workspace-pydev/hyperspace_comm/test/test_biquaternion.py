@@ -163,7 +163,7 @@ def test_jacobi_theta_complex():
     """Test complex Jacobi theta function."""
     print("Testing complex Jacobi theta function...")
     
-    z = 0.5 + 0.5j
+    z = 0.17 + 0.2j
     tau = 1j  # Pure imaginary tau > 0
     
     theta_val = jacobi_theta3_complex(z, tau, max_terms=50)
@@ -177,6 +177,7 @@ def test_jacobi_theta_complex():
     # Should be approximately equal (up to a phase factor)
     ratio = abs(theta_shifted / theta_val)
     print(f"  Periodicity check ratio: {ratio:.6f}")
+    assert abs(theta_shifted-theta_val) < 1e-12
     
     print("✓ Complex theta function tests passed")
 
@@ -236,14 +237,14 @@ def test_theta_wave_reconstruction():
     print("✓ Theta wave reconstruction tests passed")
 
 
-def test_wave_energy_conservation():
-    """Test energy conservation in biquaternion waves."""
-    print("Testing energy conservation...")
+def test_wave_ringdown_sample_norm():
+    """Test the exact geometric sample-norm sum, not physical energy conservation."""
+    print("Testing ringdown coefficient norm...")
     
     # Create a balanced wave
     wave = HyperspaceWaveBQ(freq=2e6, fsample=25e6)
     
-    # Energy should be approximately constant over time for balanced waves
+    # This is a coefficient norm of a decaying template, not a Hamiltonian.
     energy_density = wave.energy_density(N=1024)
     
     # For balanced waves with s1 = -1/√2, energy decays but remains finite
@@ -257,7 +258,10 @@ def test_wave_energy_conservation():
     assert total_energy > 0, "Total energy should be positive"
     assert total_energy < float('inf'), "Total energy should be finite"
     
-    print("✓ Energy conservation tests passed")
+    exponent = 4*math.pi*wave.s1*wave.freq/wave.fsample
+    expected = np.expm1(exponent*1024)/np.expm1(exponent)
+    assert abs(total_energy-expected) < 1e-12
+    print("✓ Geometric sample-norm test passed")
 
 
 def run_all_tests():
@@ -275,7 +279,7 @@ def run_all_tests():
         test_jacobi_theta_complex()
         test_biquaternion_theta()
         test_theta_wave_reconstruction()
-        test_wave_energy_conservation()
+        test_wave_ringdown_sample_norm()
         
         print("\n" + "="*60)
         print("ALL TESTS PASSED ✓")
@@ -295,3 +299,4 @@ def run_all_tests():
 if __name__ == '__main__':
     success = run_all_tests()
     sys.exit(0 if success else 1)
+

@@ -56,9 +56,12 @@ def biquaternion_theta(z_bq, tau_bq, max_terms=30):
     Returns:
         Biquaternion value of theta function
     """
-    # Check tau_bq has appropriate structure (imaginary part of scalar component > 0)
-    if tau_bq.w.imag <= 0:
-        raise ValueError("tau_bq scalar component must have positive imaginary part")
+    # Sufficient convergence condition in the faithful matrix representation.
+    # Scalar Im(tau.w)>0 alone is insufficient for matrix-valued tau.
+    matrix = tau_bq.to_matrix()
+    imaginary_hermitian = (matrix - matrix.conj().T)/(2j)
+    if np.linalg.eigvalsh(imaginary_hermitian)[0] <= 0:
+        raise ValueError("Hermitian imaginary part of tau must be positive definite")
     
     result = Biquaternion(0, 0, 0, 0)
     
@@ -80,7 +83,9 @@ def theta_expansion_coefficients(wave_freq, base_tau, num_modes=10):
     """
     Compute coefficients for theta function expansion of a hyperspace wave.
     
-    Decomposes a hyperspace wave into a sum of theta function modes:
+    Historical heuristic weights, NOT a derived or fitted reconstruction.
+    No error bound or physical mode selection is supplied.
+    Decomposes a trial waveform into a sum of theta function modes:
     Ψ(t) ≈ Σ_n c_n ϑ₃(ft, τ_n)
     
     Args:
@@ -148,34 +153,18 @@ def reconstruct_wave_from_theta(t_array, freq, base_tau, num_modes=10, max_terms
 
 
 def biquaternion_theta_modular_transform(z_bq, tau_bq):
+    """Exact theta3 modular map for CENTRAL complex arguments only.
+
+    theta3(z/tau,-1/tau)=sqrt(-i*tau)*exp(i*pi*z*z/tau)*theta3(z,tau).
+    Noncentral/noncommuting generalization is not established by this code.
     """
-    Apply modular transformation to biquaternion theta function.
-    
-    Implements: Θ₃(Z_BQ/T_BQ, -1/T_BQ) = √Det(T_BQ) Θ₃(Z_BQ, T_BQ)
-    
-    This is a key symmetry in the UBT framework.
-    
-    Args:
-        z_bq: Biquaternion position
-        tau_bq: Biquaternion modular parameter
-    
-    Returns:
-        Tuple (z_transformed, tau_transformed, prefactor)
-    """
-    # Compute -1/T_BQ
-    tau_inv = tau_bq.inverse()
-    tau_transformed = tau_inv * (-1)
-    
-    # Compute Z_BQ/T_BQ
-    z_transformed = z_bq / tau_bq
-    
-    # Compute determinant (for biquaternion, this is related to norm)
-    # Prefactor: sqrt(Det(T_BQ)) ≈ sqrt(T_BQ.norm())
-    # For proper definition, we use the scalar part as dominant
-    det_approx = tau_bq.norm()
-    prefactor = cmath.sqrt(det_approx)
-    
-    return z_transformed, tau_transformed, prefactor
+    if any(v != 0 for q in (z_bq, tau_bq) for v in q.vector_part()):
+        raise NotImplementedError("modular identity is verified only for central complex arguments")
+    z, tau = z_bq.w, tau_bq.w
+    if tau.imag <= 0:
+        raise ValueError("tau must have positive imaginary part")
+    prefactor = cmath.sqrt(-1j*tau)*cmath.exp(1j*cmath.pi*z*z/tau)
+    return Biquaternion(z/tau), Biquaternion(-1/tau), prefactor
 
 
 def theta_quantization_condition(k_vec, L, tau_bq):
@@ -196,12 +185,18 @@ def theta_quantization_condition(k_vec, L, tau_bq):
     Returns:
         Boolean indicating if the momentum satisfies quantization condition
     """
+    # This is an imposed real periodic-box boundary condition, not a UBT prediction.
+    if len(k_vec) != 3 or len(L) != 3:
+        raise ValueError("k_vec and L must have three components")
+    if any(not np.isfinite(v) or v <= 0 for v in L):
+        raise ValueError("box lengths must be positive and finite")
     # Momentum must satisfy: k_i = 2πn_i/L_i for integers n_i
     tolerance = 1e-8  # Relaxed tolerance for numerical precision
     
     for ki, Li in zip(k_vec, L):
-        # Handle complex momenta by using the real part
-        ki_real = ki.real if isinstance(ki, complex) else ki
+        if not np.isfinite(ki) or complex(ki).imag != 0:
+            return False
+        ki_real = complex(ki).real
         ni_approx = ki_real * Li / (2 * math.pi)
         ni_int = round(ni_approx.real)
         
@@ -215,7 +210,7 @@ def theta_zeros_spectrum(tau_bq, search_range=10):
     """
     Find the zeros of the biquaternion theta function in a given range.
     
-    These zeros represent stable wave solutions and forbidden energies.
+    Numerical candidates only; zeros do not establish stability or energies.
     
     Args:
         tau_bq: biquaternion modular parameter
@@ -243,3 +238,4 @@ def theta_zeros_spectrum(tau_bq, search_range=10):
                 pass
     
     return zeros
+

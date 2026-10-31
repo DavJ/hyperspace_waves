@@ -21,12 +21,12 @@ def generate_hyperspace_wave(freq=2e6, fsample=25e6, s1=-1/math.sqrt(2), s2=1, N
     '''
     This function creates invariant (or balanced) hyperspace pulss (waves), which propagate same way in normal space and hyperspace.
     
-    Note: for s1>0 the pulse would have infinite energy, therefore s1 should be always equal to -1/sqrt(2). s2 can be either +1 or -1 
+    Note: for s1>0 the pulse would have infinite energy, therefore any s1 < 0 gives a decaying half-line pulse; -1/sqrt(2) is a convention. s2 can be either +1 or -1
     
     :Arguments
     freq ... frequency of wave (pulse)
     fsample ... sampling frequency (Nyquist criteria should be always satisfied fsample > 2* freq)
-    s1 ... s1 is dumping coeficient, which should be equal to -1/sqrt(2) for finite energy invariant pulse
+    s1 ... envelope exponent coefficient; -1/sqrt(2) is the historical default, not a derived value
     s2 ... frequency (or signum) of wave (pulse), can be e.g. used for modulation
     
     :Returns
@@ -39,6 +39,7 @@ def generate_hyperspace_wave(freq=2e6, fsample=25e6, s1=-1/math.sqrt(2), s2=1, N
     output=vexp(arg_arr1)
     
     return output
+
 
 
 
