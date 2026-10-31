@@ -14,6 +14,10 @@ are superseded by [UBT_ANALYSIS.md](UBT_ANALYSIS.md).
   periodicity check and misleading energy-conservation terminology.
 - Companion A model: finite rectangular cores, flux normalization, linked
   circulation and a traceless central A-gradient. No new div(A) source.
+- Added follow-up: an exact conditional sector response, Fourier harmonic
+  selection, Schur backreaction and the neutral-operator charge obstruction.
+  [Derivation](docs/intersegment-channel.md); physical neighboring worlds and
+  a source/receiver map remain unestablished.
 - Open: final UBT action, nondegenerate on-shell background, complete constraint
   reduction, physical mode count, derived couplings and actual experimental data.
 

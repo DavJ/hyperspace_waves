@@ -79,6 +79,19 @@ Its A-gradient has zero divergence outside the cores. A separate physical
 Theta mode must be derived before it can have a nonzero additional source or
 pickup response. See [the common source–propagator–detector bridge](UBT_ANALYSIS.md#5-sourcepropagatordetector-bridge).
 
+## Conditional transmission between sectors
+
+The [intersegment-channel derivation](docs/intersegment-channel.md) develops a
+stable two-mode response, exact zero-coupling and charge-selection gates,
+matrix Fourier overlaps and two-step mode conversion. It builds on the
+existing upstream 137/139 research without identifying prime labels, Fourier
+indices and physical universes. The transmitter/receiver gains and a physical
+intersector coupling remain open.
+
+```sh
+python scripts/verify_segment_channel.py --check
+```
+
 ## Research status and provenance
 
 [SUMMARY.md](SUMMARY.md) is the short ledger; [the numerical/exact check record](docs/results/wave-bridge.json)

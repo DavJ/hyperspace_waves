@@ -227,6 +227,12 @@ linear induction changes sign. These are conditional channel selection rules,
 not a predicted extra voltage. Joule heating, force and electronics also
 produce even harmonics; matched backgrounds remain essential.
 
+For an explicit follow-up on the proposed neighboring multiverse segment,
+see [the conditional sector-channel derivation](docs/intersegment-channel.md).
+It separates physical sector projectors from Fourier/prime labels, derives the
+transfer and return response, and checks the blocking charge selection rule.
+No physical adjacent universe or laboratory access map is inferred.
+
 ## 6. Theta functions and measurement
 
 For central complex tau with Im(tau)>0, the scalar Jacobi theta series is
