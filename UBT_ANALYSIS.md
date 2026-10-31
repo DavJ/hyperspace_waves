@@ -170,6 +170,18 @@ representation and multiplication sides of `D_mu` must be stated, and every
 composite metric/connection variation retained in the Hessian. Merely writing
 a biquaternion-valued plane wave does none of this.
 
+### Neutrality correction continued upstream
+
+[Draft UBT PR #825](https://github.com/UBT-Institute/unified-biquaternion-theory/pull/825)
+repairs the left-action/conjugation swap and continues the original-carrier
+analysis. Its restricted real-linear Lorentz commutant theorem does not permit
+a partial neutral/charged linear split of the declared single carrier.
+A neutral invariant composite exists, but is indefinite; its physical
+susceptibility, isolated pole if any and electromagnetic matching still need
+to be derived. See the [source/readout follow-up](docs/source-detector-matching.md#upstream-repair-and-the-original-carrier-restriction).
+The effective neutral/charged comparator is not promoted to a derived UBT
+spectrum by this correction, and no inter-universe channel is established.
+
 ## 5. Source–propagator–detector bridge
 
 With supplied passive symmetric damping Gamma>=0 and convention exp(-i*omega*t),

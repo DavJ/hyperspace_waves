@@ -65,6 +65,37 @@ stated and proved compatible with the full Theta geometry; it cannot be inferred
 from a commuting scalar. Central conjugation alone acts trivially on the whole
 algebra and cannot simultaneously charge its other components.
 
+### Upstream repair and the original-carrier restriction
+
+The identified source error is now addressed in **draft**
+[UBT PR #825](https://github.com/UBT-Institute/unified-biquaternion-theory/pull/825),
+with the derivation pinned to
+[`a28354b2e44d61f507e65e58e286dbc79cc62512`](https://github.com/UBT-Institute/unified-biquaternion-theory/blob/a28354b2e44d61f507e65e58e286dbc79cc62512/research_tracks/action_selection/u1_neutrality_composite_channel.en.md).
+This is a proposed correction, not a finalized microscopic action.
+
+On the original single Mat(2,C) carrier, with Lorentz congruence X→SXS† and a
+commuting real-linear continuous compact internal U(1), the commutant is
+M2(R)⊗I4. Its phase action is either entirely neutral or has no nonzero fixed
+linear component. Thus the neutral/charged direct sum used below cannot be
+obtained merely by relabeling the two Hermitian parts of that carrier. This
+scoped theorem does not exclude composite or action-derived physical modes.
+
+The same original field admits the neutral Lorentz scalar
+H=Tr(Theta^sharp Theta†), but it is indefinite and not a positive norm.
+Its linearization vanishes at Theta=0. In a zero-mean phase-invariant free
+Gaussian vacuum, its connected response is a pair response; a healthy isolated
+neutral pole and its residue would have to be derived before replacing it by
+the canonical h propagator used in the effective comparator below.
+
+For a fiber-translation-invariant state with an actual composite source,
+Fourier bookkeeping gives Y/I=Σ_m g_m* chi_m^R f_m. Source overlap f_m,
+the physical retarded susceptibility chi_m^R and readout overlap g_m are all
+needed. Uniform fiber profiles have no nonzero-harmonic overlap. Neither
+this identity nor the anti-Helmholtz A calculation derives the electromagnetic
+matching coefficient or the fiber profiles. Fourier index m is not a universe
+label. The conditional scalar-loop calculation below remains valid under its
+stated assumptions; its embedding remains open.
+
 ## 2. What minimal coupling can generate at tree level
 
 Suppose h_a are actual neutral real physical perturbations and chi is a heavy
