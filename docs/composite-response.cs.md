@@ -137,6 +137,8 @@ Při invariantní akci, míře a stavu a pouze zdrojích s nulovou harmonickou s
 
 ## Ověření a další fyzikální podmínka
 
+Následný [podmíněný výpočet obsazenosti](occupation-channel.cs.md) poskytuje výslovné elektrické buzení ve skalární QED a defázované kinetické čtení. Nedodává spektrum UBT ani profily lokalizované v ψ potřebné pro kanál mezi segmenty.
+
 Odvození a kód vznikly s pomocí AI. Výchozím jazykem překladu je angličtina; úplnou lidskou kontrolu netvrdíme. Nezávisle kontrolujeme maticovou kontrakci, spektrální disperzi, Besselův tvar, přímý eukleidovský časový integrál, normalizaci Maxwellova tenzoru, znaménko z magnetického vlastního času a přiřazení hmotnostního zdroje konečnou diferencí. Záznam JSON uvádí přesné předpoklady, verze nástrojů, chyby a bezrozměrné příklady. `LEAN-PENDING`: lean/lake nejsou dostupné; netvrdíme ověřený formální důkaz ani experimentální validaci. Dalším výpočtem UBT je fyzikální propagátor odvozený z akce a jeho projekce na složenou veličinu, poté elektromagnetický překryv rozlišený po vlákně. Nové póly vyžadují skutečné interakce, nikoli přiřazené volné neutrální pole.
 
 <!-- BILINGUAL-UNIT: composite-response.sources -->

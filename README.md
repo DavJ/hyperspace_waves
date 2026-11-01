@@ -35,9 +35,11 @@ neither a spatial dispersion law nor a new propagation channel.
 - A tested central-complex theta modular identity. General noncommuting modular
   identities and the old heuristic theta reconstruction remain unproved.
 
-The current UBT reference is pinned to
+The initial UBT audit is pinned to
 [`386b6db`](https://github.com/UBT-Institute/unified-biquaternion-theory/commit/386b6dbed7d35ea63c8fd42fd88d57ac2f9cdaa3).
 It still registers the fundamental action as `DEFINED_FAMILY_NOT_FINALIZED`.
+Subsequent calculations link their own upstream audits and the open
+[neutrality correction](https://github.com/UBT-Institute/unified-biquaternion-theory/pull/825).
 No number of physical Theta components is assumed here; four complex
 coefficients describe one algebra element, not the full physical field content.
 
@@ -137,3 +139,15 @@ harmonic coupling remain open. These calculations define no new universe or
 independent neutral field.
 
 Run `python scripts/verify_composite_response.py --check`.
+
+## Opposite-index pair occupation
+
+The [occupation calculation](docs/occupation-channel.en.md) ([česky](docs/occupation-channel.cs.md))
+now works out an external electric pulse, scalar pair production, ideal count
+statistics and a subsequent collisionless electromagnetic readout from the
+same comparator action. Direct Klein–Gordon evolution and gamma-function
+matching independently check the exact pulse spectrum. Pair occupation can
+change while the total psi index remains zero. Uniform pump/readout profiles
+do not localize a transmitter and receiver in different psi segments.
+
+Run `python scripts/verify_occupation_channel.py --check`.

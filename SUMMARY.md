@@ -36,3 +36,9 @@ from passing software checks.
   r^-7. This is a standard-QED comparator result, not a new UBT pole or a
   nonzero fiber-channel identification. [English](docs/composite-response.en.md);
   [Czech](docs/composite-response.cs.md).
+- Occupation follow-up: a prescribed Sauter electric pulse produces opposite-index
+  scalar pairs in the declared comparator. Their random population supplies a
+  calculated state-induced Drude response; no vacuum photon mass is assigned.
+  Exact/gamma/Klein–Gordon controls agree. Psi-localized sources and a physical
+  UBT spectrum remain open. [English](docs/occupation-channel.en.md);
+  [Czech](docs/occupation-channel.cs.md).
