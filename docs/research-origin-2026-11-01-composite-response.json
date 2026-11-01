@@ -1,0 +1,79 @@
+{
+  "schema": "ubt-research-event/v1",
+  "recorded_on": "2026-11-01",
+  "claim_or_decision_id": "CONDITIONAL-COMPOSITE-RESPONSE",
+  "summary": "Compute the neutral-composite Gaussian kernel, massive pair attenuation and the ordinary scalar-QED two-photon tail without selecting a UBT spectrum.",
+  "development_mode": "iterative_human_ai",
+  "stage_events": [
+    {
+      "kind": "human_proposal",
+      "actor": "human",
+      "description": "The author requested continuation of the hyperspace-wave/UBT derivation and correction/merging of related project changes. This establishes task direction, not a physical discovery or substantive review.",
+      "evidence_ids": [
+        "direction"
+      ]
+    },
+    {
+      "kind": "mathematical_derivation",
+      "actor": "ai",
+      "description": "Apply standard Wick contraction and spectral dispersion, reuse the existing scalar-loop mass derivative, and compute the Maxwell two-photon continuum. Distinguish the free massive exponential from the interacting ordinary-photon power law.",
+      "evidence_ids": [
+        "sources",
+        "implementation"
+      ]
+    },
+    {
+      "kind": "verification",
+      "actor": "ai",
+      "description": "Supply exact CAS contractions and independent Euclidean, spectral, proper-time and finite-difference checks, with explicit physical and fiber-selection limits.",
+      "evidence_ids": [
+        "implementation"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "direction",
+      "class": "discussion_context",
+      "locator": "Current research session, author directions recorded 2026-11-01; no public transcript deposited",
+      "original_checked": true,
+      "supports": "The request to continue the existing derivation and fix/merge project work.",
+      "limitations": "No historical priority, direct quotation or human approval of the new derivation is inferred."
+    },
+    {
+      "id": "sources",
+      "class": "external_publication",
+      "locator": "D’Hoker QFT §§4.2/6.2; NIST DLMF 10.32.8; Vassilevich hep-th/0306138 §4",
+      "original_checked": true,
+      "supports": "Standard Gaussian/composite, spectral, Bessel and scalar heat-kernel mathematics used in the calculation.",
+      "limitations": "These are established methods, not evidence of a new UBT physical mode or a multiverse communication channel."
+    },
+    {
+      "id": "implementation",
+      "class": "repository_artifact",
+      "locator": "workspace-pydev/hyperspace_comm/composite_response.py; scripts/verify_composite_response.py; tests/test_composite_response.py; docs/results/composite-response.json",
+      "original_checked": true,
+      "supports": "Explicit conditional formulas, exact tensor normalization and independent numerical controls.",
+      "limitations": "A checked comparator is not a derivation of the physical Theta Hessian, source/receiver profiles, a bound state or a hardware range."
+    }
+  ],
+  "rejected_alternatives": [
+    "Assign a free neutral propagator to a bilinear without calculating its correlator.",
+    "Extrapolate the free massive exponential to the complete electromagnetic comparator.",
+    "Combine near-pair-threshold frequency tuning with a soft-momentum EM coefficient outside its regime.",
+    "Interpret ordinary zero-harmonic photon pairs as a nonzero conserved fiber channel."
+  ],
+  "verification": {
+    "status": "verified_with_scope",
+    "artifacts": [
+      "scripts/verify_composite_response.py",
+      "tests/test_composite_response.py",
+      "docs/results/composite-response.json"
+    ],
+    "limitations": "Conditional Gaussian/scalar-QED calculations only; no Lean compilation, full UBT projection, independent human attestation or experimental validation."
+  },
+  "attribution_status": "provisional",
+  "human_attestation": "not_attested",
+  "private_sources_publicly_disclosed": false,
+  "notes": "This applies established field-theory methods to the ongoing source/readout audit. No first-discovery or exclusive conceptual-origin claim is made."
+}
