@@ -118,8 +118,8 @@ Once electromagnetic interactions are retained, the same density can create two 
 The photon tail is an ordinary electromagnetic mechanism in physical space. In a psi-translation-invariant background with only zero-harmonic ordinary photons, it couples to the zero harmonic of the composite. Two zero indices cannot supply a nonzero conserved fiber index. A nonzero source/readout profile, another photon spectrum or a translation-breaking background must be derived separately. Neither this tail nor the massive pair kernel identifies a multiverse segment, a coil voltage or a device range. The recent gravity-only MM winding nonselection result also supplies no protected channel by itself.
 
 ```math
-m_{\gamma,1}=m_{\gamma,2}=0,\qquad
-m_O=m_{\gamma,1}+m_{\gamma,2}=0
+n_{\gamma,1}=n_{\gamma,2}=0,\qquad
+m=n_{\gamma,1}+n_{\gamma,2}=0
 .
 ```
 

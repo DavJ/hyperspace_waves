@@ -118,8 +118,8 @@ Jakmile ponecháme elektromagnetické interakce, tatáž hustota může vytvoři
 Fotonový dosah je běžný elektromagnetický mechanismus ve fyzikálním prostoru. V pozadí invariantním vůči posunům po psi, které obsahuje pouze běžné fotony s nulovou harmonickou složkou, se váže na nulovou harmonickou složku složené veličiny. Dva nulové indexy nemohou dodat nenulový zachovávaný index vlákna. Nenulový profil zdroje a odečtu, jiné fotonové spektrum nebo pozadí porušující invarianci vůči posunům musejí být odvozeny samostatně. Tento dosah ani jádro masivní dvojice neidentifikují segment multiversa, napětí na cívce či dosah zařízení. Ani nedávný výsledek o nevybrání vinutí čistě gravitačním modelem MM sám nedodává chráněný kanál.
 
 ```math
-m_{\gamma,1}=m_{\gamma,2}=0,\qquad
-m_O=m_{\gamma,1}+m_{\gamma,2}=0
+n_{\gamma,1}=n_{\gamma,2}=0,\qquad
+m=n_{\gamma,1}+n_{\gamma,2}=0
 .
 ```
 

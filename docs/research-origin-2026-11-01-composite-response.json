@@ -29,6 +29,14 @@
       "evidence_ids": [
         "implementation"
       ]
+    },
+    {
+      "kind": "ai_refinement",
+      "actor": "ai",
+      "description": "Retain the existing linear projection around a nonzero full-Theta background and distinguish the conserved coherent harmonic mean from neutral occupations and opposite-index correlations. A zero source harmonic does not eliminate nonzero constituent harmonics.",
+      "evidence_ids": [
+        "implementation"
+      ]
     }
   ],
   "evidence": [
@@ -61,7 +69,9 @@
     "Assign a free neutral propagator to a bilinear without calculating its correlator.",
     "Extrapolate the free massive exponential to the complete electromagnetic comparator.",
     "Combine near-pair-threshold frequency tuning with a soft-momentum EM coefficient outside its regime.",
-    "Interpret ordinary zero-harmonic photon pairs as a nonzero conserved fiber channel."
+    "Interpret ordinary zero-harmonic photon pairs as a nonzero conserved fiber channel.",
+    "Infer a zero full-Theta background from zero-mean fluctuation coordinates.",
+    "Treat a zero source Fourier harmonic as a filter excluding every nonzero constituent harmonic."
   ],
   "verification": {
     "status": "verified_with_scope",
