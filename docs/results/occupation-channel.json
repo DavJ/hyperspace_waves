@@ -1,0 +1,84 @@
+{
+  "schema": "conditional-occupation-channel/v1",
+  "status": "DERIVED_FOR_EXTERNAL_PULSE_SCALAR_QED_AND_DEPHASED_KINETIC_READOUT",
+  "exact": {
+    "pulse": "A_z=C-E*T*tanh(t/T); E_z=E*sech(t/T)^2",
+    "mode_equation": "d^2 u/dt^2 + [mu^2+p_perp^2+(p_z-g*A_z)^2] u=0",
+    "hypergeometric": "a=-i*T*omega_in/2; b=i*T*omega_out/2; A,B=a+b+1/2 +/- i*sqrt((g*E*T^2)^2-1/4); c=1+2*a",
+    "pair_number": "[cosh(2*pi*lambda)+cosh(pi*T*(omega_out-omega_in))]/[2*sinh(pi*T*omega_in)*sinh(pi*T*omega_out)]",
+    "normalization": "|alpha|^2-|beta|^2=1; N=|beta|^2; no a posteriori normalization",
+    "pair_statistics": "P(k)=N^k/(1+N)^(k+1); Var(k)=N*(1+N); Cov(N_a,N_b)=N*(1+N)",
+    "one_arm_click": "N*eta/(N*eta + 1)",
+    "readout": "D_ij=2*g^2*int d^3k/(2*pi)^3 f(k)*(delta_ij/E_k-k_i*k_j/E_k^3); delta j=-D delta A",
+    "pump_energy": "epsilon_out=2*int d^3k/(2*pi)^3 E_k*f(k); supplied by external pump",
+    "fiber_rule": "particle and antiparticle have opposite psi index; all occupations and pair creation have total index zero"
+  },
+  "controls": {
+    "maximum_gamma_or_KG_relative_error": 2.3009749661184742e-10,
+    "maximum_KG_wronskian_defect": 2.8045232802753617e-11
+  },
+  "illustrative_dimensionless_samples": [
+    {
+      "mass": 1.0,
+      "duration": 1.0,
+      "field": 0.2,
+      "charge": 1.0,
+      "p_parallel": 0.7,
+      "p_perp": 0.2,
+      "mean_pairs_per_mode_pair": 0.0002307000486643319,
+      "ideal_single_arm_click_probability": 0.0002306468384274824,
+      "pair_energy_per_unit_phase_space_weight": 0.0006275719816543484,
+      "readout_tensor_trace_per_unit_phase_space_weight": 0.0008618227359460739
+    },
+    {
+      "mass": 1.0,
+      "duration": 1.0,
+      "field": 0.5,
+      "charge": 1.0,
+      "p_parallel": 0.0,
+      "p_perp": 0.0,
+      "mean_pairs_per_mode_pair": 0.003564467826387765,
+      "ideal_single_arm_click_probability": 0.0035518075227474097,
+      "pair_energy_per_unit_phase_space_weight": 0.007970392363413962,
+      "readout_tensor_trace_per_unit_phase_space_weight": 0.01785367889404727
+    },
+    {
+      "mass": 1.0,
+      "duration": 1.0,
+      "field": 0.8,
+      "charge": 1.0,
+      "p_parallel": 0.4,
+      "p_perp": 0.3,
+      "mean_pairs_per_mode_pair": 0.011147564716550179,
+      "ideal_single_arm_click_probability": 0.011024666532896332,
+      "pair_energy_per_unit_phase_space_weight": 0.03546257428599771,
+      "readout_tensor_trace_per_unit_phase_space_weight": 0.03357390369684671
+    },
+    {
+      "mass": 0.6,
+      "duration": 1.4,
+      "field": 1.2,
+      "charge": -0.8,
+      "p_parallel": -0.9,
+      "p_perp": 0.4,
+      "mean_pairs_per_mode_pair": 0.06823770569898975,
+      "ideal_single_arm_click_probability": 0.06387876531126482,
+      "pair_energy_per_unit_phase_space_weight": 0.32167506339951085,
+      "readout_tensor_trace_per_unit_phase_space_weight": 0.07651550387567156
+    }
+  ],
+  "sample_normalization": "One specified momentum pair or one cell per unit phase-space weight, not a full three-momentum integral or a hardware prediction.",
+  "source": "Kim, Lee and Yoon, arXiv:0807.2696, scalar Eqs.53-68; constant-offset/canonical-momentum convention transformed explicitly.",
+  "tools": {
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "sympy": "1.14.0"
+  },
+  "lean_status": "LEAN-PENDING: lean/lake unavailable; no compiled formal proof",
+  "not_established": [
+    "a UBT constrained positive-energy charged spectrum or masses/charges",
+    "a spatially or fiber-localized Maxwell-consistent pump and its source overlap",
+    "near-pulse coherent readout, collisions, depletion, full momentum-integrated density or a detector noise budget",
+    "adjacent multiverse segments, psi-addressed receivers, faster signal fronts or a communication range"
+  ]
+}

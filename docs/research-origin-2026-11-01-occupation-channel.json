@@ -1,0 +1,85 @@
+{
+  "schema": "ubt-research-event/v1",
+  "recorded_on": "2026-11-01",
+  "claim_or_decision_id": "CONDITIONAL-PAIR-OCCUPATION-READOUT",
+  "summary": "Calculate external-pulse scalar pair production and a subsequent dephased electromagnetic population readout while preserving total psi index zero.",
+  "development_mode": "iterative_human_ai",
+  "stage_events": [
+    {
+      "kind": "human_proposal",
+      "actor": "human",
+      "description": "The author requested continuation of the existing derivation and repair/merging of related repository work. No physical spectrum, substantive approval or discovery claim follows from this direction.",
+      "evidence_ids": ["direction"]
+    },
+    {
+      "kind": "mathematical_derivation",
+      "actor": "ai",
+      "description": "Apply the standard scalar-QED Sauter-pulse solution to declared physical-mode comparators; derive the hypergeometric equation, pair count generating function and collisionless readout from the same charged-particle Hamiltonian.",
+      "evidence_ids": ["publication", "implementation"]
+    },
+    {
+      "kind": "verification",
+      "actor": "ai",
+      "description": "Compare exact hyperbolic, gamma-function and independent Klein-Gordon solutions without renormalizing the numerical Wronskian. Check gauge relabeling, weak-field powers, count statistics, energy derivatives and readout positivity/rotations.",
+      "evidence_ids": ["implementation"]
+    },
+    {
+      "kind": "ai_refinement",
+      "actor": "ai",
+      "description": "Distinguish invariant pair occupation from a forbidden coherent nonzero harmonic, an energized medium from vacuum response, and delocalized Fourier modes from addressed multiverse segments. A static coil vector potential does not specify the electric pump.",
+      "evidence_ids": ["implementation", "prior_calculation"]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "direction",
+      "class": "discussion_context",
+      "locator": "Current research session, continuation request recorded 2026-11-01; no public transcript deposited",
+      "original_checked": true,
+      "supports": "Authorization to continue the existing research and fix/merge relevant project work.",
+      "limitations": "No specific author attestation, historical priority, direct quotation or substantive human review is inferred."
+    },
+    {
+      "id": "publication",
+      "class": "external_publication",
+      "locator": "Kim, Lee and Yoon, Effective Action of QED in Electric Field Backgrounds, arXiv:0807.2696, scalar Eqs. 53-68 and squeezed-state construction",
+      "original_checked": true,
+      "supports": "The standard scalar Sauter pair spectrum and Bogoliubov/squeezed-state framework, after explicit gauge/momentum convention conversion.",
+      "limitations": "Does not identify physical UBT modes, a coil field or multiverse communication. The conditional adaptation is not a first-discovery claim."
+    },
+    {
+      "id": "implementation",
+      "class": "repository_artifact",
+      "locator": "workspace-pydev/hyperspace_comm/occupation_channel.py; scripts/verify_occupation_channel.py; tests/test_occupation_channel.py; docs/results/occupation-channel.json; docs/occupation-channel.en.md; docs/occupation-channel.cs.md",
+      "original_checked": true,
+      "supports": "Conditional pair pumping and readout, exact/CAS/numerical controls and explicit domain/normalization limits.",
+      "limitations": "External homogeneous pulse, free massive scalar pair evolution and dephased soft kinetic readout. No full momentum-integrated prediction, Maxwell apparatus, detector noise, formal Lean proof or experiment."
+    },
+    {
+      "id": "prior_calculation",
+      "class": "repository_artifact",
+      "locator": "docs/composite-response.en.md; docs/composite-response.cs.md; docs/source-detector-matching.md",
+      "original_checked": true,
+      "supports": "The existing comparator, conserved harmonic mean, permitted neutral occupations and still-open physical source/readout projection.",
+      "limitations": "These conditional calculations do not derive a final UBT action or physical positive-energy spectrum."
+    }
+  ],
+  "rejected_alternatives": [
+    "Treat occupation modulation as coherent excitation of a nonzero conserved harmonic.",
+    "Use the spinor Sauter numerator in the scalar comparator.",
+    "Repair a failed numerical normalization by enforcing the Wronskian after integration.",
+    "Treat a constant pure-gauge A as a local pair pump or compare gauges at fixed mislabeled canonical momentum.",
+    "Confuse the mean pair number with a detection probability or an integrated number density.",
+    "Interpret a medium Drude response as a vacuum Proca photon mass.",
+    "Infer psi-localized transmitter/receiver segments from a uniform source acting on delocalized modes."
+  ],
+  "verification": {
+    "status": "verified_with_scope",
+    "artifacts": ["scripts/verify_occupation_channel.py", "tests/test_occupation_channel.py", "docs/results/occupation-channel.json"],
+    "limitations": "Comparator/CAS/numerical verification only; Lean pending, no exhaustive independent human review, author attestation or experimental validation."
+  },
+  "attribution_status": "provisional",
+  "human_attestation": "not_attested",
+  "private_sources_publicly_disclosed": false,
+  "notes": "Established quantum-field/kinetic methods applied to the current occupation-channel question. No new multiverse channel or exclusive conceptual-origin claim."
+}

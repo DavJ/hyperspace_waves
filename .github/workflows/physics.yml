@@ -19,3 +19,4 @@ jobs:
       - run: python scripts/verify_segment_channel.py --check
       - run: python scripts/verify_source_matching.py --check
       - run: python scripts/verify_composite_response.py --check
+      - run: python scripts/verify_occupation_channel.py --check

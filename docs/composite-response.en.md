@@ -137,6 +137,8 @@ With an invariant action, measure and state and only zero-harmonic sources, tran
 
 ## Verification and next physical gate
 
+A subsequent [conditional occupation calculation](occupation-channel.en.md) supplies an explicit scalar-QED electric pump and a dephased kinetic readout. It does not supply the UBT spectrum or psi-localized profiles required for an intersegment channel.
+
 Derivation and code are AI-assisted. English is the translation source; exhaustive human review is not claimed. The matrix contraction, spectral dispersion, Bessel form, direct Euclidean time integral, Maxwell tensor normalization, magnetic proper-time sign and finite-difference mass-source matching are independently checked. The JSON record supplies exact assumptions, tool versions, errors and dimensionless examples. `LEAN-PENDING`: lean/lake are unavailable; no checked formal proof or experimental validation is claimed. The next UBT calculation is the action-derived physical propagator and its composite projection, followed by the fiber-resolved electromagnetic overlap. New poles require actual interactions, not an assigned free neutral field.
 
 <!-- BILINGUAL-UNIT: composite-response.sources -->
