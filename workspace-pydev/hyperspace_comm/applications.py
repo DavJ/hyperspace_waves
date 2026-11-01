@@ -18,10 +18,9 @@ class HyperspaceCommunicator:
     """
     Communication system using hyperspace waves.
     
-    Features:
-    - Binary Phase Shift Keying (BPSK) using s2 parameter
-    - Barrier penetration capability
-    - Potential FTL propagation
+    Historical frequency-sign keying using the s2 parameter.
+    These sampled waveforms specify no physical channel, barrier transmission
+    or propagation speed. Flipping s2 changes frequency sign, not BPSK phase.
     """
     
     def __init__(self, carrier_freq=2e6, data_rate=1e3, fsample=25e6):
@@ -40,7 +39,7 @@ class HyperspaceCommunicator:
     
     def encode_message(self, message_bits):
         """
-        Encode binary message using BPSK modulation.
+        Encode binary data using frequency-sign keying of complex templates.
         
         Modulation scheme:
         - Bit 0: s2 = +1
@@ -202,8 +201,8 @@ class BarrierPenetrationSystem:
             dict with analysis
         """
         # Detect in both signals
-        baseline_detect = self.detector.detect_mfft(baseline_signal, p=-1)
-        test_detect = self.detector.detect_mfft(test_signal, p=-1)
+        baseline_detect = self.detector.detect_mfft(baseline_signal, p=0)
+        test_detect = self.detector.detect_mfft(test_signal, p=0)
         
         # Calculate transmission coefficient
         transmission = test_detect['peak_power'] / (baseline_detect['peak_power'] + 1e-10)
@@ -287,41 +286,19 @@ class RetrocausalExperiment:
 
 class FTLCommunicationLink:
     """
-    Faster-than-light communication link using hyperspace waves.
+    Legacy name for a counterfactual timing calculator, not a physical link.
+    Speed must be supplied explicitly; no default sqrt(2)*c prediction.
     """
     
-    def __init__(self, carrier_freq=2e6):
+    def __init__(self, carrier_freq=2e6, propagation_speed_m_s=None):
         self.comm = HyperspaceCommunicator(carrier_freq=carrier_freq)
+        self.propagation_speed_m_s = propagation_speed_m_s
         self.c = 299792458  # Speed of light (m/s)
     
     def calculate_group_velocity(self, freq, wave_vector):
-        """
-        Calculate group velocity from dispersion relation.
-        
-        For balanced waves: ω²/2 = k² + m²
-        v_g = dω/dk = k/ω · √2
-        
-        Args:
-            freq: frequency (Hz)
-            wave_vector: wave vector magnitude (1/m)
-        
-        Returns:
-            group velocity (m/s)
-        """
-        omega = 2 * math.pi * freq
-        k = wave_vector
-        
-        # From ω²/2 = k² + m², assume m ≈ 0 for high freq
-        # Then ω = √2 · k
-        # v_g = dω/dk = √2
-        
-        if k > 0:
-            v_g = omega / k * math.sqrt(2)
-        else:
-            v_g = self.c
-        
-        return v_g
-    
+        """No dispersion law is derived for this historical link class."""
+        raise NotImplementedError("use a specified physical dispersion model, e.g. causal_modes.QuadraticModes")
+
     def estimate_transmission_time(self, distance_m, freq=None):
         """
         Estimate transmission time for given distance.
@@ -339,8 +316,11 @@ class FTLCommunicationLink:
         # Classical EM propagation time
         time_em = distance_m / self.c
         
-        # Hyperspace propagation (assume v_g ≈ √2 · c for high frequencies)
-        v_hyperspace = math.sqrt(2) * self.c
+        v_hyperspace = self.propagation_speed_m_s
+        if v_hyperspace is None or not np.isfinite(v_hyperspace) or v_hyperspace <= 0:
+            raise ValueError("supply an explicit assumed propagation_speed_m_s; UBT speed is not derived")
+        if not np.isfinite(distance_m) or distance_m < 0:
+            raise ValueError("distance_m must be finite and nonnegative")
         time_hyperspace = distance_m / v_hyperspace
         
         # Time savings
@@ -352,7 +332,8 @@ class FTLCommunicationLink:
             'time_em_s': time_em,
             'time_hyperspace_s': time_hyperspace,
             'time_saved_s': time_saved,
-            'speedup_factor': time_em / time_hyperspace,
+            'speedup_factor': v_hyperspace / self.c,
+            'status': 'hypothetical supplied speed; no physical validation',
             'group_velocity': v_hyperspace
         }
 
@@ -393,9 +374,9 @@ def demonstrate_applications():
     print("Ready for transmission through barrier")
     
     # 3. FTL Communication
-    print("\n3. FASTER-THAN-LIGHT COMMUNICATION")
+    print("\n3. ASSUMED-SPEED TIMING (NO PROPAGATION CLAIM)")
     print("-" * 70)
-    ftl = FTLCommunicationLink()
+    ftl = FTLCommunicationLink(propagation_speed_m_s=299792458.0)
     
     distances = [1e6, 1e9, 1e12]  # 1000 km, 1 million km, 1 billion km
     for dist in distances:
@@ -413,3 +394,4 @@ def demonstrate_applications():
 
 if __name__ == '__main__':
     demonstrate_applications()
+

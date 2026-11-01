@@ -30,7 +30,7 @@ class HyperspaceWaveBQ:
         Args:
             freq: frequency of wave (Hz)
             fsample: sampling frequency (Hz)
-            s1: damping coefficient (should be -1/√2 for balanced waves)
+            s1: envelope exponent coefficient; any s1<0 gives a decaying half-line template
             s2: frequency modulation (±1)
             amplitudes: tuple of 4 complex amplitudes (A₀, A₁, A₂, A₃) for the
                        biquaternion components. If None, uses default balanced form.
@@ -110,7 +110,7 @@ class HyperspaceWaveBQ:
     
     def energy_density(self, N=1024):
         """
-        Calculate energy density of the wave over N samples.
+        Legacy API: positive coefficient norm per sample, NOT physical energy density.
         
         Returns:
             Numpy array of energy densities: |Ψ_BQ|² at each sample point.
@@ -121,7 +121,7 @@ class HyperspaceWaveBQ:
     
     def total_energy(self, N=1024):
         """
-        Calculate total energy of the wave over N samples.
+        Legacy API: sum of coefficient norms, NOT a derived Hamiltonian energy.
         
         Returns:
             Total energy (sum of energy densities).
@@ -214,3 +214,4 @@ def bq_wave_superposition(waves, coefficients=None):
         result.append(sum_bq)
     
     return result
+

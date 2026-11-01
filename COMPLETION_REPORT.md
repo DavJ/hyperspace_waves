@@ -1,3 +1,10 @@
+> **SUPERSEDED HISTORICAL DOCUMENT (2025).** The completion, FTL, retrocausal,
+> barrier-penetration and detector-confidence claims below are not established
+> physical results. Some API behavior has changed. The active derivation,
+> counterexamples, supported interfaces and open UBT bridge are in
+> [UBT_ANALYSIS.md](UBT_ANALYSIS.md) and [README.md](README.md).
+> Retained for historical context; not an experimental protocol or validation report.
+
 # Project Completion Report
 
 ## Hyperspace Waves - Unified Biquaternion Theory Analysis
@@ -420,3 +427,4 @@ The repository now contains a complete theoretical framework and practical imple
 **Project Status: COMPLETE ✓**
 
 *This work establishes a rigorous foundation connecting empirical hyperspace wave phenomena to the theoretical UBT framework, enabling future research and experimental verification.*
+

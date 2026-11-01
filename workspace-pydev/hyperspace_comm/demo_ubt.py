@@ -2,7 +2,7 @@
 Demonstration of Hyperspace Waves in Biquaternion UBT Framework
 
 This script demonstrates the connection between hyperspace waves and
-the Unified Biquaternion Theory (UBT), including:
+the Unified Biquaternion Theory (UBT) as historical visualizations, not physical validation. Including:
 1. Biquaternion representation of hyperspace waves
 2. Theta function expansions
 3. Curved space generalizations
@@ -315,24 +315,11 @@ def demo_curved_space_concepts():
     print("DEMO 6: Curved Space Generalization (Theoretical)")
     print("="*70)
     
-    print("\nIn the Unified Biquaternion Theory framework:")
-    print("\n1. Flat Space Wave Equation:")
-    print("   □_BQ Ψ_BQ = (∇^μ∇_μ - m²)Ψ_BQ = 0")
-    
-    print("\n2. Curved Space Metric:")
-    print("   g_μν = g_μν^(R) + i·g_μν^(I)")
-    print("   where g^(I)_μν couples ordinary space to hyperspace")
-    
-    print("\n3. Dispersion Relation for Balanced Waves:")
-    print("   With s₁ = -1/√2, s₂ = 1:")
-    print("   ω²/2 = k⃗² + m²")
-    print("   This allows superluminal group velocities!")
-    
-    print("\n4. Complex Wave Vector:")
-    print("   K^μ = k^μ + i·κ^μ")
-    print("   - Real part (k^μ): propagation in ordinary space")
-    print("   - Imaginary part (κ^μ): propagation in hyperspace")
-    
+    print("\nConditional test-field illustration; not a finalized UBT spectrum.")
+    print("Canonical metric: central tetrad anticommutator on the Lorentz slice.")
+    print("Complex mass shell requires BOTH real and imaginary equations.")
+    print("The old sqrt(2) branch below is a counterfactual with a larger cone,")
+    print("not a solution obtained by dropping the imaginary equation.")
     # Demonstrate modified dispersion
     k_values = np.linspace(0, 10, 100)
     m = 1.0
@@ -345,7 +332,7 @@ def demo_curved_space_concepts():
     
     plt.figure(figsize=(10, 6))
     plt.plot(k_values, omega_standard, label='Standard: ω² = k² + m²', linewidth=2)
-    plt.plot(k_values, omega_balanced, label='Balanced Hyperspace: ω²/2 = k² + m²', 
+    plt.plot(k_values, omega_balanced, label='Counterfactual larger cone, NOT derived UBT',
              linewidth=2, linestyle='--')
     
     # Add light line for reference
@@ -403,3 +390,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+

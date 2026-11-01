@@ -1,0 +1,40 @@
+{
+  "schema": "hyperspace-wave-bridge/v1",
+  "status": "CONDITIONAL_EFFECTIVE_MODEL_ONLY",
+  "source_snapshots": {
+    "hyperspace_waves": "413e34412b4cae2d6481f8da564ef74a4ea1949d",
+    "magnetic_field_antihemholz": "9b35e3facf93a763b5dc921f908e706cc7c2cb0e",
+    "ubt": "386b6dbed7d35ea63c8fd42fd88d57ac2f9cdaa3"
+  },
+  "versions": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "sympy": "1.14.0"
+  },
+  "exact_sympy_checks": {
+    "imaginary_mass_shell": "2*a*omega**2",
+    "generator_exponent": "2*pi*f*(s1+i*s2)*t",
+    "damped_energy_loss": "-2*gamma*q_t**2"
+  },
+  "old_balanced_branch_dimensionless_residual": {
+    "real": 2.220446049250313e-16,
+    "imaginary": 1.414213562373095
+  },
+  "matrix_exponential_absolute_error": 2.220446049250313e-16,
+  "illustrative_nondimensional_front_speeds": [
+    0.5477225575051661,
+    0.5924697529522206
+  ],
+  "illustrative_cone_bound_1": true,
+  "lean_status": "LEAN-PENDING: no Lean executable or formal PDE/constraint proof in this repository",
+  "not_tested": [
+    "final UBT action",
+    "physical constraint reduction",
+    "physical Theta mode count",
+    "microscopic source/detector coupling",
+    "barrier transmission",
+    "experimental data",
+    "superluminal or retrocausal information transfer"
+  ]
+}

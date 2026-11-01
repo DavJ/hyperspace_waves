@@ -1,0 +1,47 @@
+{
+  "schema": "conditional-sector-channel/v1",
+  "status": "CONDITIONAL_MATHEMATICAL_COMPARATOR_NOT_MULTIVERSE_COMMUNICATION",
+  "ubt_snapshot": "3eb72538fca37c917b98f5925e430700999160aa",
+  "source_paths": [
+    "canonical/ACTION.en.md",
+    "canonical/fields/chronofactor_operator.tex",
+    "research_tracks/complex_time_branch_selection/psi_branch_selection.en.md",
+    "research_tracks/information_first/TORUS_THETA_CANONICAL_ACTION_BRIDGE_GATE.cs.md",
+    "speculative_extensions/bridge_137_139/G137_139_metric_bridge.tex"
+  ],
+  "versions": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "sympy": "1.14.0"
+  },
+  "exact_sympy_checks": {
+    "cross_response": "eta/(A*B-eta**2)",
+    "local_self_energy": "1/(A-eta**2/B)",
+    "energy_rate": "J*vA-2*gA*vA**2-2*gB*vB**2",
+    "eliminated_two_step_entry": "-u*v/D1"
+  },
+  "illustrative_units": "nondimensional frequencies/gains; not hardware or UBT parameters",
+  "illustrative_cross_response": {
+    "real": 0.2238613745463061,
+    "imaginary": 0.23229130078445162
+  },
+  "impulse_fourier_absolute_error": 3.775166431889533e-16,
+  "first_harmonic_direct_137_139_entry": 0.0,
+  "two_step_effective_entry": {
+    "real": -4.420171645112018e-06,
+    "imaginary": -9.773734980899985e-08
+  },
+  "neutral_drive_charge_selection": "If Q_n=q*n and [Q,O]=0, (m-n)*q*<m|O|n>=0; no charged transition without compensation.",
+  "lean_status": "LEAN-PENDING: no formal operator/PDE or UBT constraint proof in this repository",
+  "not_established": [
+    "physical neighboring multiverse segments",
+    "prime-label = Fourier-label = charge identification",
+    "physical compact derivative term from finalized UBT action",
+    "nonzero physical intersector overlap",
+    "toroid source overlap or detector gain",
+    "access to a receiver in another sector",
+    "spatial propagation distance or front speed from lumped model",
+    "hardware communication or a received reply"
+  ]
+}

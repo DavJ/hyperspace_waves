@@ -1,0 +1,73 @@
+{
+  "schema": "conditional-source-detector-matching/v1",
+  "status": "SCALAR_QED_MATCHING_DERIVED_CONDITIONALLY_UBT_EMBEDDING_OPEN",
+  "ubt_snapshot": "9b24d4b41cb486c01f2bfc4002588c85f8e691cd",
+  "source_paths": [
+    "canonical/ACTION.en.md",
+    "canonical/THEORY/canonical/canonical_action.tex",
+    "canonical/interactions/qed.tex",
+    "canonical/qed_phi_const/step1_u1_protection.tex",
+    "research_tracks/action_selection/full_theta_reallinear_graded_jet_2026_10.en.md"
+  ],
+  "primary_background_sources": [
+    "https://arxiv.org/abs/hep-th/0306138 (eqs. 4.25, 4.28)",
+    "https://arxiv.org/abs/hep-ph/9505225 (low-energy mass-derivative method)"
+  ],
+  "versions": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "sympy": "1.14.0"
+  },
+  "exact_checks": {
+    "neutral_hessian": "[[lambda*v^2+delta,lambda*v^2-delta],[lambda*v^2-delta,lambda*v^2+delta]]",
+    "eta_in_specified_basis": "delta-lambda*v^2",
+    "scalar_loop_coefficient": "c_a=e^2/(192*pi^2)*Tr[Q^2*(M^2)^(-1)*partial_a(M^2)]",
+    "photon_mass_for_constant_complex_scalar_v": "2*e^2*norm(Q*v)^2",
+    "neutral_minimal_tree_h_A_A_vertex": "0",
+    "source": "(Box+H)h=c*F^2",
+    "maxwell_readout": "partial_mu f^mu_nu=4*partial_mu[(c.h)*F_probe^mu_nu]",
+    "energy_exchange_sum": "c.hdot*F^2+(Zdot/4)*F^2=0",
+    "magnetic_pump_omega_coefficient": "4*Bdc*Bac",
+    "magnetic_pump_two_omega_coefficient": "Bac^2"
+  },
+  "illustrative_units": "natural, dimensionless reference scale; NO UBT/hardware parameter values",
+  "illustrative_parameters": {
+    "v": 1,
+    "lambda": 0.3,
+    "delta": 0.6,
+    "m0_squared": 100,
+    "yA_squared": 0.02,
+    "yB_squared": 0.01,
+    "e": 0.3,
+    "charge": 1
+  },
+  "illustrative_neutral_squared_masses": [
+    0.6,
+    1.2
+  ],
+  "illustrative_heavy_mass_squared": 100.015,
+  "illustrative_derived_eta": 0.3,
+  "illustrative_loop_portals": [
+    1.3431403295382791e-08,
+    6.7157016476913956e-09
+  ],
+  "proper_time_absolute_error": 1.1580528575742387e-23,
+  "feynman_parameter_absolute_error": 0.0,
+  "gauge_kinetic_derivative_relative_error": 1.265223259494519e-09,
+  "illustrative_delta_Z_over_F_squared": {
+    "real": -1.90789955712367e-15,
+    "imaginary": -2.0532872263802e-16
+  },
+  "legacy_neutrality_audit": "Commutation proves adjoint neutrality, not neutrality under the declared LEFT phase; an explicit physical charge representation is required.",
+  "lean_status": "LEAN-PENDING: finite CAS identities and numerical integral controls only",
+  "not_established": [
+    "UBT physical neutral/charged representation and constrained spectrum",
+    "embedding of this effective polynomial in a finalized single-Theta action",
+    "nondegenerate UBT on-shell geometry for the comparator",
+    "actual neighboring multiverse sectors",
+    "quantum-corrected vacuum, full loop propagator and EFT counterterm selection",
+    "finite-momentum/material/lead response or pickup volts",
+    "operating frequency, emitted power, range, hardware or received message"
+  ]
+}

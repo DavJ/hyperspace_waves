@@ -139,29 +139,33 @@ class Biquaternion:
         return np.sqrt(self.norm_squared())
     
     def inverse(self):
-        """Return the multiplicative inverse q^(-1) = q*/|q|²."""
-        n2 = self.norm_squared()
-        if n2 == 0:
-            raise ValueError("Cannot invert zero biquaternion")
-        return self.conjugate() / n2
+        """Return q^sharp / det(rho(q)); nonzero zero divisors are singular.
+
+        The algebraic determinant is complex and differs from the positive
+        coefficient norm. The latter is not a multiplicative BQ norm.
+        """
+        determinant = self.w**2 + self.x**2 + self.y**2 + self.z**2
+        if determinant == 0:
+            raise ValueError("Cannot invert a singular biquaternion (zero divisor)")
+        return self.conjugate() / determinant
     
     def exp(self):
         """
         Compute the exponential of a biquaternion.
         
-        For q = w + v⃗ (where v⃗ = xi + yj + zk):
-        exp(q) = exp(w) * (cos(|v⃗|) + v⃗/|v⃗| * sin(|v⃗|))
+        For q=w+v, v*v=-(x*x+y*y+z*z). This complex algebraic
+        square, not the Hermitian coefficient norm, defines the exponential.
         """
-        v_norm = np.sqrt(abs(self.x)**2 + abs(self.y)**2 + abs(self.z)**2)
+        square = self.x**2 + self.y**2 + self.z**2
         exp_w = cmath.exp(self.w)
-        
-        if v_norm < 1e-10:
-            # Small vector part, use Taylor expansion
-            return Biquaternion(exp_w, exp_w * self.x, exp_w * self.y, exp_w * self.z)
-        
-        cos_v = cmath.cos(v_norm)
-        sin_v = cmath.sin(v_norm)
-        factor = sin_v / v_norm
+        if abs(square) < 1e-12:
+            # Includes nonzero nilpotents: exp(v)=1+v when v*v=0.
+            cos_v = 1 - square / 2 + square**2 / 24
+            factor = 1 - square / 6 + square**2 / 120
+        else:
+            root = cmath.sqrt(square)
+            cos_v = cmath.cos(root)
+            factor = cmath.sin(root) / root
         
         return Biquaternion(
             exp_w * cos_v,
@@ -169,6 +173,11 @@ class Biquaternion:
             exp_w * factor * self.y,
             exp_w * factor * self.z
         )
+
+    def to_matrix(self):
+        """Faithful algebra map rho: C tensor H -> Mat(2,C)."""
+        return np.array([[self.w + 1j*self.x, self.y + 1j*self.z],
+                         [-self.y + 1j*self.z, self.w - 1j*self.x]], dtype=complex)
     
     def to_array(self):
         """Convert to numpy array [w, x, y, z]."""
@@ -199,3 +208,4 @@ def bq_exp(q):
     else:
         # Assume scalar
         return cmath.exp(q)
+

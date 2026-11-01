@@ -1,0 +1,38 @@
+{
+  "schema": "research-origin-summary/v1",
+  "decision_id": "UBT-INTERSEGMENT-CHANNEL-2026-10-31",
+  "date_recorded": "2026-10-31",
+  "status": "CONDITIONAL_AI_ASSISTED_WORKING_RESEARCH",
+  "human_direction": {
+    "contribution": "Requested an attempt to derive transmission and reception between neighboring multiverse segments, following the attenuation discussion.",
+    "evidence": "Current task instruction; private transcript not published.",
+    "attestation": "not_requested_not_claimed"
+  },
+  "prior_research": {
+    "source": "UBT speculative_extensions/bridge_137_139/G137_139_metric_bridge.tex at 3eb72538fca37c917b98f5925e430700999160aa",
+    "contribution": "Existing reduced first-harmonic/two-step mode conversion and an open charge-consistency gate.",
+    "limits": "Historical concept attribution is not reconstructed; no exclusive priority inferred from file authorship."
+  },
+  "new_implementation": {
+    "contribution": "AI-proposed operational response criterion, stable two-mode comparator, explicit source/detector gains, arbitrary-component Fourier matrix, Schur return response and charge-selection derivation with independent checks.",
+    "origin_of_historical_multiverse_idea": "undetermined_from_this_task",
+    "human_substantive_review": "not_claimed"
+  },
+  "negative_results": [
+    "Uncoupled physical sectors have zero cross response for a drive confined to one sector.",
+    "A uniform compact profile does not address nonzero Fourier labels.",
+    "A neutral operator cannot change total conserved charge without compensating degrees of freedom.",
+    "Mode labels and arithmetic prime labels do not themselves establish physical neighboring universes."
+  ],
+  "verification": {
+    "methods": [
+      "exact finite SymPy identities",
+      "independent continuous quadrature",
+      "independent ODE integration",
+      "retarded impulse Fourier transform"
+    ],
+    "lean_status": "LEAN-PENDING",
+    "limits": "Not an experimental result, a full UBT action derivation, a verified conceptual-priority reconstruction or a device prescription."
+  },
+  "human_signature": null
+}

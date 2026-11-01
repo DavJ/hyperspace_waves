@@ -1,343 +1,321 @@
-# Hyperspace Waves in Unified Biquaternion Theory Framework
+# Complex-frequency waves, physical Theta modes and the toroidal A experiment
 
-**Author:** David Jaros  
-**Date:** November 2025  
-**Connection to UBT:** https://github.com/DavJ/unified-biquaternion-theory
+**Working research revision: 2026-10-31.** AI-assisted derivation and code;
+exhaustive human review is not claimed. This supersedes the November 2025
+physical conclusions without assigning new historical priority. It does not
+finalize the UBT action. Lean: **LEAN-PENDING**.
 
-## Abstract
+## 1. Algebra and the original waveform
 
-This document establishes the mathematical connection between hyperspace waves and the Unified Biquaternion Theory (UBT). We derive the biquaternion representation of hyperspace waves, generalize them to curved spacetime, and connect them to biquaternionized Jacobi theta functions used in the UBT framework.
+Use a commuting complex unit i and quaternion units e1,e2,e3, with
+`e1*e2=e3`, cyclic permutations, and `ej^2=-1`. One algebra element has the form
+`q=w+x*e1+y*e2+z*e3`, with complex coefficients. This does not determine the
+number of algebra-valued entries of the physical UBT field Theta.
 
-## 1. Introduction to Hyperspace Waves
+The faithful representation used for independent checks is
 
-Hyperspace waves are characterized by complex frequencies, allowing propagation in both ordinary space and "hyperspace". The fundamental form of a balanced hyperspace wave is:
-
-```
-Ψ(t) = exp(2πi(s₁ + is₂)f·t)
-```
-
-where:
-- `s₁ = -1/√2` (damping coefficient for finite energy)
-- `s₂ = ±1` (frequency modulation)
-- `f` is the wave frequency
-- `t` is time
-
-This can be rewritten as:
-```
-Ψ(t) = exp(2πi·s₁·f·t) · exp(-2π·s₂·f·t)
-     = exp(i·ω₁·t) · exp(-ω₂·t)
+```math
+\rho(q)=\begin{pmatrix}w+ix&y+iz\\-y+iz&w-ix\end{pmatrix},\quad
+D(q)=\det\rho(q)=w^2+x^2+y^2+z^2.
 ```
 
-where `ω₁ = 2πs₁f` (imaginary frequency) and `ω₂ = 2πs₂f` (real decay/growth rate).
+For `D(q)!=0`, `q^-1=q^sharp/D(q)`, where sharp reverses the quaternion-vector
+part. The positive coefficient norm `|w|^2+|x|^2+|y|^2+|z|^2` is different and
+is not multiplicative. In particular `q=1+i*e1` is nonzero but has `D(q)=0`.
+For `v=x*e1+y*e2+z*e3` and `s=x^2+y^2+z^2`,
 
-## 2. Biquaternion Representation
-
-### 2.1 Biquaternion Basics
-
-A biquaternion is a quaternion with complex coefficients:
-
-```
-q = (w, x, y, z) where w, x, y, z ∈ ℂ
+```math
+\exp(w+v)=e^w\left[\cos\sqrt{s}+\frac{\sin\sqrt{s}}{\sqrt{s}}v\right].
 ```
 
-Alternatively written as:
-```
-q = w + xi + yj + zk
-```
+The entire-function limit at `s=0` is `e^w(1+v)`, even for nonzero nilpotent v.
+The old use of Hermitian absolute squares in these two operations was incorrect
+for genuinely complex vector coefficients. Matrix multiplication, inverse and
+`scipy.linalg.expm` provide independent numerical checks.
 
-where `i, j, k` are the quaternion units satisfying:
-```
-i² = j² = k² = ijk = -1
-```
+The actual generator uses
 
-A biquaternion can be decomposed into real and imaginary parts:
-```
-q = (a₀ + ia₁) + (a₂ + ia₃)i + (a₄ + ia₅)j + (a₆ + ia₇)k
+```math
+u(t)=e^{2\pi f(s_1+i s_2)t}=e^{-\gamma t+i\omega_d t},\quad
+\gamma=-2\pi f s_1,\quad\omega_d=2\pi f s_2.
 ```
 
-### 2.2 Hyperspace Wave as Biquaternion
+The 2025 text inserted an extra i before `(s1+i*s2)` and therefore interchanged
+the envelope and oscillation roles. For f>0 on t>=0,
 
-The hyperspace wave can be represented as a biquaternion wave field:
-
-```
-Ψ_BQ(x^μ) = Ψ₀ + Ψ₁i + Ψ₂j + Ψ₃k
-```
-
-where each component `Ψₐ` is a complex-valued wave function.
-
-For a plane wave solution:
-```
-Ψ_BQ(x^μ) = A exp(iK^μx_μ)
+```math
+\int_0^\infty |u(t)|^2dt=\frac{1}{2\gamma}\quad(\gamma>0).
 ```
 
-where:
-- `A` is a constant biquaternion amplitude
-- `K^μ = (k₀ + iκ₀, k₁ + iκ₁, k₂ + iκ₂, k₃ + iκ₃)` is a complex 4-vector
-- `x_μ = (t, x, y, z)` are spacetime coordinates
+All `s1<0` work; finite norm selects no special ratio. A two-sided exponential
+on the full real time axis cannot decay in both directions. The legacy
+`energy_density/total_energy` methods return a coefficient norm/sample sum,
+not a derived physical Hamiltonian or a conservation test. Complexifying time
+or using biquaternionic time does not by itself specify the physical evolution
+operator, real evolution slice, constraints or source coupling.
 
-The complex wave vector allows for:
-- Real part: `k^μ` describes propagation in ordinary space
-- Imaginary part: `κ^μ` describes propagation in hyperspace
+## 2. The missing imaginary mass-shell equation
 
-For balanced hyperspace waves:
-```
-K^μ = (ω(-1/√2 + i), k⃗)
-```
+For this **test-field calculation only**, take Minkowski signature (+---),
+coordinates `(ct,x,y,z)`, inverse-length mass `mu=mc/hbar`, and a free field
+`(Box+mu^2)Psi=0`. The UBT metric convention below is separate. A complex
+four-wavevector `K=a+i*b` must satisfy the full complex equation
 
-where the time component has the characteristic balanced structure.
-
-### 2.3 Biquaternion Wave Equation
-
-The biquaternion wave equation in flat spacetime:
-
-```
-□_BQ Ψ_BQ = (∇^μ∇_μ - m²)Ψ_BQ = 0
+```math
+K\cdot K=\mu^2
+\quad\Longleftrightarrow\quad
+a\cdot a-b\cdot b=\mu^2,\qquad a\cdot b=0.
 ```
 
-where `∇^μ` is the biquaternion-valued derivative operator.
+The old substitution `a=(omega,k)`, `b=(omega/sqrt(2),0)` in units c=1 gives
 
-Expanding in components:
-```
-(∂_t² - ∇² - m²)Ψₐ = 0,  for a = 0,1,2,3
-```
-
-For complex frequencies, we have:
-```
-K^μK_μ = (k₀ + iκ₀)² - (k⃗ + iκ⃗)² = m²
+```math
+K\cdot K-\mu^2=\omega^2/2-|\mathbf k|^2-\mu^2
++i\sqrt{2}\,\omega^2.
 ```
 
-This yields:
-```
-(k₀² - κ₀² - k⃗² + κ⃗²) + 2i(k₀κ₀ - k⃗·κ⃗) = m²
-```
+Setting only the real part to zero does **not** produce a solution for nonzero
+omega. For omega=1, mu=0, k=(1/sqrt(2),0,0), the exact residual is i*sqrt(2).
+Consequently the old `omega^2/2=k^2+mu^2` is not a derived UBT dispersion law.
+If separately postulated as a real PDE, it instead changes the characteristic
+cone; this would be an additional physical assumption requiring independent
+justification. Complex spatial momenta can describe evanescence subject to both
+equations and boundary data; that does not imply transmission through every
+material or faster information transport.
 
-For balanced waves with `κ₀ = ω/√2`, `k₀ = ω`, and `κ⃗ = 0`:
-```
-ω² - ω²/2 - k⃗² = m²
-⇒ ω²/2 = k⃗² + m²
-⇒ ω = √(2(k⃗² + m²))
-```
+## 3. Conditional dynamics with the full physical mode space
 
-## 3. Generalization to Curved Spacetime (UBT Framework)
+Let Theta0 be an on-shell background with nondegenerate physical tetrad, and
+let `q^A` denote local real coordinates for its **physical perturbations after
+constraint reduction**. Their dimension is left unspecified. For smooth fields
+with compact support or boundary conditions killing the integration-by-parts
+terms, consider the homogeneous, isotropic constant-coefficient comparator
 
-### 3.1 Curved Space Biquaternion Connection
-
-In the UBT framework, spacetime is described by a biquaternion-valued metric:
-
-```
-g_μν = g_μν^(R) + ig_μν^(I)
-```
-
-where superscripts (R) and (I) denote real and imaginary parts.
-
-The covariant derivative of a biquaternion field:
-```
-∇_μΨ_BQ = ∂_μΨ_BQ + Γ_μ ⊗ Ψ_BQ
+```math
+S_2=\frac12\int dt\,d^3x\,[\dot q^T K\dot q
+-\sum_i(\partial_iq)^T C(\partial_iq)-q^T Mq]+\int q^T J.
 ```
 
-where `Γ_μ` is the biquaternion connection.
+K,C,M are real symmetric. `K>0`, `C>=0`, `M>=0` are **assumptions on the reduced
+sector**, not results about the raw UBT pairing. For an unreduced singular K,
+perform Dirac/gauge reduction first; for an indefinite physical K, report the
+energy obstruction. Never discard troublesome components or replace the UBT
+pairing by a Euclidean norm to manufacture positivity.
 
-### 3.2 Biquaternion Wave Equation in Curved Space
+Variation gives `K*q_tt-C*Delta(q)+M*q=J`. For J=0 and vanishing boundary flux,
 
-The generalized wave equation:
-
-```
-g^μν∇_μ∇_νΨ_BQ - m²Ψ_BQ = 0
-```
-
-For a complex metric, this expands to:
-```
-(g^μν_(R) + ig^μν_(I))(∇_μ∇_νΨ_BQ) - m²Ψ_BQ = 0
+```math
+E=\frac12\int[\dot q^TK\dot q+\sum_i(\partial_iq)^TC(\partial_iq)+q^TMq]d^3x,
+\quad \dot E=0.
 ```
 
-The imaginary part of the metric `g^μν_(I)` couples ordinary space to hyperspace, allowing for:
-1. Wave propagation through barriers (tunneling enhancement)
-2. Superluminal group velocities in the hyperspace component
-3. Retrocausal effects when the hyperspace component dominates
+The physical angular frequencies obey the generalized eigenproblem
 
-### 3.3 WKB Approximation in Curved Biquaternion Space
-
-For slowly varying metrics, we use the WKB ansatz:
-
-```
-Ψ_BQ ≈ A(x^μ) exp(iS(x^μ)/ℏ)
+```math
+(k^2 C+M)u=\omega^2 Ku,\qquad
+v_{\rm front}^2\in\operatorname{spec}(C,K).
 ```
 
-where `S(x^μ)` is the biquaternion action.
+For a differentiable positive-frequency eigenbranch with `u^T K u=1`,
+Hellmann–Feynman differentiation gives
 
-The Hamilton-Jacobi equation:
-```
-g^μν∂_μS∂_νS + m² = 0
-```
-
-With complex `S = S_R + iS_I`, we obtain:
-```
-g^μν(∂_μS_R∂_νS_R - ∂_μS_I∂_νS_I) + 2ig^μν∂_μS_R∂_νS_I + m² = 0
+```math
+v_g=\frac{d\omega}{dk}=\frac{k\,u^TCu}{\omega},\qquad
+0\leq v_g^2\leq u^TCu\leq\lambda_{\max}(C,K).
 ```
 
-Separating real and imaginary parts:
-```
-Real: g^μν_(R)(∂_μS_R∂_νS_R - ∂_μS_I∂_νS_I) - g^μν_(I)·2∂_μS_R∂_νS_I + m² = 0
-Imag: 2g^μν_(R)∂_μS_R∂_νS_I + g^μν_(I)(∂_μS_R∂_νS_R - ∂_μS_I∂_νS_I) = 0
-```
+The first inequality uses `omega^2=k^2*u^TCu+u^TMu` and M>=0. At degeneracy,
+diagonalize C within the degenerate K-orthonormal eigenspace; zero-frequency
+branch derivatives require limits. Thus `C<=c^2*K` bounds front and these
+lossless group speeds by c for this sector. A finite cone follows by the
+constant-coefficient symmetric energy/domain-of-dependence argument. This is
+not a theorem for arbitrary dispersive, anisotropic, nonlocal or lossy media,
+and group speed alone is not a universal information-speed test.
 
-## 4. Connection to Biquaternionized Jacobi Theta Functions
+For a single open-system channel, passive damping gives
 
-### 4.1 Jacobi Theta Functions Review
-
-The Jacobi theta functions are defined as:
-```
-ϑ₃(z, τ) = Σ_{n=-∞}^{∞} exp(πin²τ + 2πinz)
-```
-
-where `z ∈ ℂ` and `Im(τ) > 0`.
-
-### 4.2 Biquaternionized Theta Functions
-
-In the UBT framework, we generalize to biquaternion arguments:
-
-```
-Θ₃(Z_BQ, T_BQ) = Σ_{n=-∞}^{∞} exp(πin²T_BQ + 2πinZ_BQ)
+```math
+q_{tt}+2\gamma q_t-v^2\Delta q+\Omega_0^2q=J,\quad
+\omega_\pm=-i\gamma\pm\sqrt{v^2k^2+\Omega_0^2-\gamma^2}
 ```
 
-where:
-- `Z_BQ = z₀ + z₁i + z₂j + z₃k` is a biquaternion position
-- `T_BQ = τ₀ + τ₁i + τ₂j + τ₃k` is a biquaternion modular parameter
+with convention `exp(-i*omega*t)`. Both poles are in the lower half-plane for
+nonnegative parameters, and `dE/dt=-2*gamma*int q_t^2`. The principal speed
+remains v. The ordinary oscillatory ringdown is underdamped; for the historical
+ratio and k=0, `Omega0^2=gamma^2+omega_d^2`, damping ratio `1/sqrt(3)`.
+Its loss requires an environment/energy account; damping is not a closed-action
+proof. No FTL claim follows from a decaying temporal envelope.
 
-### 4.3 Hyperspace Waves as Theta Function Superpositions
+## 4. How this connects to current UBT
 
-Hyperspace waves can be expressed as superpositions of biquaternionized theta functions:
+The inspected upstream snapshot is
+[`386b6dbed7d35ea63c8fd42fd88d57ac2f9cdaa3`](https://github.com/UBT-Institute/unified-biquaternion-theory/commit/386b6dbed7d35ea63c8fd42fd88d57ac2f9cdaa3).
+Read together:
 
-```
-Ψ_BQ(x^μ) = ∫ A(K_BQ) Θ₃(K_BQ·x^μ, T_BQ(K_BQ)) dK_BQ
-```
+- [canonical/ACTION.en.md](https://github.com/UBT-Institute/unified-biquaternion-theory/blob/386b6dbed7d35ea63c8fd42fd88d57ac2f9cdaa3/canonical/ACTION.en.md):
+  `DEFINED_FAMILY_NOT_FINALIZED`; reduced stability and gauge kinetic terms
+  are not supplied by a bare appeal to a canonical action.
+- [canonical/geometry/biquaternion_metric.tex](https://github.com/UBT-Institute/unified-biquaternion-theory/blob/386b6dbed7d35ea63c8fd42fd88d57ac2f9cdaa3/canonical/geometry/biquaternion_metric.tex):
+  on the classical Lorentz slice, `E_mu=N0^(-1/2)D_mu Theta` and
+  `g_munu*1=(E_mu^sharp E_nu+E_nu^sharp E_mu)/2`, with signature (-+++).
+  The full ordered product also has an antisymmetric noncentral part.
+- [canonical/interactions/qed.tex](https://github.com/UBT-Institute/unified-biquaternion-theory/blob/386b6dbed7d35ea63c8fd42fd88d57ac2f9cdaa3/canonical/interactions/qed.tex):
+  a declared effective U(1) sector with local phase symmetry and conserved current.
+  This does not derive its microscopic embedding or an extra scalar mode.
 
-For periodic boundary conditions in compactified hyperspace dimensions, the theta functions provide:
-1. Natural periodicity in both space and hyperspace
-2. Modular invariance under transformations
-3. Connection to string theory compactifications
+The 2025 symmetric `g_R+i*g_I` story is not the active canonical GR metric.
+No trace, real-part projection, averaging, selected component count or new
+independent propagating field is used to repair it here. In curved UBT the
+representation and multiplication sides of `D_mu` must be stated, and every
+composite metric/connection variation retained in the Hessian. Merely writing
+a biquaternion-valued plane wave does none of this.
 
-### 4.4 Theta Function Expansion of Balanced Waves
+### Neutrality correction continued upstream
 
-The balanced hyperspace wave can be written as:
+[Draft UBT PR #825](https://github.com/UBT-Institute/unified-biquaternion-theory/pull/825)
+repairs the left-action/conjugation swap and continues the original-carrier
+analysis. Its restricted real-linear Lorentz commutant theorem does not permit
+a partial neutral/charged linear split of the declared single carrier.
+A neutral invariant composite exists, but is indefinite; its physical
+susceptibility, isolated pole if any and electromagnetic matching still need
+to be derived. See the [source/readout follow-up](docs/source-detector-matching.md#upstream-repair-and-the-original-carrier-restriction).
+The effective neutral/charged comparator is not promoted to a derived UBT
+spectrum by this correction, and no inter-universe channel is established.
 
-```
-Ψ_balanced(t) = exp(2πi(-1/√2 + i)ft)
-              = Σ_{n=-∞}^{∞} c_n ϑ₃(ft, τ_n)
-```
+## 5. Source–propagator–detector bridge
 
-where the coefficients `c_n` and modular parameters `τ_n` satisfy:
-```
-τ_n = τ₀ + i/√2 + δτ_n
-```
+With supplied passive symmetric damping Gamma>=0 and convention exp(-i*omega*t),
+the conditional frequency-domain response is
 
-with small corrections `δτ_n` depending on boundary conditions.
-
-### 4.5 Functional Relations
-
-The biquaternionized theta functions satisfy functional equations:
-
-**Transformation property:**
-```
-Θ₃(Z_BQ + N_BQ, T_BQ) = exp(πi·Tr(N_BQ²T_BQ + 2N_BQ·Z_BQ)) Θ₃(Z_BQ, T_BQ)
-```
-
-where `N_BQ` is an integer biquaternion and `Tr` denotes the trace.
-
-**Modular transformation:**
-```
-Θ₃(Z_BQ/T_BQ, -1/T_BQ) = √Det(T_BQ) Θ₃(Z_BQ, T_BQ)
-```
-
-These symmetries constrain the allowed hyperspace wave solutions and provide:
-1. Quantization conditions for hyperspace momenta
-2. Duality relations between different wave regimes
-3. Connection to topological phases
-
-## 5. Physical Interpretations
-
-### 5.1 Wave Propagation Characteristics
-
-The biquaternion formulation reveals:
-
-1. **Dual-space propagation**: Waves exist simultaneously in ordinary and hyperspace
-2. **Phase coherence**: The quaternionic structure maintains relative phases
-3. **Penetration capability**: Imaginary frequency components enable barrier penetration
-4. **Superluminal features**: Hyperspace components can have v_group > c
-
-### 5.2 Modified Dispersion Relations
-
-The dispersion relation for biquaternion waves:
-```
-(E + iE')² - (p⃗ + ip⃗')² = (mc²)²
+```math
+\delta V=d^T[M+k^2C-\omega^2K-2i\omega\Gamma]^{-1}s.
 ```
 
-For balanced waves:
+This Fourier-channel expression assumes translation invariance. A localized
+experiment needs the retarded spatial Green operator and source/detector
+integrals, with material boundaries and bandwidth. It yields a voltage only
+when s,d and the q normalization have been derived in physical units. The
+code leaves s,d explicit and has no arbitrary detector-gain default.
+An absent source or detector coupling gives no additional response. An unknown
+coupling is **unknown**, not evidence of either a measured zero or a signal.
+
+In Maxwell theory, `G=c^-2*phi_t+div(A)` changes by `-Box(chi)` under a smooth
+single-valued gauge transformation. Ordinary conserved source/probe currents
+cannot create or measure a pure gauge as a new local excitation. The companion
+[scalar-source gate](https://github.com/DavJ/magnetic-field-antihemholz/blob/9b35e3facf93a763b5dc921f908e706cc7c2cb0e/docs/scalar-source-gate.md)
+already proves the conditional zero result for its specified frameworks and
+retarded zero-scalar data. This revision does not reopen it by renaming G.
+
+A constructive **conditional matching target**, rather than another fundamental
+action, is the Taylor expansion of an action-derived gauge kinetic coefficient
+for an already-existing physical scalar mode of Theta:
+
+```math
+\mathcal L_{\rm eff}\supset-\frac{Z(q)}{4\mu_0}F_{\mu\nu}F^{\mu\nu},\quad
+Z(q)=Z_0+z_Aq^A+\cdots.
 ```
-E' = E/√2,  p⃗' = 0
-⇒ E²/2 = p⃗²c² + (mc²)²
+
+For this paragraph use the SI normalization `F^2=2(B^2-E^2/c^2)`. If this
+term actually follows from UBT, its scalar source is
+
+```math
+s_A=-\frac{z_A}{4\mu_0}F^2
+=\frac{z_A}{2}(\epsilon_0E^2-B^2/\mu_0).
 ```
 
-This modified dispersion allows for:
-- Faster-than-light group velocities in vacuum
-- Reduced phase velocity to maintain causality
-- Energy exchange between space and hyperspace modes
+The coefficients z_A, the existence of such a scalar mode, and its detector
+coupling remain unselected; z_A may vanish. This operator is familiar in scalar
+photon EFT and is **not** claimed as a new UBT discovery. Other derived spin,
+parity or derivative channels need separate matching. In particular a linear
+Maxwell readout from delta Z involves a background/probe field through
+`partial_mu(delta Z * F_background^munu)`; an ordinary pickup at zero such
+background does not acquire an arbitrary linear-in-q gain.
 
-### 5.3 Theta Function Implications
+For disjoint ideal opposed toroidal cores, linear fluxes can cancel in a
+symmetric pickup but B^2 contributions add. At zero DC bias a sinusoidal current
+has only DC and 2*omega in B^2, not omega. A DC bias adds the omega cross term.
+Simultaneously reversing DC and AC currents leaves B^2 unchanged while ordinary
+linear induction changes sign. These are conditional channel selection rules,
+not a predicted extra voltage. Joule heating, force and electronics also
+produce even harmonics; matched backgrounds remain essential.
 
-The theta function representation implies:
+For an explicit follow-up on the proposed neighboring multiverse segment,
+see [the conditional sector-channel derivation](docs/intersegment-channel.md).
+It separates physical sector projectors from Fourier/prime labels, derives the
+transfer and return response, and checks the blocking charge selection rule.
+No physical adjacent universe or laboratory access map is inferred.
 
-1. **Quantization**: Only discrete hyperspace momenta are allowed
-2. **Periodicity**: Natural periodicities emerge from modular structure
-3. **Duality**: High-frequency and low-frequency modes are related
-4. **Stability**: Theta function zeros provide stable wave solutions
+The [action-to-source/readout follow-up](docs/source-detector-matching.md)
+now computes the conditional scalar-loop coefficient in terms of a charged
+mass matrix and its neutral-mode derivatives. It also identifies the exact
+left-phase/conjugation mismatch in the older neutrality argument. That
+matching result supplies neither the physical UBT representation nor its
+constrained Hessian.
 
-## 6. Experimental Signatures
+## 6. Theta functions and measurement
 
-### 6.1 Detection Methods
+For central complex tau with Im(tau)>0, the scalar Jacobi theta series is
+well-defined and obeys
 
-Biquaternion hyperspace waves should exhibit:
+```math
+\vartheta_3(z/\tau,-1/\tau)=\sqrt{-i\tau}\,e^{i\pi z^2/\tau}\vartheta_3(z,\tau).
+```
 
-1. **Modified FFT peaks**: Using the mfft algorithm with p = -1 or p = +1
-2. **Phase correlations**: Four-component correlations reflecting quaternionic structure
-3. **Barrier penetration**: Enhanced transmission through Faraday cages
-4. **Temporal anomalies**: Advanced waves arriving before emission
+The old determinant-norm prefactor omitted the z-dependent exponential and was
+not this identity. The modular helper now supports only central complex
+arguments and explicitly rejects the unproved noncentral case. The matrix
+series accepts a sufficient convergence condition: the Hermitian imaginary
+part of rho(tau) is positive definite. Scalar Im(tau.w)>0 alone is insufficient.
+A truncated sum is not an automatic tail bound for all accepted parameters.
 
-### 6.2 Theta Function Tests
+There is also a direct obstruction to the old proposed global reconstruction:
+every `theta3(f*t,tau_n)` has real period 1/f. A convergent fixed-coefficient
+sum is periodic, and cannot equal a nonzero decaying exponential on the entire
+half-line. Existing Gaussian weights are a historical heuristic, not computed
+expansion coefficients or a physical stability spectrum. Periodic-box momenta
+`k_i=2*pi*n_i/L_i` follow from an **imposed boundary condition**, not from merely
+using theta notation.
 
-Experimental verification could probe:
+The mFFT kernel is an ordinary finite spiral transform. Exponential weighting
+changes its noise covariance; comparing its raw peak to a plain FFT peak is
+not a transmission test. The new matched filter uses a unit-norm template. For
+one prespecified template and circular complex white noise with known variance,
+`|h_hat^dagger*x|^2/sigma^2` has a unit-mean exponential null. Frequency/damping,
+time-window and other scans require trials correction or independent null data.
+None of these waveform statistics establishes a new propagation mechanism.
 
-1. **Periodicity patterns**: Matching theta function predictions
-2. **Modular symmetry**: Testing T → -1/T transformation
-3. **Zero structure**: Looking for characteristic null points
+## 7. Verification, remaining gaps and next calculation
 
-## 7. Conclusions
+`python -m pytest -q` compares BQ operations and theta sums with independent
+matrix algorithms, eigenbranch slopes with finite differences, and noise-null
+statistics with seeded independent samples. `scripts/verify_wave_bridge.py`
+checks exact mass-shell/envelope/energy identities in SymPy and records
+versions, source SHAs, assumptions and exclusions in
+[docs/results/wave-bridge.json](docs/results/wave-bridge.json).
 
-We have established a rigorous connection between hyperspace waves and the Unified Biquaternion Theory framework:
+Analytical energy and domain-of-dependence statements are not proved by the
+finite numerical examples. No checked Lean proof exists here; the exact scope
+is algebraic CAS checks plus numerical controls. The new CI repeats those checks
+on supported Python versions; it does not test the historical GNU Radio build.
 
-1. **Biquaternion formulation**: Hyperspace waves are naturally described as biquaternion-valued fields
-2. **Curved space generalization**: The formalism extends to curved spacetime with complex metrics
-3. **Theta function connection**: Hyperspace waves can be expressed as superpositions of biquaternionized Jacobi theta functions
-4. **Physical predictions**: The theory makes testable predictions about wave behavior
+| Gate | Current state | Required next evidence |
+|---|---|---|
+| Complex BQ arithmetic | Corrected and independently tested | Broader numerical conditioning if required |
+| Original sqrt(2) argument | Refuted for the stated ansatz | A different fully specified, consistent action if proposed |
+| Physical Theta spectrum | OPEN | Complete constrained Hessian about a nondegenerate on-shell background |
+| Positive kinetic energy and causal cone | CONDITIONAL comparator | Derive K,C,M and reduce constraints from that same action |
+| Extra toroidal source and pickup | OPEN matching; standard G null unchanged | Derive s,d with units, energy and gauge identities |
+| Barrier transmission | NOT PREDICTED | Derived interaction and boundary-value calculation |
+| FTL or retrocausal information | NOT ESTABLISHED | A consistent physical model and discriminating evidence |
 
-This unification provides:
-- Mathematical rigor to hyperspace wave theory
-- Connection to established mathematical structures (theta functions)
-- Framework for quantum gravity via biquaternions
-- Testable experimental predictions
+**Next smallest informative calculation:** for an already proposed upstream
+single-Theta action and background, derive the constrained quadratic operator
+and its mixed electromagnetic derivatives from the same functional. Test whether
+any physical eigenvector has a nonzero source/detector overlap. Do not first fit
+an unexplained pickup residual and then invent a mode for it.
 
-## References
-
-1. D. Jaros, "Hyperspace Waves Repository", https://github.com/DavJ/hyperspace_waves
-2. D. Jaros, "Unified Biquaternion Theory", https://github.com/DavJ/unified-biquaternion-theory
-3. Classical theta function theory and applications in physics
-4. Quaternionic quantum mechanics foundations
-5. Complex manifold theory and wave propagation
-
----
-
-**Next Steps:**
-- Implement biquaternion arithmetic in Python
-- Create numerical solvers for curved space equations
-- Develop theta function expansion algorithms
-- Design experimental protocols for verification
+Primary background references: [NIST DLMF, theta transformations](https://dlmf.nist.gov/20.7.E32),
+[Tong, classical field theory](https://www.damtp.cam.ac.uk/user/tong/qft/qfthtml/S1.html),
+[Tong, gauge redundancy](https://www.damtp.cam.ac.uk/user/tong/qft/qfthtml/S6.html),
+[Prokopec, scalar/photon effective operators, arXiv:astro-ph/0106247](https://arxiv.org/abs/astro-ph/0106247).
+These supply standard frameworks, not validation of UBT-specific claims.
