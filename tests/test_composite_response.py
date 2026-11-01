@@ -29,6 +29,16 @@ def test_spectral_threshold_and_unequal_mass_symmetry():
     assert pair_spectral_density(8, 1, 1) == pytest.approx(math.sqrt(.5)/(16*math.pi**2))
 
 
+def test_nonzero_background_keeps_its_existing_linear_projection():
+    b, g = np.diag([1.,-2.,.5]), np.diag([.2,.4,.7])
+    background = np.array([1.,2.,3.])
+    ell = 2*b@background
+    pair = gaussian_bilinear_connected(b,g)
+    full = gaussian_bilinear_connected(b,g,linear_form=ell)
+    assert full-pair == pytest.approx(4*background@b@g@b@background)
+    assert full > pair
+
+
 @pytest.mark.parametrize('z', [-8., -.1, 0., .3, 2., 3.9, 4.])
 def test_subtracted_bubble_against_independent_spectral_dispersion(z):
     ratio = z/4
@@ -65,6 +75,21 @@ def test_near_threshold_response_is_finite_and_frequency_symmetric():
     assert below > density_static_kernel(1, 3)
     assert density_evanescent_kernel(1, -1.9, 3) == below
     assert density_evanescent_kernel(1, 2, 3) > below
+
+
+def test_uniform_density_source_still_couples_to_nonzero_constituent_harmonics():
+    # A source Fourier index is not the constituent's Fourier index.
+    count, n = 64, 3
+    psi = 2*np.pi*np.arange(count)/count
+    phi = np.exp(1j*n*psi)/np.sqrt(2*np.pi)
+    density = abs(phi)**2
+    assert abs(np.fft.fft(phi)[n]) > 1
+    assert 2*np.pi*np.mean(density) == pytest.approx(1)
+    np.testing.assert_allclose(np.fft.fft(density)[1:],0,atol=2e-14)
+    # A charge-neutral pair can retain a nonzero correlation under phase
+    # averaging even though either single nonzero-index mean vanishes.
+    np.testing.assert_allclose(np.mean(np.exp(1j*n*psi)),0,atol=2e-15)
+    assert np.mean(np.exp(1j*n*psi)*np.exp(-1j*n*psi)) == pytest.approx(1)
 
 
 def test_mass_source_matching_is_same_action_mixed_derivative():
@@ -104,6 +129,8 @@ def test_photon_tail_is_gapless_power_law_and_can_dominate_the_free_tail():
     lambda: mass_source_em_coefficient(0, .3),
     lambda: pair_spectral_density(np.nan, 1, 1),
     lambda: gaussian_bilinear_connected([[1,2],[0,1]], np.eye(2)),
+    lambda: gaussian_bilinear_connected([[1]], [[1]], linear_form=[1,2]),
+    lambda: gaussian_bilinear_connected([[1]], [[1]], linear_form=[1j]),
 ])
 def test_invalid_domains_are_not_silently_reinterpreted(call):
     with pytest.raises(ValueError): call()

@@ -3,7 +3,7 @@
   "status": "DERIVED_FOR_DECLARED_GAUSSIAN_AND_SCALAR_QED_COMPARATORS",
   "ubt_context": "https://github.com/UBT-Institute/unified-biquaternion-theory/pull/825",
   "exact": {
-    "wick": "2 Tr(B G B G^T), no selected component count",
+    "wick": "ell^T G ell + 2 Tr(B G B G^T), no selected component count",
     "bubble_slope_at_zero": "1/(96*pi**2*mass**2)",
     "static_free_density": "m K1(2mr)/(16 pi^3 r^2)",
     "positive_mass_pair_threshold_asymptotic": "1/(32*pi**3*mass*r**4)",

@@ -22,8 +22,11 @@ def _finite(value, name, *, nonnegative=False, positive=False):
     return value
 
 
-def gaussian_bilinear_connected(bilinear, cross_covariance):
-    """<H(x)H(0)>_c=2 Tr[B G(x) B G(x)^T], H=z^T B z, <z>=0.
+def gaussian_bilinear_connected(bilinear, cross_covariance, *, linear_form=None):
+    """Connected Gaussian H=constant+ell^T z+z^T B z, <z>=0.
+
+    The optional constant-background projection adds ell^T G ell to the Wick
+    pair kernel. Zero-mean fluctuations do not require a zero full Theta.
 
     Real Euclidean Gaussian coordinates and real symmetric B, of any finite
     dimension. G is the position-space cross covariance BEFORE any time
@@ -39,7 +42,13 @@ def gaussian_bilinear_connected(bilinear, cross_covariance):
             or g.shape != b.shape or not np.isfinite(b).all() or not np.isfinite(g).all()
             or not np.allclose(b, b.T, rtol=1e-12, atol=1e-13)):
         raise ValueError('Finite equal-sized square matrices and symmetric B are required')
-    return float(2 * np.trace(b @ g @ b @ g.T))
+    result = float(2 * np.trace(b @ g @ b @ g.T))
+    if linear_form is not None:
+        ell = np.asarray(linear_form)
+        if (np.iscomplexobj(ell) or ell.shape != (len(b),) or not np.isfinite(ell).all()):
+            raise ValueError('The linear projection must be a finite real vector of the same dimension')
+        result += float(ell @ g @ ell)
+    return result
 
 
 def pair_spectral_density(s, mass_a, mass_b):

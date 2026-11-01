@@ -82,7 +82,7 @@ def report():
         'schema':'conditional-composite-response/v1',
         'status':'DERIVED_FOR_DECLARED_GAUSSIAN_AND_SCALAR_QED_COMPARATORS',
         'ubt_context':'https://github.com/UBT-Institute/unified-biquaternion-theory/pull/825',
-        'exact':{'wick':'2 Tr(B G B G^T), no selected component count',
+        'exact':{'wick':'ell^T G ell + 2 Tr(B G B G^T), no selected component count',
                  'bubble_slope_at_zero':str(slope),
                  'static_free_density':'m K1(2mr)/(16 pi^3 r^2)',
                  'positive_mass_pair_threshold_asymptotic':str(free_threshold),

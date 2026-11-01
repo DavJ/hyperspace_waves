@@ -19,6 +19,13 @@ H=z^TBz,\quad G(x)=\langle z(x)z(0)^T\rangle,\qquad
 .
 ```
 
+In a constant-background or frozen-coefficient calculation, a nonzero full Theta background also gives the observable a linear projection. Zero-mean fluctuation coordinates do not set that full background to zero. Its connected response includes the original propagator projected by ell; possible one-particle weight from this term is not excluded by the pair calculation. The background and projection must still pass the charge and locked-metric compatibility gates. The worked scalar-density vacuum below has ell=0.
+
+```math
+H=H_0+\ell^Tz+z^TBz,\quad\ell=2Bz_0,\qquad
+\langle H(x)H(0)\rangle_c=\ell^TG(x)\ell+2\operatorname{Tr}[BG(x)BG(x)^T].
+```
+
 <!-- BILINGUAL-UNIT: composite-response.spectrum -->
 
 ## The scalar-pair response with fixed normalization
@@ -114,6 +121,16 @@ The photon tail is an ordinary electromagnetic mechanism in physical space. In a
 m_{\gamma,1}=m_{\gamma,2}=0,\qquad
 m_O=m_{\gamma,1}+m_{\gamma,2}=0
 .
+```
+
+With an invariant action, measure and state and only zero-harmonic sources, translation symmetry forces the nonzero-index one-point mean to vanish to all orders. This phase is Fourier translation, not electromagnetic charge. The statement does not forbid creating opposite-index pairs or modulating neutral occupations and correlations. In particular, the zero harmonic of a density contains every constituent index n, not just the zero-index constituent. Such an occupation/correlation protocol requires its own higher-point response, physical spectrum and electromagnetic readout; it is not established by the selection rule alone.
+
+```math
+\psi\mapsto\psi+R\alpha:\quad H_m\mapsto e^{im\alpha}H_m,\quad
+\langle H_m\rangle_{A_0}=e^{im\alpha}\langle H_m\rangle_{A_0}\ (\forall\alpha)
+\Longrightarrow\langle H_m\rangle_{A_0}=0\ (m\ne0).
+\quad H_0=L^{-1/2}\sum_n\operatorname{Tr}(\theta_n^\sharp\theta_n^\dagger),
+\qquad \langle H_mH_{-m}\rangle_{A_0}\ 	ext{is not forced to vanish}.
 ```
 
 <!-- BILINGUAL-UNIT: composite-response.verification -->

@@ -19,6 +19,13 @@ H=z^TBz,\quad G(x)=\langle z(x)z(0)^T\rangle,\qquad
 .
 ```
 
+Ve výpočtu s konstantním pozadím nebo zmrazenými koeficienty dává nenulové pozadí celé Thety pozorovatelné veličině také lineární projekci. Nulová střední hodnota souřadnic fluktuací nenuluje toto plné pozadí. Její spojená odezva zahrnuje původní propagátor promítnutý pomocí ell; případnou jednočásticovou váhu z tohoto členu výpočet dvojice nevylučuje. Pozadí i projekce stále musejí splnit podmínky kompatibility náboje a uzamčené metriky. Níže vypočtené vakuum skalární hustoty má ell=0.
+
+```math
+H=H_0+\ell^Tz+z^TBz,\quad\ell=2Bz_0,\qquad
+\langle H(x)H(0)\rangle_c=\ell^TG(x)\ell+2\operatorname{Tr}[BG(x)BG(x)^T].
+```
+
 <!-- BILINGUAL-UNIT: composite-response.spectrum -->
 
 ## Odezva skalární dvojice s pevnou normalizací
@@ -114,6 +121,16 @@ Fotonový dosah je běžný elektromagnetický mechanismus ve fyzikálním prost
 m_{\gamma,1}=m_{\gamma,2}=0,\qquad
 m_O=m_{\gamma,1}+m_{\gamma,2}=0
 .
+```
+
+Při invariantní akci, míře a stavu a pouze zdrojích s nulovou harmonickou složkou vynutí symetrie vůči posunům nulovou jednobodovou střední hodnotu pro nenulový index ve všech řádech. Tato fáze je Fourierův posun, nikoli elektromagnetický náboj. Tvrzení nezakazuje vytváření dvojic s opačnými indexy ani modulaci neutrálních obsazeností a korelací. Zejména nulová harmonická složka hustoty obsahuje každý index složky n, nejen složku s nulovým indexem. Takový protokol obsazenosti či korelací vyžaduje vlastní vícebodovou odezvu, fyzikální spektrum a elektromagnetický odečet; samotné výběrové pravidlo jej neprokazuje.
+
+```math
+\psi\mapsto\psi+R\alpha:\quad H_m\mapsto e^{im\alpha}H_m,\quad
+\langle H_m\rangle_{A_0}=e^{im\alpha}\langle H_m\rangle_{A_0}\ (\forall\alpha)
+\Longrightarrow\langle H_m\rangle_{A_0}=0\ (m\ne0).
+\quad H_0=L^{-1/2}\sum_n\operatorname{Tr}(\theta_n^\sharp\theta_n^\dagger),
+\qquad \langle H_mH_{-m}\rangle_{A_0}\ 	ext{is not forced to vanish}.
 ```
 
 <!-- BILINGUAL-UNIT: composite-response.verification -->
