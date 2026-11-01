@@ -125,3 +125,15 @@ Files in this repository can be used based on GNU public license.
 
 **Citation Requirement:** Whenever used for a derivative work (scientific,
 commercial, or non-commercial), citation of the author is required.
+
+## Neutral-composite response follow-up
+
+The [computed response](docs/composite-response.en.md) ([česky](docs/composite-response.cs.md))
+now includes a general Gaussian contraction, a normalized scalar-pair continuum,
+exact static Bessel kernel and the ordinary scalar-QED photon-pair power-law
+tail. The tail prevents extending the free massive exponential to the full
+electromagnetic comparator. Its physical UBT projection and nonzero fiber
+harmonic coupling remain open. These calculations define no new universe or
+independent neutral field.
+
+Run `python scripts/verify_composite_response.py --check`.

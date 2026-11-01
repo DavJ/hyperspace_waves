@@ -1,0 +1,58 @@
+{
+  "schema": "conditional-composite-response/v1",
+  "status": "DERIVED_FOR_DECLARED_GAUSSIAN_AND_SCALAR_QED_COMPARATORS",
+  "ubt_context": "https://github.com/UBT-Institute/unified-biquaternion-theory/pull/825",
+  "exact": {
+    "wick": "ell^T G ell + 2 Tr(B G B G^T), no selected component count",
+    "bubble_slope_at_zero": "1/(96*pi**2*mass**2)",
+    "static_free_density": "m K1(2mr)/(16 pi^3 r^2)",
+    "positive_mass_pair_threshold_asymptotic": "1/(32*pi**3*mass*r**4)",
+    "maxwell_euclidean_F2_correlator": "48/(pi**4*r**8)",
+    "mass_source_F2_coefficient": "-e**2*q**2/(192*pi**2*mass**2)",
+    "static_maxwell_F2_correlator": "15/(pi**3*r**7)",
+    "photon_tail": "15 c_O^2/(pi^3 r^7), leading order e^4"
+  },
+  "controls": {
+    "maximum_bubble_dispersion_absolute_error": 2.42861286636753e-17,
+    "maximum_static_euclidean_spectral_relative_error": 1.199040866595169e-14
+  },
+  "illustrative_dimensionless_samples": [
+    {
+      "mass": 1.0,
+      "e": 0.3,
+      "charge": 1.0,
+      "radius": 10.0,
+      "free_static": 1.1858602917354845e-14,
+      "photon_pair_static_asymptotic": 1.0912511431633672e-16
+    },
+    {
+      "mass": 1.0,
+      "e": 0.3,
+      "charge": 1.0,
+      "radius": 20.0,
+      "free_static": 4.281961622275633e-24,
+      "photon_pair_static_asymptotic": 8.525399555963806e-19
+    },
+    {
+      "mass": 1.0,
+      "e": 0.3,
+      "charge": 1.0,
+      "radius": 40.0,
+      "free_static": 3.20103172390436e-42,
+      "photon_pair_static_asymptotic": 6.6604684030967235e-21
+    }
+  ],
+  "tools": {
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "sympy": "1.14.0"
+  },
+  "lean_status": "LEAN-PENDING: lean/lake unavailable; no compiled formal proof",
+  "not_established": [
+    "a UBT physical-mode projector, masses or positive constrained Hessian",
+    "a stable neutral bound-state pole or the full loop-corrected response",
+    "a nonzero-psi-harmonic coupling to ordinary zero-harmonic photons",
+    "finite-frequency matching near the massive pair threshold",
+    "adjacent universes, transmitter power, coil voltage or communication range"
+  ]
+}

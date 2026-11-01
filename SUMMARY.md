@@ -1,4 +1,4 @@
-# Current research ledger — 2026-10-31
+# Current research ledger — 2026-11-01
 
 The algebra and conditional effective wave toolkit have been improved. A new
 physical propagation channel is not established. The old completion/FTL claims
@@ -30,3 +30,9 @@ Run `python -m pytest -q` and `python scripts/verify_wave_bridge.py --check`.
 Lean formalization is pending. AI-assisted working research; exhaustive human
 review is not claimed. No experimental result or author attestation is inferred
 from passing software checks.
+
+- Composite response: the free scalar pair gives a Bessel/Yukawa continuum;
+  the matched density also has an ordinary two-photon tail proportional to
+  r^-7. This is a standard-QED comparator result, not a new UBT pole or a
+  nonzero fiber-channel identification. [English](docs/composite-response.en.md);
+  [Czech](docs/composite-response.cs.md).
