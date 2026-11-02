@@ -130,6 +130,8 @@ There is now a conditional pump → pair occupation → electromagnetic readout 
 
 ## Checks and reproduction
 
+A subsequent [localization audit](compact-locality.en.md) quantifies the required interharmonic coherence and tests a separate causal real-circle comparator. It does not derive transport of these produced pairs or identify the real circle with imaginary time.
+
 The code independently integrates the Klein–Gordon equation and checks its Wronskian against the hyperbolic spectrum and gamma-function connection. CAS checks the transformed differential equation, energy Hessian and count generating function. Tests cover both branches of lambda, its zero, weak-pump powers, long-pulse behavior, constant-gauge relabeling, readout positivity/rotations, finite-difference energy derivatives and explicit count sums. Examples are dimensionless individual modes or one phase-space cell per unit weight; no full integrated density or hardware parameters are reported. AI-assisted derivation and translation; English is the source. Exhaustive human review is not claimed. `LEAN-PENDING`: lean/lake are unavailable; no compiled formal proof or experiment is asserted.
 
 ```sh

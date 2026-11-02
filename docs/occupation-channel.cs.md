@@ -130,6 +130,8 @@ Nyní máme podmíněný výpočet buzení → obsazenost páry → elektromagne
 
 ## Kontroly a reprodukce
 
+Následný [audit lokalizace](compact-locality.cs.md) kvantifikuje potřebnou koherenci mezi harmonickými a ověřuje samostatný kauzální srovnávací model na reálné kružnici. Neodvozuje transport těchto vytvořených párů ani neztotožňuje reálnou kružnici s imaginárním časem.
+
 Kód nezávisle integruje Kleinovu–Gordonovu rovnici a porovnává její Wronskián s hyperbolickým spektrem a spojením pomocí gama funkcí. CAS kontroluje transformovanou diferenciální rovnici, Hessovu matici energie a vytvořující funkci počtů. Testy zahrnují obě větve λ, jeho nulu, mocniny slabého buzení, chování dlouhého pulzu, přeznačení při konstantní kalibraci, kladnost a rotace čtení, konečné diference energie i přímé součty počtů. Příklady jsou bezrozměrné jednotlivé módy nebo jedna buňka fázového prostoru na jednotku váhy; neuvádíme úplnou integrovanou hustotu ani parametry aparatury. Odvození a překlad vznikly s pomocí AI; zdrojem je angličtina. Netvrdíme úplnou lidskou revizi. `LEAN-PENDING`: lean/lake nejsou dostupné; netvrdíme přeložený formální důkaz ani experiment.
 
 ```sh

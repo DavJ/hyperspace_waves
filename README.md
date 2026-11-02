@@ -151,3 +151,16 @@ change while the total psi index remains zero. Uniform pump/readout profiles
 do not localize a transmitter and receiver in different psi segments.
 
 Run `python scripts/verify_occupation_channel.py --check`.
+
+## Localizing a source or receiver
+
+The [localization calculation](docs/compact-locality.en.md) ([česky](docs/compact-locality.cs.md))
+quantifies the interharmonic coherence needed to concentrate an amplitude;
+changing diagonal occupations alone leaves its mean density uniform. An
+explicitly assumed real-circle comparator supplies an exact periodic Green
+function and causal front. Without a gradient or other mixing, disjoint local
+copies have zero transfer. Finite Fourier truncation can fake cross response
+and pre-front signals. The real circle and compact kinetic term remain
+additional assumptions; neither is derived from UBT imaginary time.
+
+Run `python scripts/verify_compact_locality.py --check`.
