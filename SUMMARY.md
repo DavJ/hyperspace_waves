@@ -42,3 +42,9 @@ from passing software checks.
   Exact/gamma/Klein–Gordon controls agree. Psi-localized sources and a physical
   UBT spectrum remain open. [English](docs/occupation-channel.en.md);
   [Czech](docs/occupation-channel.cs.md).
+- Localization follow-up: exact interval concentration distinguishes coherent
+  packets from uniform diagonal populations. A separate real-circle comparator
+  gives periodic attenuation, the uniform near-resonance term and a causal
+  arrival front; finite mode truncation can fake nonlocal signals. It does not
+  supply a UBT compact kinetic term or transport of the Sauter-created pairs.
+  [English](docs/compact-locality.en.md); [Czech](docs/compact-locality.cs.md).

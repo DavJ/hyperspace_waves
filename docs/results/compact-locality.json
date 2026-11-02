@@ -1,0 +1,110 @@
+{
+  "schema": "conditional-compact-locality/v1",
+  "status": "DERIVED_FOR_FOURIER_LOCALIZATION_AND_DECLARED_REAL_CIRCLE_COMPARATOR",
+  "exact": {
+    "coordinate": "y is an assumed independent real circle, L=2*pi*R; not identified with imaginary-time psi",
+    "concentration": "C_mn=(w/L)*exp(2*pi*i*(n-m)*center/L)*sinc((n-m)*w/L); |n|,|m|<=N",
+    "localization_bound": "fraction<=lambda_max(C)<=min(1,(2*N+1)*w/L); diagonal populations give exactly w/L",
+    "conditional_action": "S=int dt dy [(q_t^2-v^2*q_y^2-mu^2*q^2)/2+J*q]",
+    "subgap_green": "cosh(kappa*(L/2-d))/(2*v^2*kappa*sinh(kappa*L/2)); kappa=sqrt(mu^2-omega^2)/v",
+    "zero_gradient_transfer": "int f_B*f_A dy/(mu^2-omega^2); disjoint profiles give zero for local independent copies",
+    "uniform_end_transfer": "1/[L*(mu^2-omega^2)] for L1-normalized profiles; no position addressing",
+    "resonant_regular_part": "(L**2 - 6*L*d + 6*d**2)/(12*L*v**2)",
+    "resonant_differential_limit": "d*(L - d)/(2*L*v**2)",
+    "retarded_green": "sum_l theta(t-|d+l*L|/v)*J0(mu*sqrt(t^2-(d+l*L)^2/v^2))/(2*v)",
+    "causal_front": "d_geodesic/v for points; at least distance between source/readout supports divided by v",
+    "energy": "E=int dy (q_t^2+v^2*q_y^2+mu^2*q^2)/2; dE/dt=int dy J*q_t on periodic boundaries"
+  },
+  "controls": {
+    "interval_gram_quadrature_absolute_error": 1.1102230246251565e-16,
+    "retarded_laplace_absolute_error": 4.3021142204224816e-16,
+    "retarded_laplace_tail_bound": 8.85180210347189e-14
+  },
+  "illustrative_dimensionless_concentrations": [
+    {
+      "cutoff": 0,
+      "harmonic_count": 1,
+      "interval_fraction": 0.1,
+      "maximum_coherent_fraction": 0.1,
+      "any_diagonal_population_fraction": 0.1,
+      "trace_upper_bound": 0.1
+    },
+    {
+      "cutoff": 2,
+      "harmonic_count": 5,
+      "interval_fraction": 0.1,
+      "maximum_coherent_fraction": 0.46892803295934093,
+      "any_diagonal_population_fraction": 0.1,
+      "trace_upper_bound": 0.5
+    },
+    {
+      "cutoff": 4,
+      "harmonic_count": 9,
+      "interval_fraction": 0.1,
+      "maximum_coherent_fraction": 0.7366060054931319,
+      "any_diagonal_population_fraction": 0.1,
+      "trace_upper_bound": 0.9
+    },
+    {
+      "cutoff": 6,
+      "harmonic_count": 13,
+      "interval_fraction": 0.1,
+      "maximum_coherent_fraction": 0.8887158702211099,
+      "any_diagonal_population_fraction": 0.1,
+      "trace_upper_bound": 1.0
+    },
+    {
+      "cutoff": 8,
+      "harmonic_count": 17,
+      "interval_fraction": 0.1,
+      "maximum_coherent_fraction": 0.9585670634253849,
+      "any_diagonal_population_fraction": 0.1,
+      "trace_upper_bound": 1.0
+    }
+  ],
+  "illustrative_dimensionless_resonance": [
+    {
+      "frequency": 0.0,
+      "local_kernel": 0.7342226748346008,
+      "remote_kernel": 0.26222772258155097,
+      "remote_over_local": 0.35715012838662785,
+      "differential_kernel": 0.4719949522530498
+    },
+    {
+      "frequency": 0.9,
+      "local_kernel": 2.2371829273186656,
+      "remote_kernel": 1.6700529716821368,
+      "remote_over_local": 0.7464981746860316,
+      "differential_kernel": 0.5671299556365286
+    },
+    {
+      "frequency": 0.999999,
+      "local_kernel": 166667.26019901826,
+      "remote_kernel": 166666.66155992087,
+      "remote_over_local": 0.9999964081782069,
+      "differential_kernel": 0.5986390974135994
+    }
+  ],
+  "prefront_truncation_counterexample": {
+    "mass": 0.8,
+    "speed": 1.0,
+    "circumference": 4.0,
+    "time": 0.3,
+    "separation": 1.0,
+    "cutoff": 3,
+    "exact_retarded_response": 0.0,
+    "truncated_response": -0.05316478637734324
+  },
+  "tools": {
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "sympy": "1.14.0"
+  },
+  "lean_status": "LEAN-PENDING: lean/lake unavailable; no compiled formal proof",
+  "not_established": [
+    "a UBT compact gradient term surviving physical constraints or an independent real-circle interpretation of psi",
+    "the physical Theta mode count, masses, compact speed or electromagnetic overlaps",
+    "apparatus control of nonuniform compact profiles or interharmonic coherence",
+    "a microscopic composite pole, an extension of the Sauter occupation model, multiverse communication or a laboratory range"
+  ]
+}

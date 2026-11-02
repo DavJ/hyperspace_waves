@@ -1,0 +1,92 @@
+{
+  "schema": "ubt-research-event/v1",
+  "recorded_on": "2026-11-02",
+  "claim_or_decision_id": "CONDITIONAL-COMPACT-LOCALITY-AND-CAUSALITY",
+  "summary": "Distinguish Fourier populations from localization and calculate a separate real-circle causal response without deriving a compact UBT kinetic term.",
+  "development_mode": "iterative_human_ai",
+  "stage_events": [
+    {
+      "kind": "human_proposal",
+      "actor": "human",
+      "description": "The author requested continuation of the existing hyperspace-wave/UBT derivation, with earlier authorization to correct and merge related project work. This is task direction, not approval of a new physical result.",
+      "evidence_ids": ["direction"]
+    },
+    {
+      "kind": "mathematical_derivation",
+      "actor": "ai",
+      "description": "Derive the interval concentration matrix and diagonal-population obstruction. In an explicitly postulated real-circle reduced-mode comparator, compute contact/periodic responses, resonance subtraction and the causal image kernel.",
+      "evidence_ids": ["prior_work", "publications", "implementation"]
+    },
+    {
+      "kind": "verification",
+      "actor": "ai",
+      "description": "Independently compare continuous wavefunction integrals, source/readout convolution, image/Fourier sums, differential and jump identities, and the retarded Laplace transform. Record finite-mode artifacts as counterexamples, not physical faster signals.",
+      "evidence_ids": ["implementation"]
+    },
+    {
+      "kind": "ai_refinement",
+      "actor": "ai",
+      "description": "Keep imaginary time distinct from an independent real compact coordinate, coherent amplitudes distinct from occupations, harmonic counts distinct from Theta components, and the separate linear comparator distinct from composite or produced-pair transport.",
+      "evidence_ids": ["ubt_gate", "prior_work", "implementation"]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "direction",
+      "class": "discussion_context",
+      "locator": "Current research session, continuation request recorded 2026-11-02; no public transcript deposited",
+      "original_checked": true,
+      "supports": "The request to continue the existing project and correct/merge related work.",
+      "limitations": "No direct quotation, historical priority, substantive human review or author attestation is inferred."
+    },
+    {
+      "id": "prior_work",
+      "class": "repository_artifact",
+      "locator": "docs/occupation-channel.en.md; docs/composite-response.en.md; docs/intersegment-channel.md at baseline 3213fa752b1d2a50e68d52a4023704a48b7e8644",
+      "original_checked": true,
+      "supports": "The known distinction between harmonic labels and positions, invariant pair populations, source/readout profiles and open physical projections.",
+      "limitations": "Does not supply a physical compact coordinate, kinetic term or an inter-universe channel."
+    },
+    {
+      "id": "publications",
+      "class": "external_publication",
+      "locator": "Dereziński and Sikorski, arXiv:2406.08327v1, section 5.3; NIST DLMF 24.8.1",
+      "original_checked": true,
+      "supports": "Standard retarded Klein-Gordon Green functions and Bernoulli Fourier mathematics used in the explicitly normalized circle calculation.",
+      "limitations": "Neither publication establishes UBT dynamics or multiverse communication. No first-discovery claim is made for these methods."
+    },
+    {
+      "id": "ubt_gate",
+      "class": "repository_artifact",
+      "locator": "UBT-Institute/unified-biquaternion-theory at 68c73508e239bfbccb1d8bd9266fac0e76f1839e: research_tracks/information_first/TORUS_THETA_CANONICAL_ACTION_BRIDGE_GATE.cs.md; research_tracks/complex_time_branch_selection/psi_branch_selection.en.md",
+      "original_checked": true,
+      "supports": "The compact kinetic term/physical reduction and identification of imaginary time with an independent real-circle coordinate remain unproved.",
+      "limitations": "An explicit higher-dimensional candidate is not a selected complete action. This record makes no no-go claim about all UBT candidates."
+    },
+    {
+      "id": "implementation",
+      "class": "repository_artifact",
+      "locator": "workspace-pydev/hyperspace_comm/compact_locality.py; tests/test_compact_locality.py; scripts/verify_compact_locality.py; docs/results/compact-locality.json; docs/compact-locality.en.md; docs/compact-locality.cs.md",
+      "original_checked": true,
+      "supports": "Conditional concentration/locality formulas, independent checks and recorded truncation counterexamples.",
+      "limitations": "No UBT spectrum, source profile, compact speed, composite pole, pair transport, apparatus gain, formal Lean proof or experiment is derived."
+    }
+  ],
+  "rejected_alternatives": [
+    "Treat an occupied Fourier index or a prime label as an addressed universe position.",
+    "Localize a translation-invariant mean density by changing only diagonal populations.",
+    "Infer a compact kinetic operator by renaming imaginary time as a real spatial circle.",
+    "Interpret a finite Fourier projection's nonlocal source tails as intersegment transfer or a faster front.",
+    "Assign the new single-coordinate Green function to the previously computed composite bubble or scalar-pair transport.",
+    "Treat uniform resonance gain as spatial addressing or independently controlled compact apparatus profiles."
+  ],
+  "verification": {
+    "status": "verified_with_scope",
+    "artifacts": ["scripts/verify_compact_locality.py", "tests/test_compact_locality.py", "docs/results/compact-locality.json"],
+    "limitations": "Mathematical/CAS/numerical comparator verification only; Lean pending, no exhaustive independent human review, author attestation or experimental validation."
+  },
+  "attribution_status": "provisional",
+  "human_attestation": "not_attested",
+  "private_sources_publicly_disclosed": false,
+  "notes": "Established spectral/PDE methods applied to the current localization question. No new fundamental ontology or exclusive conceptual-origin claim."
+}
