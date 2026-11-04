@@ -104,6 +104,51 @@ The reproducible example uses dimensionless \(L=12\), \(v=1\), \(d=2\), \(\lambd
 
 [Conventional round-trip timing](https://www.ll.mit.edu/media/6941) · [Circle propagator and causal front](compact-locality.en.md)
 
+<!-- BILINGUAL-UNIT: em-coupling.radar-2d -->
+
+## Radar on a real torus
+
+Use a flat rectangular torus with \(N\) periodic coordinates of periods \(L_i\) and a known common wave speed \(v\). Each port transmits and receives at the same position \(p\). For one stationary target at \(x\), the earliest return time \(T(p)\) gives its shortest round-trip distance, provided the port couples to that path and the first return is resolved. Write \(\delta_{L_i}\) for the shortest distance around coordinate \(i\).
+
+~~~math
+r_p^2=\left(\frac{vT(p)}{2}\right)^2
+      =\sum_{i=1}^N \delta_{L_i}(x_i-p_i)^2,
+\qquad \delta_L(z)=\min_{k\in\mathbb Z}|z+kL|.
+~~~
+
+One port gives a distance contour. Put a reference port at the origin and two ports at \(\pm a_i e_i\) on each axis, where \(a_i=L_i/4\). The differences \(r_\pm^2-r_0^2\) cancel every coordinate except \(i\). Set \(u=x_i/a_i\) using the representative in \([-2,2)\), and define \(P=(r_-^2-r_+^2)/a_i^2\) and \(Q=(r_+^2+r_-^2-2r_0^2)/a_i^2\) for that axis. Evaluating the shortest distances gives
+
+~~~math
+(P,Q)=
+\begin{cases}
+(4u,2), & |u|\le 1,\\
+(\operatorname{sgn}(u)(8-4|u|),\,10-8|u|), & 1<|u|\le 2.
+\end{cases}
+~~~
+
+For \(Q=2\), recover \(u=P/4\). For \(Q<2\), recover \(|u|=(10-Q)/8\) and use the sign of \(P\). At \(P=0,Q=-6\), both signs represent the same point modulo the period. This proves that \(2N+1\) ports at the stated locations suffice in this model. It assumes noiseless times, known port positions and speed, and a single target with correctly associated returns. In two dimensions, \(L=(12,8)\) and \(v=1\) give a reference-port return at \(2\sqrt{13}\approx7.2111\) for the target \((10,5)\). The five times together recover \((10,5)\) modulo the periods. All quantities in this example are dimensionless.
+
+For the two-dimensional massless wave equation, sum the retarded Green function on the covering plane over the periodic images. With travel times \(a_\ell=|x-p_T+\ell L|/v\), \(b_k=|x-p_R+kL|/v\) and positive point stiffness \(\lambda\), first-order scattering gives the following impulse difference. Here \(*\) is causal time convolution and the displayed value of \(g_a\) is for \(t>a\), with zero before the front.
+
+~~~math
+g_a(t)=\frac{1}{2\pi v^2\sqrt{t^2-a^2}}\quad(t>a),
+\qquad
+\Delta G_R^{(1)}(t)=-\lambda\sum_{\ell,k\in\mathbb Z^2}(g_{a_\ell}*g_{b_k})(t).
+~~~
+
+Only pairs with \(a_\ell+b_k<t\) contribute away from the fronts. For positive leg times \(a,b\), set \(D=t-a-b>0\). Substituting the integration variable \(s=a+D\sin^2\theta\) into the convolution reduces it to the complete elliptic integral \(K\), with parameter \(m\) (modulus \(\sqrt m\)).
+
+~~~math
+(g_a*g_b)(t)=\frac{2K(m)}{(2\pi v^2)^2\sqrt{(D+2a)(D+2b)}},
+\qquad m=1-\frac{4ab}{(D+2a)(D+2b)}.
+~~~
+
+The earliest echo arrives at the sum of the two shortest leg times. The impulse response has a tail behind each front, and later paths can wrap around either period. Repeated scattering at a point in two dimensions would require a finite target model or a regularization of the divergent same-point Green function. A UBT application requires an independently specified propagation law, target interaction, and physical couplings at the port locations. The coordinates here are real model coordinates. The localization result requires independent port positions in those coordinates.
+
+Run `python scripts/verify_compact_locality.py --radar-example-2d` for the five times, recovered coordinates, and sampled Born impulse difference. The tests also compare the convolution with direct quadrature and cover a case with multiple shortest paths.
+
+[Retarded Green functions by dimension](https://arxiv.org/abs/1701.00776) · [Complete elliptic integral](https://dlmf.nist.gov/19.2.E8)
+
 <!-- BILINGUAL-UNIT: em-coupling.line -->
 
 A bench analog uses a transmission line with matched far termination and a removable shunt inductor \(L_s\) at distance \(d\) from the measured port. In the lossless line model \(L'\) and \(C'\) are inductance and capacitance per unit length. With node flux \(\Phi\) and \(V=\partial_t\Phi\), the line energy has kinetic density \(C'\Phi_t^2/2\), gradient density \(\Phi_y^2/(2L')\) and shunt energy \(\Phi(d)^2/(2L_s)\). Dividing the field equation by \(C'\) recovers the massless point-stiffness model with the following parameter map and voltage reflection coefficient at the shunt.

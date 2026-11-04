@@ -16,6 +16,7 @@ sys.path.insert(0,str(ROOT/'workspace-pydev'/'hyperspace_comm'))
 from compact_locality import (interval_concentration_matrix,maximum_interval_concentration,
     periodic_subgap_green,periodic_subgap_contrast,resonant_contrast,
     periodic_retarded_green,truncated_retarded_green,contact_box_transfer)
+from compact_radar import cross_ports, cross_port_times, locate_cross_port_target, torus_born_echo_2d
 
 
 def radar_echo_example():
@@ -57,6 +58,29 @@ def radar_echo_example():
             "mass": 0., "speed": speed, "circumference": circumference,
             "shortest_arc": distance, "point_stiffness": stiffness,
             "first_return": arrival, "samples": samples}
+
+
+def radar_echo_example_2d():
+    """Recover two coordinates from five synthetic first arrivals."""
+    periods, speed = (12., 8.), 1.
+    target, port, stiffness = (10., 5.), (0., 0.), .25
+    times = cross_port_times(periods, speed, target)
+    recovered = locate_cross_port_target(periods, speed, times)
+    np.testing.assert_allclose(recovered, target, rtol=0, atol=1e-12)
+    return {
+        "status": "conditional_real_torus_born_example",
+        "circumferences": periods,
+        "speed": speed,
+        "point_stiffness": stiffness,
+        "ports": cross_ports(periods).tolist(),
+        "first_returns": times.tolist(),
+        "recovered_target": recovered.tolist(),
+        "reference_port_scattered_impulse": [
+            {"time": time, "difference": torus_born_echo_2d(
+                periods, speed, port, target, port, time, stiffness)}
+            for time in (7., 8., 10., 15.)
+        ],
+    }
 
 
 def report():
@@ -145,7 +169,12 @@ def main():
     mode.add_argument('--check',action='store_true')
     mode.add_argument('--radar-example',action='store_true',
                       help='print the dimensionless target-present and target-absent impulse traces')
+    mode.add_argument('--radar-example-2d', action='store_true',
+                      help='print five first returns, the reconstructed target and a 2D Born echo')
     args=parser.parse_args()
+    if args.radar_example_2d:
+        print(json.dumps(radar_echo_example_2d(), indent=2))
+        return
     echo_example = radar_echo_example()
     if args.radar_example:
         print(json.dumps(echo_example, indent=2))
@@ -164,7 +193,8 @@ def main():
         assert old['prefront_truncation_counterexample'].keys()==result['prefront_truncation_counterexample'].keys()
         np.testing.assert_allclose(list(old['prefront_truncation_counterexample'].values()),
             list(result['prefront_truncation_counterexample'].values()),rtol=1e-10,atol=1e-14)
-        print('Conditional localization, causal fronts and point-target echo checks agree.')
+        radar_echo_example_2d()
+        print('Conditional localization, causal fronts and one- and two-dimensional echo checks agree.')
     else:
         path.parent.mkdir(parents=True,exist_ok=True)
         path.write_text(json.dumps(result,indent=2)+'\n')
