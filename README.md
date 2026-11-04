@@ -107,9 +107,13 @@ ordinary EFT mechanism, not an established UBT spectrum or multiverse device.
 ([česky](docs/electromagnetic-theta-coupling.cs.md)) derives the Maxwell
 stress coupling through the tetrad, its flat frozen-connection cancellation,
 the point-target return on the real circle, and a transmission-line bench analog.
+On a real rectangular torus, a cross of ports recovers a single target from
+first-return times. The two-dimensional example also calculates the scattered
+impulse in the first Born approximation.
 
 ```sh
 python scripts/verify_source_matching.py --check
+python scripts/verify_compact_locality.py --radar-example-2d
 ```
 
 ## Research status and provenance

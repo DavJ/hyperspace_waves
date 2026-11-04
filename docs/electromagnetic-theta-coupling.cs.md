@@ -104,6 +104,51 @@ Reprodukovatelný příklad má bezrozměrné hodnoty \(L=12\), \(v=1\), \(d=2\)
 
 [Čas návratu u běžného radaru](https://www.ll.mit.edu/media/6941) · [Propagátor na kružnici a kauzální čelo](compact-locality.cs.md)
 
+<!-- BILINGUAL-UNIT: em-coupling.radar-2d -->
+
+## Radar na reálném toru
+
+Uvažujme plochý pravoúhlý torus s \(N\) periodickými souřadnicemi o periodách \(L_i\) a známou společnou rychlostí vlny \(v\). Každý port vysílá a přijímá ve stejném bodě \(p\). Pro jeden nehybný cíl v bodě \(x\) určuje čas první ozvěny \(T(p)\) nejkratší dráhu tam a zpět, pokud je port na tuto dráhu navázán a první ozvěnu dokážeme rozlišit. Značme \(\delta_{L_i}\) nejkratší vzdálenost po kružnici v souřadnici \(i\).
+
+~~~math
+r_p^2=\left(\frac{vT(p)}{2}\right)^2
+      =\sum_{i=1}^N \delta_{L_i}(x_i-p_i)^2,
+\qquad \delta_L(z)=\min_{k\in\mathbb Z}|z+kL|.
+~~~
+
+Jeden port určuje množinu bodů ve stejné vzdálenosti. Referenční port umístíme do počátku a další dva na každé ose do bodů \(\pm a_i e_i\), kde \(a_i=L_i/4\). V rozdílech \(r_\pm^2-r_0^2\) se odečtou příspěvky všech souřadnic kromě \(i\). Pro danou osu položme \(u=x_i/a_i\) s reprezentantem v \([-2,2)\) a zaveďme \(P=(r_-^2-r_+^2)/a_i^2\) a \(Q=(r_+^2+r_-^2-2r_0^2)/a_i^2\). Vyhodnocením nejkratších vzdáleností dostaneme
+
+~~~math
+(P,Q)=
+\begin{cases}
+(4u,2), & |u|\le 1,\\
+(\operatorname{sgn}(u)(8-4|u|),\,10-8|u|), & 1<|u|\le 2.
+\end{cases}
+~~~
+
+Pro \(Q=2\) vyjde \(u=P/4\). Pro \(Q<2\) vyjde \(|u|=(10-Q)/8\) a znaménko určí \(P\). Při \(P=0,Q=-6\) obě znaménka označují stejný bod modulo periodu. V tomto modelu tedy uvedené rozmístění \(2N+1\) portů stačí. Předpokládá přesné časy, známé polohy portů a rychlost a správné přiřazení prvních ozvěn jedinému cíli. Ve dvou rozměrech s \(L=(12,8)\) a \(v=1\) se první ozvěna od cíle \((10,5)\) vrátí do referenčního portu v čase \(2\sqrt{13}\approx7.2111\). Z pěti časů společně získáme zpět \((10,5)\) modulo periody. Všechny veličiny v příkladu jsou bezrozměrné.
+
+Pro dvourozměrnou bezhmotnou vlnovou rovnici sečteme retardovanou Greenovu funkci na rovině přes periodické obrazy. S časy průchodu \(a_\ell=|x-p_T+\ell L|/v\), \(b_k=|x-p_R+kL|/v\) a kladnou bodovou tuhostí \(\lambda\) dává rozptyl v prvním řádu následující rozdíl impulzních odezev. Symbol \(*\) označuje kauzální časovou konvoluci. Uvedený tvar \(g_a\) platí pro \(t>a\), před čelem je funkce nulová.
+
+~~~math
+g_a(t)=\frac{1}{2\pi v^2\sqrt{t^2-a^2}}\quad(t>a),
+\qquad
+\Delta G_R^{(1)}(t)=-\lambda\sum_{\ell,k\in\mathbb Z^2}(g_{a_\ell}*g_{b_k})(t).
+~~~
+
+Mimo čela přispívají jen dvojice s \(a_\ell+b_k<t\). Pro kladné časy obou úseků \(a,b\) položme \(D=t-a-b>0\). Substituce integrační proměnné \(s=a+D\sin^2\theta\) převede konvoluci na úplný eliptický integrál \(K\) s parametrem \(m\) (modulem \(\sqrt m\)).
+
+~~~math
+(g_a*g_b)(t)=\frac{2K(m)}{(2\pi v^2)^2\sqrt{(D+2a)(D+2b)}},
+\qquad m=1-\frac{4ab}{(D+2a)(D+2b)}.
+~~~
+
+První ozvěna přijde v čase, který je součtem nejkratších časů obou úseků. Impulzní odezva doznívá za každým čelem a pozdější dráhy mohou oběhnout jednu či obě periodické osy. Opakovaný rozptyl na bodě ve dvou rozměrech vyžaduje model konečného cíle nebo regularizaci divergentní Greenovy funkce v témže bodě. Pro použití v UBT je třeba nezávisle určit zákon šíření, interakci s cílem a fyzikální vazby v polohách portů. Obě souřadnice jsou zde reálné souřadnice modelu. Pro určení polohy potřebujeme nezávislá umístění portů v těchto souřadnicích.
+
+Příkaz `python scripts/verify_compact_locality.py --radar-example-2d` vypíše pět časů, získané souřadnice a vzorky rozdílu impulzních odezev v Bornově aproximaci. Testy také srovnávají konvoluci s přímou kvadraturou a pokrývají případ s více nejkratšími drahami.
+
+[Retardované Greenovy funkce podle dimenze](https://arxiv.org/abs/1701.00776) · [Úplný eliptický integrál](https://dlmf.nist.gov/19.2.E8)
+
 <!-- BILINGUAL-UNIT: em-coupling.line -->
 
 Stolní analog používá přenosové vedení s přizpůsobeným koncem a odpojitelnou paralelní indukčností \(L_s\) ve vzdálenosti \(d\) od měřicího portu. V bezeztrátovém modelu jsou \(L'\) a \(C'\) indukčnost a kapacita na jednotku délky. Pro uzlový tok \(\Phi\) s \(V=\partial_t\Phi\) má vedení kinetickou hustotu energie \(C'\Phi_t^2/2\), gradientovou hustotu \(\Phi_y^2/(2L')\) a energie paralelní větve je \(\Phi(d)^2/(2L_s)\). Po vydělení rovnice pole \(C'\) dostaneme model bez hmotnosti s bodovou tuhostí. Odpovídající parametry a koeficient odrazu napětí v místě paralelní větve jsou
