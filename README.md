@@ -103,6 +103,11 @@ explicit neutral effective potential supplies mixing and the required mass
 slopes; the same portal fixes source and Maxwell readout. This is a conditional
 ordinary EFT mechanism, not an established UBT spectrum or multiverse device.
 
+[Electromagnetic coupling and conditional radar echo](docs/electromagnetic-theta-coupling.en.md)
+([česky](docs/electromagnetic-theta-coupling.cs.md)) derives the Maxwell
+stress coupling through the tetrad, its flat frozen-connection cancellation,
+the point-target return on the real circle, and a transmission-line bench analog.
+
 ```sh
 python scripts/verify_source_matching.py --check
 ```

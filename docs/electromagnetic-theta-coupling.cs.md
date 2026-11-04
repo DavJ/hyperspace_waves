@@ -1,0 +1,123 @@
+# Elektromagnetická vazba na poruchu pole Θ
+
+**2026-11-04 · pracovní výzkum.** Odvození a překlad s pomocí AI. Úplná lidská revize se nedeklaruje.
+
+<!-- BILINGUAL-UNIT: em-coupling.action -->
+
+Použijeme přirozené jednotky, signaturu \((-+++)\) a Maxwellův člen zapsaný v sektoru QED teorie UBT. Při variaci metriky držíme kovariantní dvojformu \(F_{\mu\nu}\) pevnou. Kanonická geometrická derivace definuje \(E_\mu=N_0^{-1/2}D_\mu\Theta\) s pevným \(N_0\). Bilineární párování používá komplexně lineární kvaternionovou operaci sharp. Kanonická metrika a její přípustné variace jsou reálné a centrální. Odvození pracuje s celým komplexním biquaternionovým nosičem pod touto podmínkou reality. Registr akce UBT vede úplnou akci ve stavu \(\texttt{DEFINED\_FAMILY\_NOT\_FINALIZED}\).
+
+~~~math
+S_{\rm EM}=-\frac14\int d^4x\,\sqrt{-g}\,F_{\mu\nu}F^{\mu\nu},
+\qquad b_\sharp(X,Y)\mathbf1=\frac{X^\sharp Y+Y^\sharp X}{2},
+\qquad g_{\mu\nu}=b_\sharp(E_\mu,E_\nu).
+~~~
+
+[Kanonická geometrie](https://github.com/UBT-Institute/unified-biquaternion-theory/blob/ef3e52c3438012acf9010bc43afbe0802f4c4f2d/canonical/CANONICAL_DEFINITIONS.md#L167) · [Člen QED v zakřiveném prostoru](https://github.com/UBT-Institute/unified-biquaternion-theory/blob/ef3e52c3438012acf9010bc43afbe0802f4c4f2d/canonical/interactions/qed.tex#L259) · [Registr akce](https://github.com/UBT-Institute/unified-biquaternion-theory/blob/ef3e52c3438012acf9010bc43afbe0802f4c4f2d/canonical/ACTION.en.md)
+
+<!-- BILINGUAL-UNIT: em-coupling.variation -->
+
+Pišme \(h_{\mu\nu}=\delta g_{\mu\nu}\). Indexy zvedáme a stopy počítáme metrikou pozadí. Variace inverzní metriky a objemové míry dává tenzor energie a hybnosti a jeho vazbu na tetrádový jet. Variace \(D_\nu\Theta\) zahrnuje i změnu geometrické konexe. Pro redukovaný mód musí variace respektovat svázané rovnice.
+
+~~~math
+\begin{aligned}
+\delta g^{\mu\nu}&=-h^{\mu\nu},&
+\delta\sqrt{-g}&=\tfrac12\sqrt{-\bar g}\,h^\rho{}_\rho,\\
+T_{\rm EM}^{\mu\nu}&=F^\mu{}_\rho F^{\nu\rho}-\tfrac14\bar g^{\mu\nu}F^2,&
+h_{\mu\nu}&=b_\sharp(\delta E_\mu,\bar E_\nu)+b_\sharp(\bar E_\mu,\delta E_\nu),\\
+\delta S_{\rm EM}&=\tfrac12\int d^4x\,\sqrt{-\bar g}\,T_{\rm EM}^{\mu\nu}h_{\mu\nu}
+=\int d^4x\,\sqrt{-\bar g}\,T_{\rm EM}^{\mu\nu}b_\sharp(\bar E_\mu,\delta E_\nu),&
+\delta E_\nu&=N_0^{-1/2}\delta(D_\nu\Theta).
+\end{aligned}
+~~~
+
+Má-li kanonicky normovaná fyzikální souřadnice \(u\) lokální algebraickou polarizaci metriky \(h_{\mu\nu}=C_{\mu\nu}u\), je jejím geometrickým zdrojem \(J_u=C_{\mu\nu}T_{\rm EM}^{\mu\nu}/2\). Pro diferenciální polarizaci působí na \(T_{\rm EM}/2\) adjungovaný operátor linearizované mapy metriky s odpovídající mírou a okrajovými podmínkami. Magnetické pole ve směru \(z\) dává v lokální inerciální soustavě \(J_u=B_z^2(C_{00}+C_{xx}+C_{yy}-C_{zz})/4\). Konformní polarizace dávají nulu, protože \(T^\mu{}_\mu=0\) ve čtyřrozměrné klasické Maxwellově teorii.
+
+<!-- BILINGUAL-UNIT: em-coupling.flat -->
+
+Pro kontrolní výpočet zvolíme plochou afinní tetrádu a zafixujeme její geometrickou konexi na nule. V konstantní Lorentzově tetrádové bázi zapíšeme \(\delta\Theta/\sqrt{N_0}=\xi^a b_a\) s komplexními koeficienty. Na přípustných perturbacích je symetrický gradient reálný. Jeho imaginární část vymizí díky podmínce reality metriky. Integrujeme per partes pro variace s kompaktní podporou nebo při vymizení okrajových členů. Volné Maxwellovo pole splňující rovnice pohybu má zachovaný tenzor energie a hybnosti, a proto v této kontrole geometrický zdroj vymizí. Výpočet aparatury v oblastech s proudem vyžaduje zahrnout tenzory pole i zdroje.
+
+~~~math
+h_{\mu\nu}=2\partial_{(\mu}\operatorname{Re}\xi_{\nu)},\qquad
+\delta S_{\rm EM}=-\int d^4x\,(\operatorname{Re}\xi_\nu)\,\partial_\mu T_{\rm EM}^{\mu\nu}=0,
+\qquad\partial_\mu T_{\rm EM}^{\mu\nu}=0.
+~~~
+
+V posledním integrálu používáme reálnou část \(\xi\), která vytváří reálnou změnu metriky. Redukovaná vazba v dynamické geometrii vyžaduje vlastní výpočet konexe a vazeb. Pokud bychom deklarované levé elektromagnetické fázové působení přiřadili témuž kovariantnímu tetrádovému jetu, z komplexní linearity sharp by plynulo \(g_{\mu\nu}\mapsto e^{2i\alpha}g_{\mu\nu}\). Slučitelnost fyzikálního působení náboje s reálnou metrikou proto tvoří samostatnou podmínku.
+
+<!-- BILINGUAL-UNIT: em-coupling.loop -->
+
+Skalární zdroj a odečet ve schématu aparatury vycházejí z dříve spočítaného nízkoenergetického modelu. Předpokládáme fyzikální neutrální mód \(u\), těžký komplexní skalár s kladnou kanonickou normou, elektrickým nábojem \(eq\) a \(M^2(u)=M_0^2+\kappa u+\cdots\), slabé elektromagnetické pole s malými hybnostmi a nulový nezávislý holý koeficient \(uF^2\). V eukleidovském tepelném jádru má křivost konexe tvar \(ieqF_E\) a její kvadratický člen je \(s^2\Omega^2/12\). Determinant komplexního skaláru a odečtení při \(M_0\) dávají následující Minkowského člen.
+
+~~~math
+\Delta\mathcal L=\frac{e^2q^2}{192\pi^2}\log\!\frac{M^2(u)}{M_0^2}\,F^2,
+\qquad c=\frac{e^2q^2}{192\pi^2}\frac{\kappa}{M_0^2},
+\qquad \mathcal L_{\rm EM,eff}=-\tfrac14(1-4cu)F^2+\cdots.
+~~~
+
+V tomto modelu na pevné metrice tedy \(J_u=cF_{\rm pump}^2\). Lineární odečet kolem určeného referenčního pole plyne z variace \((1-4cu)F^{\mu\nu}\) v Maxwellově rovnici. Obě odezvy určuje stejný koeficient \(c\). Pro UBT zbývá odvodit fyzikální reprezentaci náboje, stabilní mód \(u\), derivaci hmotnosti nabitého módu \(\kappa\) a překryvy zdroje a přijímače podél \(\psi\).
+
+[Koeficient tepelného jádra, rovnice 4.28](https://arxiv.org/abs/hep-th/0306138) · [Podmíněná vazba a energetická bilance](source-detector-matching.md)
+
+<!-- BILINGUAL-UNIT: em-coupling.apparatus -->
+
+Ve skalárním modelu je buzení funkcí \(F^2=2(B^2-E^2)\). Jediný toroid s časově proměnným proudem je kandidátem na zdroj běžných polí v modelu. Dvojice s opačnými toky slouží jako volitelná srovnávací geometrie. Magnetostatický výpočet konečných jader dodává běžné \(A\), tok a kontroly symetrie. Pro výpočet buzených polí a běžného přenosu k sondě potřebujeme dynamický polní nebo obvodový model zvoleného uspořádání.
+
+~~~mermaid
+flowchart TD
+    Drive["Modulovaný proud"] --> Coil{"Geometrie zdroje"}
+    Coil --> Single["Jeden toroid"]
+    Coil --> Pair["Toroidy s opačnými toky"]
+    Single --> Fields["Fyzikální E a B"]
+    Pair --> Fields
+    Fields --> Direct["Běžná EM vazba"]
+    Direct --> Probe["Sonda a referenční pole"]
+    Fields -. "Překryv s módem otevřený" .-> Mode["Fyzikální mód Theta"]
+    Mode -. "Přenos podél psi otevřený" .-> Readout["Podmíněná odezva módu"]
+    Readout -. "Překryv s přijímačem otevřený" .-> Probe
+~~~
+
+[Výpočet konečných toroidálních jader](https://github.com/DavJ/magnetic-field-antihemholz/blob/71e3a754e86db4d4a268e66f16a94f1d05a67342/docs/ubt-wave-bridge.md) · [Samostatný model šíření na kružnici](compact-locality.cs.md)
+
+<!-- BILINGUAL-UNIT: em-coupling.radar -->
+
+## Podmíněná radarová ozvěna
+
+Radar kromě vysílače a přijímače potřebuje také návrat od cíle. V samostatném modelu na reálné kružnici umístíme oba porty do \(y=0\). Cíl modelujeme stacionární kladnou bodovou tuhostí \(\lambda\delta_L(y-d)\), přičemž \(0<d\le L/2\) je délka kratšího oblouku. Kladná tuhost přidává nezápornou potenciální energii. Pro reálný Laplaceův parametr \(s>0\) je \(G_0\) inverzí \(s^2+\mu^2-v^2\partial_y^2\) na kružnici. Vyřešíme pole v cíli a dosadíme je zpět, čímž dostaneme rozdíl odezev portu s cílem a bez cíle.
+
+~~~math
+\Delta G(s;0,0)
+=-\frac{\lambda\,G_0(s;0,d)G_0(s;d,0)}
+ {1+\lambda G_0(s;d,d)}.
+~~~
+
+Dva propagátory dávají nejdřívější návrat \(2d/v\), podobně jako u běžného monostatického radaru. Jmenovatel sčítá opakované interakce na cíli. První Bornova aproximace jej nahrazuje jedničkou. Skutečná odezva portu by obsahovala oba fyzikální překryvy s prostředím. Na kružnici se pozdější ozvěny mohou vracet druhým obloukem. Je-li známo \(v\), první příchod určuje pouze kratší oblouk.
+
+Pro \(\mu=0\) a \(0\le t<L/v\) mohou přispět jen nejkratší cesty. Do rozdílu rezolvent dosadíme transformaci na přímce \(G_0(s;0,d)=e^{-sd/v}/(2vs)\) a \(G_0(s;d,d)=1/(2vs)\). Rozklad na parciální zlomky a časový posun \(2d/v\) dávají následující přesný rozdíl impulsních odezev, kde \(r_+=\max(r,0)\). Odezva nabíhá postupně i při bodovém impulzu. Konečný vyslaný pulz se s touto odezvou konvoluuje.
+
+~~~math
+\Delta G_R(t;0,0)
+=-\frac1{2v}\left(1-e^{-\lambda(t-2d/v)_+/(2v)}\right),
+\qquad 0\le t<L/v.
+~~~
+
+Reprodukovatelný příklad má bezrozměrné hodnoty \(L=12\), \(v=1\), \(d=2\), \(\lambda=1/4\) a \(\mu=0\). Dává náběh v \(t=4\) a rozdíl impulsních odezev \(-0.1105996\) v \(t=6\). Jde o virtuální test odečtu ozvěny. Kalibrace aparatury může měřit běžný přímý přenos a návrat od známého cíle v obyčejném prostoru. Předpověď UBT vyžaduje fyzikální propagátor, obě vazby portů a rozptylový operátor cíle. K určení původu ozvěny, kterou kalibrace nevysvětlí, bychom potřebovali tyto předpovědi.
+
+[Čas návratu u běžného radaru](https://www.ll.mit.edu/media/6941) · [Propagátor na kružnici a kauzální čelo](compact-locality.cs.md)
+
+<!-- BILINGUAL-UNIT: em-coupling.line -->
+
+Stolní analog používá přenosové vedení s přizpůsobeným koncem a odpojitelnou paralelní indukčností \(L_s\) ve vzdálenosti \(d\) od měřicího portu. V bezeztrátovém modelu jsou \(L'\) a \(C'\) indukčnost a kapacita na jednotku délky. Pro uzlový tok \(\Phi\) s \(V=\partial_t\Phi\) má vedení kinetickou hustotu energie \(C'\Phi_t^2/2\), gradientovou hustotu \(\Phi_y^2/(2L')\) a energie paralelní větve je \(\Phi(d)^2/(2L_s)\). Po vydělení rovnice pole \(C'\) dostaneme model bez hmotnosti s bodovou tuhostí. Odpovídající parametry a koeficient odrazu napětí v místě paralelní větve jsou
+
+~~~math
+v=(L'C')^{-1/2},\qquad Z_0=\sqrt{L'/C'},\qquad
+\lambda=\frac1{C'L_s},\qquad
+\Gamma(s)=-\frac{\lambda}{2vs+\lambda}=-\frac{Z_0}{2sL_s+Z_0}.
+~~~
+
+Na portu se při jedné dopadající vlně a přizpůsobeném zdroji projeví faktor \(e^{-2sd/v}\Gamma(s)\). Porovnáme jinak shodné průběhy s připojenou a odpojenou indukčností. Ideální srovnání kalibruje známé zpoždění a odraz cíle. Skutečné průběhy ovlivní konektory, parazitní prvky a zakončení zdroje. Zde máme výpočet. Nezávislá měření aparatury a parametry UBT zůstávají otevřené.
+
+[Tok a napětí na přenosovém vedení, rovnice 5–7](https://arxiv.org/abs/2307.14756)
+
+<!-- BILINGUAL-UNIT: em-coupling.verification -->
+
+Spusť `python scripts/verify_source_matching.py --check` a `python scripts/verify_compact_locality.py --check`. Průběhy s cílem a bez cíle vypíše `python scripts/verify_compact_locality.py --radar-example`. Konečné kontroly CAS pokrývají deset nezávislých symetrických variací metriky, stopu, magnetické napětí podél osy, řetězové pravidlo pro komplexní sharp a fázovou váhu. Kontrola ozvěny integruje kauzální konvoluci na cíli a srovnává ji s uzavřeným vzorcem. Stávající skalární kontroly srovnávají koeficient s integrály přes vlastní čas a Feynmanův parametr. Vymizení souřadnicového příspěvku plyne analyticky ze zachování tenzoru a okrajové podmínky. LEAN-PENDING.
