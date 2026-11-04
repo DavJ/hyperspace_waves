@@ -48,3 +48,10 @@ from passing software checks.
   arrival front; finite mode truncation can fake nonlocal signals. It does not
   supply a UBT compact kinetic term or transport of the Sauter-created pairs.
   [English](docs/compact-locality.en.md); [Czech](docs/compact-locality.cs.md).
+
+- Electromagnetic coupling and radar echo: the Maxwell stress pulls back to
+  the tetrad jet, with zero source in the flat frozen-connection vacuum control.
+  A separate point-scattering comparator supplies a causal round-trip echo
+  and a transmission-line calibration analog. Physical UBT port and target
+  couplings remain open. [English](docs/electromagnetic-theta-coupling.en.md) ·
+  [Czech](docs/electromagnetic-theta-coupling.cs.md).

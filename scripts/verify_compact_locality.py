@@ -18,6 +18,47 @@ from compact_locality import (interval_concentration_matrix,maximum_interval_con
     periodic_retarded_green,truncated_retarded_green,contact_box_transfer)
 
 
+def radar_echo_example():
+    """A dimensionless monostatic impulse experiment before any circle wrap."""
+    laplace, line_impedance, shunt_inductance = s.symbols(
+        's Z0 Ls', positive=True)
+    loaded_impedance = 1 / (1 / line_impedance + 1 / (laplace * shunt_inductance))
+    reflection = (loaded_impedance - line_impedance) / (loaded_impedance + line_impedance)
+    assert s.simplify(reflection + line_impedance / (2 * laplace * shunt_inductance + line_impedance)) == 0
+
+    speed, circumference, distance, stiffness = 1., 12., 2., .25
+    leg_time = distance / speed
+    arrival = 2 * leg_time
+
+    def echo(time):
+        return math.expm1(-stiffness * max(time - arrival, 0.) / (2 * speed)) / (2 * speed)
+
+    def green(time, separation):
+        return periodic_retarded_green(0., speed, circumference, time, separation)
+
+    def target_response(time):
+        return green(time, distance) * math.exp(
+            -stiffness * max(time - leg_time, 0.) / (2 * speed))
+
+    samples = []
+    for time in (3., 4., 5., 6., 8.):
+        # The exact target response solves its causal Volterra equation.
+        if time > arrival:
+            scattering = -stiffness * quad(
+                lambda t: green(time - t, distance) * target_response(t),
+                leg_time, time - leg_time)[0]
+        else:
+            scattering = 0.
+        assert abs(scattering - echo(time)) < 1e-13
+        baseline = green(time, 0.)
+        samples.append({"time": time, "target_absent": baseline,
+                        "target_present": baseline + scattering, "difference": scattering})
+    return {"status": "conditional_real_circle_impulse_example",
+            "mass": 0., "speed": speed, "circumference": circumference,
+            "shortest_arc": distance, "point_stiffness": stiffness,
+            "first_return": arrival, "samples": samples}
+
+
 def report():
     kappa,length,d,speed=s.symbols('kappa L d v',positive=True)
     green=s.cosh(kappa*(length/2-d))/(2*speed**2*kappa*s.sinh(kappa*length/2))
@@ -100,8 +141,15 @@ def report():
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--check',action='store_true')
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument('--check',action='store_true')
+    mode.add_argument('--radar-example',action='store_true',
+                      help='print the dimensionless target-present and target-absent impulse traces')
     args=parser.parse_args()
+    echo_example = radar_echo_example()
+    if args.radar_example:
+        print(json.dumps(echo_example, indent=2))
+        return
     result=report()
     path=ROOT/'docs/results/compact-locality.json'
     if args.check:
@@ -116,7 +164,7 @@ def main():
         assert old['prefront_truncation_counterexample'].keys()==result['prefront_truncation_counterexample'].keys()
         np.testing.assert_allclose(list(old['prefront_truncation_counterexample'].values()),
             list(result['prefront_truncation_counterexample'].values()),rtol=1e-10,atol=1e-14)
-        print('Conditional localization, periodic Green function and exact causal-front checks agree.')
+        print('Conditional localization, causal fronts and point-target echo checks agree.')
     else:
         path.parent.mkdir(parents=True,exist_ok=True)
         path.write_text(json.dumps(result,indent=2)+'\n')

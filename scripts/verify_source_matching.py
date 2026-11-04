@@ -13,6 +13,59 @@ from source_matching import (NeutralPortalExample,complex_scalar_threshold_coeff
     complex_scalar_gauge_kinetic_shift,complex_scalar_photon_mass_squared)
 
 
+def verify_geometric_coupling():
+    """Compare direct Maxwell variation and the tetrad pullback in flat space."""
+    metric = s.diag(-1, 1, 1, 1)
+    ex, ey, ez, bx, by, bz = s.symbols("Ex Ey Ez Bx By Bz", real=True)
+    field = s.Matrix([
+        [0, ex, ey, ez],
+        [-ex, 0, bz, -by],
+        [-ey, -bz, 0, bx],
+        [-ez, by, -bx, 0],
+    ])
+    raised = metric * field * metric
+    invariant = s.trace(field.T * raised)
+    stress = raised * metric * raised.T - metric * invariant / 4
+    assert s.expand(s.trace(metric * stress)) == 0
+    assert stress.subs({ex: 0, ey: 0, ez: 0, bx: 0, by: 0}) == bz**2 * s.diag(1, 1, 1, -1) / 2
+    for row in range(4):
+        for column in range(row, 4):
+            variation = s.zeros(4)
+            variation[row, column] = variation[column, row] = 1
+            inverse_variation = -metric * variation * metric
+            raised_variation = inverse_variation * field * metric + metric * field * inverse_variation
+            density_variation = (
+                -s.trace(metric * variation) * invariant / 8
+                - s.trace(field.T * raised_variation) / 4
+            )
+            assert s.expand(density_variation - s.trace(stress * variation) / 2) == 0
+
+    identity = s.eye(2)
+    basis = [
+        s.I * identity,
+        -s.I * s.Matrix([[0, 1], [1, 0]]),
+        -s.I * s.Matrix([[0, -s.I], [s.I, 0]]),
+        -s.I * s.diag(1, -1),
+    ]
+
+    def sharp(matrix):
+        return s.trace(matrix) * identity - matrix
+
+    def pair(left, right):
+        return (sharp(left) * right + sharp(right) * left) / 2
+
+    jet = s.Matrix(4, 4, s.symbols("jet0:16"))
+    varied_tetrad = [sum((jet[mu, a] * basis[a] for a in range(4)), s.zeros(2))
+                     for mu in range(4)]
+    symmetric_gradient = jet * metric + metric * jet.T
+    for mu in range(4):
+        for nu in range(4):
+            variation = pair(varied_tetrad[mu], basis[nu]) + pair(basis[mu], varied_tetrad[nu])
+            assert (variation - symmetric_gradient[mu, nu] * identity).applyfunc(s.expand) == s.zeros(2)
+    phase = s.symbols("phase")
+    assert (pair(phase * basis[0], phase * basis[0]) + phase**2 * identity).applyfunc(s.expand) == s.zeros(2)
+
+
 def report():
     hA,hB,v,lam,delta,m0,yA,yB=s.symbols('hA hB v lam delta m0 yA yB',positive=True,real=True)
     V=lam*(hA*hA+hB*hB-v*v)**2/4+delta*(hA-hB)**2/2
@@ -106,6 +159,7 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--check',action='store_true')
     args=parser.parse_args()
+    verify_geometric_coupling()
     result=report()
     path=Path(__file__).resolve().parents[1]/'docs/results/source-matching.json'
     if args.check:
@@ -116,7 +170,7 @@ def main():
         assert result['proper_time_absolute_error']<1e-16
         assert result['feynman_parameter_absolute_error']<1e-16
         assert result['gauge_kinetic_derivative_relative_error']<1e-5
-        print('Restricted scalar-loop matching checks agree; UBT embedding and hardware remain open.')
+        print('Geometric Maxwell variation and restricted scalar-loop matching checks agree.')
     else:
         path.parent.mkdir(parents=True,exist_ok=True)
         path.write_text(json.dumps(result,indent=2)+'\n')
