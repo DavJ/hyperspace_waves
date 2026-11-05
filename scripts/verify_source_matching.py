@@ -13,8 +13,43 @@ from source_matching import (NeutralPortalExample,complex_scalar_threshold_coeff
     complex_scalar_gauge_kinetic_shift,complex_scalar_photon_mass_squared)
 
 
+def verify_compact_geometric_port():
+    """Check the conserved beat stress and reciprocal Maxwell source in 5D."""
+    metric = s.diag(-1, 1, 1, 1, 1)
+    omega, omega_p = s.symbols("omega omega_p", positive=True)
+    pump_k = s.Matrix([-omega_p, 0, 0, 0, omega_p])
+    signal_k = s.Matrix([-omega, 0, 0, omega, 0])
+    polarization = s.eye(5)[:, 1]
+    pump = s.I * (pump_k * polarization.T - polarization * pump_k.T)
+    signal_conjugate = -s.I * (signal_k * polarization.T - polarization * signal_k.T)
+    pump_raised = metric * pump * metric
+    cross_stress = (pump * metric * signal_conjugate.T + signal_conjugate * metric * pump.T
+                    - metric * s.trace(pump_raised.T * signal_conjugate) / 2)
+    beat = pump_k - signal_k
+    assert (beat.T * metric * cross_stress).applyfunc(s.expand) == s.zeros(1, 5)
+    driving = s.expand(cross_stress[1, 1] - cross_stress[2, 2])
+    denominator = s.expand((beat.T * metric * beat)[0])
+    assert driving == -2 * omega_p * omega
+    assert denominator == 2 * omega_p * omega
+    assert s.cancel(driving / denominator) == -1
+
+    # Vary sqrt(-G) F^{AB} for unit plus polarization and the conjugate pump.
+    plus = s.diag(0, 1, -1, 0, 0)
+    assert s.trace(metric * plus) == 0
+    assert beat.T * metric * plus == s.zeros(1, 5)
+    conjugate_raised = metric * pump.conjugate() * metric
+    inverse_metric_variation = -metric * plus * metric
+    constitutive_variation = (inverse_metric_variation * pump.conjugate() * metric
+                              + metric * pump.conjugate() * inverse_metric_variation)
+    readout = s.I * signal_k.T * constitutive_variation
+    assert readout == omega_p * omega * polarization.T
+    assert readout == -s.I * signal_k.T * (
+        metric * plus * conjugate_raised + conjugate_raised * plus * metric)
+
+
 def verify_geometric_coupling():
     """Compare direct Maxwell variation and the tetrad pullback in flat space."""
+    verify_compact_geometric_port()
     metric = s.diag(-1, 1, 1, 1)
     ex, ey, ez, bx, by, bz = s.symbols("Ex Ey Ez Bx By Bz", real=True)
     field = s.Matrix([

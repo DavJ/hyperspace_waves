@@ -32,6 +32,8 @@ h_{\mu\nu}&=b_\sharp(\delta E_\mu,\bar E_\nu)+b_\sharp(\bar E_\mu,\delta E_\nu),
 
 Má-li kanonicky normovaná fyzikální souřadnice \(u\) lokální algebraickou polarizaci metriky \(h_{\mu\nu}=C_{\mu\nu}u\), je jejím geometrickým zdrojem \(J_u=C_{\mu\nu}T_{\rm EM}^{\mu\nu}/2\). Pro diferenciální polarizaci působí na \(T_{\rm EM}/2\) adjungovaný operátor linearizované mapy metriky s odpovídající mírou a okrajovými podmínkami. Magnetické pole ve směru \(z\) dává v lokální inerciální soustavě \(J_u=B_z^2(C_{00}+C_{xx}+C_{yy}-C_{zz})/4\). Konformní polarizace dávají nulu, protože \(T^\mu{}_\mu=0\) ve čtyřrozměrné klasické Maxwellově teorii.
 
+[Kompaktní Einsteinův–Maxwellův model](compact-einstein-maxwell-port.cs.md) odvozuje harmonické buzení a reciproční čtení za předpokladu fyzikální kompaktní pumpy.
+
 <!-- BILINGUAL-UNIT: em-coupling.flat -->
 
 Pro kontrolní výpočet zvolíme plochou afinní tetrádu a zafixujeme její geometrickou konexi na nule. V konstantní Lorentzově tetrádové bázi zapíšeme \(\delta\Theta/\sqrt{N_0}=\xi^a b_a\) s komplexními koeficienty. Na přípustných perturbacích je symetrický gradient reálný. Jeho imaginární část vymizí díky podmínce reality metriky. Integrujeme per partes pro variace s kompaktní podporou nebo při vymizení okrajových členů. Volné Maxwellovo pole splňující rovnice pohybu má zachovaný tenzor energie a hybnosti, a proto v této kontrole geometrický zdroj vymizí. Výpočet aparatury v oblastech s proudem vyžaduje zahrnout tenzory pole i zdroje.
