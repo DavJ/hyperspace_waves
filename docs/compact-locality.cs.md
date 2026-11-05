@@ -124,6 +124,50 @@ G_\omega(d)=\frac1{L\Delta}
 =\frac{d(L-d)}{2Lv^2},\qquad \lim_{\omega\to\mu^-}\frac{G_\omega(d)}{G_\omega(0)}=1.
 ```
 
+<!-- BILINGUAL-UNIT: locality.modal-radar -->
+
+## Vyšší rezonance zesiluje ozvěnu závislou na poloze
+
+Do redukovaného modelu na reálné kružnici přidejme rovnoměrné tlumení $\gamma>0$. Nehybný cíl v bodě $x$ má kladnou bodovou tuhost $\lambda>0$. Energie $E$ obsahuje kladnou energii poruchy $\lambda q(x)^2/2$. Z bilance práce plyne, že energii dodává buzení $J$.
+
+```math
+[\partial_t^2+2\gamma\partial_t+\mu^2-v^2\partial_y^2+\lambda\delta_L(y-x)]q=J,
+\qquad \dot E=\int_0^L J\,\partial_tq\,dy-2\gamma\int_0^L(\partial_tq)^2\,dy.
+```
+
+Předpokládejme čtyři fázově kalibrované profily pro buzení i čtení, normalizovaný kosinus a sinus pro každou ze sousedních harmonických $n,n+1$, kde $n\ge 1$. Profily jsou rozložené po kružnici a měříme je na stejné budicí frekvenci $\omega>0$ s konvencí $e^{-i\omega t}$. Faktor $\sqrt{2/L}$ každý profil normalizuje. Jejich hodnoty v místě cíle jsou složky vektoru $\sqrt{2/L}\,u_j$.
+
+```math
+\theta=2\pi x/L,\qquad u_j=(\cos j\theta,\sin j\theta)^\top,
+\qquad \omega_j^2=\mu^2+(2\pi v j/L)^2,
+\qquad \chi_j=(\omega_j^2-\omega^2-2i\gamma\omega)^{-1}.
+```
+
+Od přenosu s cílem odečteme přenos prázdné kružnice. Pro výpočet jeho bloku $B_{ab}$ velikosti $2\times2$ z budicí harmonické $b$ do snímané harmonické $a$ vyřešíme pole v bodě poruchy z rovnice $q(x)=q_0(x)-\lambda G_\omega(0)q(x)$ a rozptýlené pole promítneme na snímací profily. Greenova funkce v témže bodě zahrnuje všechny harmonické kružnice. Odmocninu volíme s kladnou reálnou částí.
+
+```math
+\kappa=\frac{\sqrt{\mu^2-\omega^2-2i\gamma\omega}}{v},\qquad
+G_\omega(0)=\frac{\coth(\kappa L/2)}{2v^2\kappa},\qquad
+B_{ab}=-\frac{2\lambda}{L}\frac{\chi_a\chi_b}{1+\lambda G_\omega(0)}u_a u_b^\top.
+```
+
+Blok $B_{nn}$ téže harmonické je úměrný $u_nu_n^\top$. Nese dvojnásobný úhel $2n\theta$ a dává stejnou odezvu pro polohy vzdálené o $L/(2n)$. Smíšený blok $C$ dává rozdíl úhlů $(n+1)\theta-n\theta$. Jeho stopa a antisymetrická část dávají kosinus a sinus se společným komplexním faktorem. Vydělením stopou $B_{nn}$ a korekcí poměru susceptibilit prázdné kružnice dostaneme souřadnici cíle modulo $L$. Poměr Frobeniových norem navíc udává relativní velikost smíšené ozvěny.
+
+```math
+e^{i\theta}
+=\frac{\chi_n}{\chi_{n+1}}
+ \frac{C_{cc}+C_{ss}+i(C_{sc}-C_{cs})}{\operatorname{tr}B_{nn}},
+\qquad C=B_{n+1,n},\qquad
+\frac{\lVert C\rVert_F}{\lVert B_{nn}\rVert_F}
+=\left|\frac{\chi_{n+1}}{\chi_n}\right|.
+```
+
+Na vlastní frekvenci prázdné kružnice $\omega_n$ platí $|\chi_n|=1/(2\gamma\omega_n)$. Pro $|\lambda G_\omega(0)|\ll1$ a izolovanou rezonanční dvojici roste ozvěna v téže harmonické jako $\gamma^{-2}$ a smíšená ozvěna jako $\gamma^{-1}$. Při pevné tuhosti a dostatečně malém tlumení změní člen $G_\omega(0)\sim(2/L)\chi_n$ v přesném jmenovateli toto škálování. Norma ozvěny v téže harmonické roste jako $|\chi_n|$, zatímco norma smíšené ozvěny se blíží konečné hodnotě $|\chi_{n+1}|$. Nejsilnější ozvěna a ozvěna, která rozliší polohu, se tedy mohou velikostí podstatně lišit.
+
+Pro $L=12$, $v=\mu=1$, $\gamma=0.015$, $\lambda=0.01$ a $x=9.3$ má blok $n=1$ na $\omega_1$ 18,4krát větší amplitudu než při frekvenci uprostřed mezi $\mu$ a $\omega_1$. Smíšený blok na $\omega_1$ má 4,11 % normy rezonančního bloku. Jeho fáze rozliší $x=9.3$ od $x=3.3$. Všechna čísla jsou bezrozměrná. Výpočet předpokládá ustálený režim, koherentní kalibrované profily a jediný bodový cíl. Pro UBT je třeba odvodit zákon kompaktního šíření a fyzikální překryvy s módy z bikvaternionové dynamiky po redukci vazeb.
+
+Příklad vypíše `python scripts/verify_compact_locality.py --radar-resonance`. Testy také srovnávají uzavřený vzorec s přímým maticovým výpočtem ve stojatých vlnách.
+
 <!-- BILINGUAL-UNIT: locality.front -->
 
 ## Nenulová ustálená odezva není okamžitá komunikace
