@@ -66,6 +66,47 @@ def verify_geometric_coupling():
     assert (pair(phase * basis[0], phase * basis[0]) + phase**2 * identity).applyfunc(s.expand) == s.zeros(2)
 
 
+def verify_radar_phase_reference():
+    """Check the full-matrix marker and a retarded-response translation example."""
+    r, b = s.symbols("r b", real=True)
+    theta = s.diag(1, -1) + s.I * s.Matrix([[0, r], [r, b]])
+    assert s.expand(theta.det()) == r**2 - 1 + s.I * b
+    marker = s.expand(s.trace(theta.adjugate() * theta.H))
+    assert marker == -2 - 2 * r**2
+
+    # Keep two internal components per mode and solve with the shifted target.
+    harmonics = np.repeat(np.arange(-2, 3), 2)
+    free = (np.kron(np.eye(5), [[.3, .2], [.2, .7]])
+            + np.diag(harmonics**2 - .05j))
+    empty_response = np.linalg.inv(free)
+    profiles = np.tile([[.3, .2], [.1, .4]], (5, 1))
+    target_at_origin = profiles @ profiles.T
+    origin_echo = np.linalg.inv(free + target_at_origin) - empty_response
+    zero = np.flatnonzero(harmonics == 0)[0]
+    one = np.flatnonzero(harmonics == 1)[0]
+    uniform_reference = origin_echo[zero, zero]
+    phase_reference = origin_echo[one, zero]
+    assert abs(uniform_reference) > 1e-4 and abs(phase_reference) > 1e-4
+
+    # Compare full inversions, including all repeated scattering in this matrix.
+    samples = []
+    for angle in (.4, 2.6, 4.1):
+        shift = np.exp(-1j * harmonics * angle)
+        phase = np.outer(shift, shift.conj())
+        echo = np.linalg.inv(free + phase * target_at_origin) - empty_response
+        np.testing.assert_allclose(echo, phase * origin_echo, atol=1e-13, rtol=1e-12)
+        recovered = float((-np.angle(echo[one, zero] / phase_reference)) % (2 * np.pi))
+        np.testing.assert_allclose(recovered, angle, atol=1e-13, rtol=0)
+        samples.append({"target_angle": angle, "recovered_angle": recovered,
+                        "uniform_echo_change": abs(echo[zero, zero] - uniform_reference)})
+    return {
+        "status": "conditional_compact_phase_reference_example",
+        "uniform_echo_amplitude": abs(uniform_reference),
+        "first_harmonic_echo_amplitude": abs(phase_reference),
+        "samples": samples,
+    }
+
+
 def report():
     hA,hB,v,lam,delta,m0,yA,yB=s.symbols('hA hB v lam delta m0 yA yB',positive=True,real=True)
     V=lam*(hA*hA+hB*hB-v*v)**2/4+delta*(hA-hB)**2/2
@@ -157,8 +198,14 @@ def report():
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--check',action='store_true')
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument('--check',action='store_true')
+    mode.add_argument('--radar-reference',action='store_true',
+                      help='print the calibrated compact-phase example')
     args=parser.parse_args()
+    if args.radar_reference:
+        print(json.dumps(verify_radar_phase_reference(), indent=2))
+        return
     verify_geometric_coupling()
     result=report()
     path=Path(__file__).resolve().parents[1]/'docs/results/source-matching.json'
@@ -170,7 +217,8 @@ def main():
         assert result['proper_time_absolute_error']<1e-16
         assert result['feynman_parameter_absolute_error']<1e-16
         assert result['gauge_kinetic_derivative_relative_error']<1e-5
-        print('Geometric Maxwell variation and restricted scalar-loop matching checks agree.')
+        verify_radar_phase_reference()
+        print('Maxwell variation, compact phase selection and restricted scalar-loop matching checks agree.')
     else:
         path.parent.mkdir(parents=True,exist_ok=True)
         path.write_text(json.dumps(result,indent=2)+'\n')

@@ -149,6 +149,64 @@ Příkaz `python scripts/verify_compact_locality.py --radar-example-2d` vypíše
 
 [Retardované Greenovy funkce podle dimenze](https://arxiv.org/abs/1701.00776) · [Úplný eliptický integrál](https://dlmf.nist.gov/19.2.E8)
 
+<!-- BILINGUAL-UNIT: em-coupling.radar-reference -->
+
+## Reference fáze v kompaktní souřadnici pro radar
+
+Nechť $\varphi$ je úhel s periodou $2\pi$ v podmíněném kompaktním modelu. Položíme $\varphi=\psi/R_\psi$, jen pokud toto ztotožnění má fyzikální význam. Pracujeme s prostorem poruch po redukci vazeb. Posun $(T_\alpha f)(\varphi)=f(\varphi-\alpha)$ působí na celý fyzikální prostor včetně vnitřních složek. Předpokládejme, že pozadí a operátor bez cíle $D_0$ jsou invariantní vůči posunu. Jeden cíl v bodě $\alpha$ má operátor $T_\alpha V_{\rm origin}T_\alpha^{-1}$. Rozdíl odezev $\Delta R_\alpha=D_\alpha^{-1}-D_0^{-1}$ používá retardované inverze.
+
+~~~math
+D_\alpha=D_0+T_\alpha V_{\rm origin}T_\alpha^{-1},
+\qquad [D_0,T_\alpha]=0,\qquad
+\Delta R_\alpha=T_\alpha\Delta R_{\rm origin}T_\alpha^{-1}.
+~~~
+
+Pro zdroj $s_k$ v harmonické $k$ a přijímač $d_\ell$ v harmonické $\ell$ použijeme $T_\alpha f_k=e^{-ik\alpha}f_k$. Veškerá závislost na poloze cíle je ve fázi dané rozdílem harmonických.
+
+~~~math
+\Delta H_{\ell k}(\alpha)
+=d_\ell^\dagger\Delta R_\alpha s_k
+=e^{-i(\ell-k)\alpha}\Delta H_{\ell k}(0).
+\qquad \Delta H_{00}(\alpha)=\Delta H_{00}(0).
+~~~
+
+Dva rovnoměrné porty mohou přes $\Delta H_{00}$ zjistit přítomnost cíle, ale při každém jeho posunu dostanou stejnou ozvěnu. Identita zahrnuje opakovaný rozptyl i libovolné míchání vnitřních složek na cíli. Časově proměnná pumpa, která zachovává symetrii kompaktních posunů, zachová tuto kovarianci i pro dvoučasovou retardovanou odezvu. Silnější rezonance v takové sestavě může zvětšit naměřenou amplitudu při stejné nejednoznačnosti polohy.
+
+Kalibrovaný nenulový kanál s $\ell-k=1$ dává úhel modulo $2\pi$ z komplexní fáze vůči známé odezvě v počátku. Při odděleně měřených a kalibrovaných nenulových rozdílech $q$ je společná zbývající perioda $2\pi/\gcd(|q|)$. Plyne to z rovnosti jejich fázových faktorů nebo z celočíselných kombinací fází. Tvrzení předpokládá kanály s měřením fáze. Při samotném kosinu zůstává nejednoznačnost zrcadlení.
+
+### Kandidát z plné matice a zkouška kalibrační invariance
+
+Ve výslovně předpokládaném členu $-ZF_{\mu\nu}F^{\mu\nu}/4$ zprůměrovaném přes kompaktní úhel položme $\Theta^\sharp=\operatorname{adj}\Theta$ v reprezentaci $\mathrm{Mat}_2(\mathbb C)$. Skalár $\mathcal Q$ je invariantní vůči Lorentzově kongruenci s determinantem jedna a vůči centrální fázi. Pro reálnou změnu měřítka plného pozadí určuje tatáž variace $Z$ buzení i čtení.
+
+~~~math
+\mathcal Q(\Theta)=\operatorname{Re}\operatorname{tr}(\Theta^\sharp\Theta^\dagger),
+\qquad
+Z=Z_0+c\,\mathcal Q(\Theta),\qquad
+\left.\delta Z\right|_{\delta\Theta=u\bar\Theta}
+=2c\,u\,\mathcal Q(\bar\Theta),\quad u\in\mathbb R.
+~~~
+
+Čisté centrální vinutí $e^{iN\varphi}\Theta_0$ dává konstantní $\mathcal Q$. Jiný případ poskytuje stávající rodina plného pole Theta pro vinutí jedna, vyhodnocená v prostoročasovém počátku a posunutá o fázi $\beta$. Přímý výpočet determinantu a stopy dává následující výrazy.
+
+~~~math
+\begin{gathered}
+\Theta_\beta=\sigma_3+i\begin{pmatrix}0&r\\r&b\end{pmatrix},
+\qquad r^2=1+\rho\cos(\varphi-\beta),\quad
+b=\rho\sin(\varphi-\beta),\quad 0<\rho<1,\\
+\det\Theta_\beta=\rho e^{i(\varphi-\beta)},
+\qquad
+\mathcal Q(\Theta_\beta)=-2-2r^2=-4-2\rho\cos(\varphi-\beta).
+\end{gathered}
+~~~
+
+Stopa má první harmonickou s fází určenou $\beta$. Pokud by tato reference byla fyzikální a pevná a zobrazená změna měřítka byla fyzikální poruchou, její koeficient by v témže vazebním členu vážil rovnoměrnou i první harmonickou. Měření fáze vyžaduje kalibrovaný přístup k oběma kvadraturám. Polohu bychom určovali relativně k referenci.
+
+Původní konstrukce s pomocným jetem ponechává tutéž tetrádu i spinovou konexi, zatímco se nosné pole v této rodině mění. Maxwellova vazba přes metriku proto vidí tutéž geometrii. Zobrazená veličina $\mathcal Q$ se při pevné geometrii mění, takže v čistě gravitačním modelu s volně variovanými pomocnými poli neprojde zkouškou invariance vůči posunu nosného pole. Přidání vazby na tuto veličinu by vyžadovalo novou analýzu vazeb spojené akce. Pro UBT tak zůstávají otevřené dvě fyzikální podmínky, kompaktní propagátor na redukovaných módech a pozorovatelná, stabilní fázová reference.
+
+Příkaz `python scripts/verify_source_matching.py --radar-reference` zopakuje konečný maticový příklad se dvěma vnitřními složkami v každé harmonické. Přímé inverze dávají nenulovou rovnoměrnou ozvěnu nezávislou na poloze a obnoví úhly cíle z kalibrovaného návratu v první harmonické. Kontrola také symbolicky vyhodnotí determinant a stopu plného pole Theta.
+
+[Vinutí plného pole Theta a kvocient pomocného jetu](https://github.com/UBT-Institute/unified-biquaternion-theory/blob/672f365ad39c46149ecbbbabe2e6178d6c89e054/research_tracks/action_selection/mm_full_theta_psi_winding_decoupling_2026_11.cs.md) · [Podmínka pro kompaktní akci](https://github.com/UBT-Institute/unified-biquaternion-theory/blob/672f365ad39c46149ecbbbabe2e6178d6c89e054/research_tracks/information_first/TORUS_THETA_CANONICAL_ACTION_BRIDGE_GATE.cs.md)
+
 <!-- BILINGUAL-UNIT: em-coupling.line -->
 
 Stolní analog používá přenosové vedení s přizpůsobeným koncem a odpojitelnou paralelní indukčností \(L_s\) ve vzdálenosti \(d\) od měřicího portu. V bezeztrátovém modelu jsou \(L'\) a \(C'\) indukčnost a kapacita na jednotku délky. Pro uzlový tok \(\Phi\) s \(V=\partial_t\Phi\) má vedení kinetickou hustotu energie \(C'\Phi_t^2/2\), gradientovou hustotu \(\Phi_y^2/(2L')\) a energie paralelní větve je \(\Phi(d)^2/(2L_s)\). Po vydělení rovnice pole \(C'\) dostaneme model bez hmotnosti s bodovou tuhostí. Odpovídající parametry a koeficient odrazu napětí v místě paralelní větve jsou

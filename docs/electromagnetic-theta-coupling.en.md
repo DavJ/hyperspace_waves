@@ -149,6 +149,64 @@ Run `python scripts/verify_compact_locality.py --radar-example-2d` for the five 
 
 [Retarded Green functions by dimension](https://arxiv.org/abs/1701.00776) · [Complete elliptic integral](https://dlmf.nist.gov/19.2.E8)
 
+<!-- BILINGUAL-UNIT: em-coupling.radar-reference -->
+
+## A compact phase reference for radar
+
+Let $\varphi$ be an angle of period $2\pi$ in a conditional compact model, with $\varphi=\psi/R_\psi$ only if that identification is physical. Work on a space of perturbations after constraint reduction, with translation $(T_\alpha f)(\varphi)=f(\varphi-\alpha)$ acting on the entire physical space, including any internal components. Suppose the background and the target-free operator $D_0$ are translation invariant. A single target at $\alpha$ has operator $T_\alpha V_{\rm origin}T_\alpha^{-1}$. The response difference $\Delta R_\alpha=D_\alpha^{-1}-D_0^{-1}$ uses retarded inverses.
+
+~~~math
+D_\alpha=D_0+T_\alpha V_{\rm origin}T_\alpha^{-1},
+\qquad [D_0,T_\alpha]=0,\qquad
+\Delta R_\alpha=T_\alpha\Delta R_{\rm origin}T_\alpha^{-1}.
+~~~
+
+For source $s_k$ and receiver $d_\ell$ in harmonics $k$ and $\ell$, use $T_\alpha f_k=e^{-ik\alpha} f_k$. All dependence on target position is in the phase associated with the harmonic difference.
+
+~~~math
+\Delta H_{\ell k}(\alpha)
+=d_\ell^\dagger\Delta R_\alpha s_k
+=e^{-i(\ell-k)\alpha}\Delta H_{\ell k}(0).
+\qquad \Delta H_{00}(\alpha)=\Delta H_{00}(0).
+~~~
+
+Two uniform ports may detect a target through $\Delta H_{00}$, but every shifted position produces the same return. The identity includes repeated scattering and arbitrary mixing of internal components at the target. A time-dependent pump that preserves compact translation symmetry also leaves this covariance intact for the two-time retarded response. Increasing a resonance in such a setup can increase the measured amplitude while retaining the same position ambiguity.
+
+A calibrated nonzero channel with $\ell-k=1$ yields the angle modulo $2\pi$ from its complex phase relative to a known origin response. With separately measured and calibrated nonzero differences $q$, the common remaining period is $2\pi/\gcd(|q|)$. This follows by equating their phase factors, or by taking integer combinations of the phases. The statement uses phase-resolved channels. A cosine alone still has a reflection ambiguity.
+
+### A full-matrix candidate and its gauge test
+
+In an explicitly assumed portal $-ZF_{\mu\nu}F^{\mu\nu}/4$ averaged over the compact angle, take $\Theta^\sharp=\operatorname{adj}\Theta$ in the $\mathrm{Mat}_2(\mathbb C)$ representation. The scalar $\mathcal Q$ is invariant under determinant-one Lorentz congruence and central phase. For a real scaling variation of the full background, the same variation of $Z$ controls drive and readout.
+
+~~~math
+\mathcal Q(\Theta)=\operatorname{Re}\operatorname{tr}(\Theta^\sharp\Theta^\dagger),
+\qquad
+Z=Z_0+c\,\mathcal Q(\Theta),\qquad
+\left.\delta Z\right|_{\delta\Theta=u\bar\Theta}
+=2c\,u\,\mathcal Q(\bar\Theta),\quad u\in\mathbb R.
+~~~
+
+A pure central winding $e^{iN\varphi}\Theta_0$ gives constant $\mathcal Q$. A different case is the existing full-Theta winding family for winding one, evaluated at the spacetime origin and with an angular phase $\beta$. Direct determinant and trace evaluation give the expressions below.
+
+~~~math
+\begin{gathered}
+\Theta_\beta=\sigma_3+i\begin{pmatrix}0&r\\r&b\end{pmatrix},
+\qquad r^2=1+\rho\cos(\varphi-\beta),\quad
+b=\rho\sin(\varphi-\beta),\quad 0<\rho<1,\\
+\det\Theta_\beta=\rho e^{i(\varphi-\beta)},
+\qquad
+\mathcal Q(\Theta_\beta)=-2-2r^2=-4-2\rho\cos(\varphi-\beta).
+\end{gathered}
+~~~
+
+The trace has a first harmonic with phase fixed by $\beta$. If this reference were physical and held fixed, and the displayed scaling variation were physical, its coefficient would weight both the uniform and first harmonics in the same portal. Measuring the phase requires calibrated access to the two quadratures. Positions would be defined relative to the reference.
+
+The upstream split-jet construction keeps the same tetrad and spin connection while changing the carrier in this family. The Maxwell coupling through the metric therefore sees the same geometry. The displayed $\mathcal Q$ changes at fixed geometry, so it fails the carrier-shift invariance test in the freely varied gravity-only chart. Adding a coupling to it would require a new constraint analysis of the coupled action. This leaves two physical requirements open in UBT, a compact propagator on the reduced modes and an observable, stable phase reference.
+
+Run `python scripts/verify_source_matching.py --radar-reference` to reproduce a finite matrix example with two internal components per harmonic. Direct inversions yield a nonzero position-independent uniform return and recover the target angles from the calibrated first-harmonic return. The check also evaluates the full-Theta determinant and trace symbolically.
+
+[Full-Theta winding and the split-jet quotient](https://github.com/UBT-Institute/unified-biquaternion-theory/blob/672f365ad39c46149ecbbbabe2e6178d6c89e054/research_tracks/action_selection/mm_full_theta_psi_winding_decoupling_2026_11.en.md) · [Compact action gate](https://github.com/UBT-Institute/unified-biquaternion-theory/blob/672f365ad39c46149ecbbbabe2e6178d6c89e054/research_tracks/information_first/TORUS_THETA_CANONICAL_ACTION_BRIDGE_GATE.en.md)
+
 <!-- BILINGUAL-UNIT: em-coupling.line -->
 
 A bench analog uses a transmission line with matched far termination and a removable shunt inductor \(L_s\) at distance \(d\) from the measured port. In the lossless line model \(L'\) and \(C'\) are inductance and capacitance per unit length. With node flux \(\Phi\) and \(V=\partial_t\Phi\), the line energy has kinetic density \(C'\Phi_t^2/2\), gradient density \(\Phi_y^2/(2L')\) and shunt energy \(\Phi(d)^2/(2L_s)\). Dividing the field equation by \(C'\) recovers the massless point-stiffness model with the following parameter map and voltage reflection coefficient at the shunt.
