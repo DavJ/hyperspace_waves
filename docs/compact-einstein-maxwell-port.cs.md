@@ -95,6 +95,8 @@ h_{+,1}^{\rm beat}=-b/M_5^3,\\
 
 Jde o nenulovou vynucenou metrickou odezvu s recipročním čtením. Pro tyto dvě rovinné vlny leží zázněj mimo hmotovou slupku volného gravitonu, protože $B^2=2\Omega\omega>0$. Výpočet tedy dává vazbu a zdroj čtení. Pro výpočet vyzářené vlny či ozvěny je nutné určit konečnou aparaturu, přenos hybnosti a rozptyl na cíli.
 
+[Výpočet pro konečnou vrstvu](compact-radiation-layer.cs.md) odvozuje odchozí mód a jeho čtení za předpokladu, že statické prostředí dodá chybějící podélnou hybnost.
+
 <!-- BILINGUAL-UNIT: compact-port.radar -->
 
 ## Co radaru dodávají dva profily pumpy
