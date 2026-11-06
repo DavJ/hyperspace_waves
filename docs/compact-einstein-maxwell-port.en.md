@@ -95,6 +95,8 @@ h_{+,1}^{\rm beat}=-b/M_5^3,\\
 
 This is a nonzero forced metric response with reciprocal readout. For these two plane waves the beat lies off the free graviton mass shell since $B^2=2\Omega\omega>0$. It therefore supplies a coupling and a readout source. A radiation or echo calculation must specify the finite apparatus, momentum transfer and target scattering.
 
+The [finite-layer calculation](compact-radiation-layer.en.md) derives an outgoing mode and its readout when a static medium supplies the longitudinal momentum mismatch.
+
 <!-- BILINGUAL-UNIT: compact-port.radar -->
 
 ## What the two pump profiles contribute to radar

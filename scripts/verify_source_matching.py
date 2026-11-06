@@ -1,13 +1,14 @@
 """Exact source/mixing identities plus conditional scalar-loop matching checks."""
 import argparse
 import json
+import math
 import platform
 from pathlib import Path
 import sys
 import numpy as np
 import scipy
 import sympy as s
-from scipy.integrate import quad
+from scipy.integrate import quad, quad_vec, solve_ivp
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'workspace-pydev'/'hyperspace_comm'))
 from source_matching import (NeutralPortalExample,complex_scalar_threshold_coefficients,
     complex_scalar_gauge_kinetic_shift,complex_scalar_photon_mass_squared)
@@ -45,6 +46,80 @@ def verify_compact_geometric_port():
     assert readout == omega_p * omega * polarization.T
     assert readout == -s.I * signal_k.T * (
         metric * plus * conjugate_raised + conjugate_raised * plus * metric)
+
+
+def verify_compact_radiation():
+    """Compare the radiated coefficients with a direct Maxwell scattering solve."""
+    z = s.symbols("z", real=True)
+    ell, vacuum = s.symbols("ell v", positive=True)
+    kink = vacuum * s.tanh(z / ell)
+    potential_gradient = 2 * kink * (kink**2 - vacuum**2) / (ell * vacuum)**2
+    assert s.simplify(s.diff(kink, z, 2) - potential_gradient) == 0
+
+    # Unit R, wall width, pump amplitude and M5^3 for the transfer coefficients.
+    pump_frequency, frequency, width = 1., .5, 1.
+    radiation_k = math.sqrt(frequency * (frequency + 2 * pump_frequency))
+    mismatch = radiation_k - frequency
+    wall_transform = math.pi * width**2 * mismatch / math.sinh(math.pi * width * mismatch / 2)
+    predicted = 1j * mismatch * wall_transform * np.array([.5, radiation_k / (4 * frequency)])
+    np.testing.assert_allclose(predicted[1] * math.sqrt(2 * frequency / radiation_k),
+                               -predicted[0].conjugate() * math.sqrt(radiation_k / (2 * frequency)))
+
+    def solve_layer(contrast):
+        edge = 16 * width
+
+        def medium(position):
+            wall = 1 / math.cosh(position / width)**2
+            log_derivative = -2 * contrast * wall * math.tanh(position / width) / width
+            return math.expm1(contrast * wall), log_derivative
+
+        def maxwell(position, state):
+            _, log_derivative = medium(position)
+            field, derivative = state
+            return [derivative, -frequency**2 * field - log_derivative * derivative]
+
+        right_boundary = np.exp(1j * frequency * edge)
+        solution = solve_ivp(maxwell, (edge, -edge),
+                             [right_boundary, 1j * frequency * right_boundary],
+                             dense_output=True, rtol=1e-10, atol=1e-12)
+        assert solution.success
+        field, derivative = solution.sol(-edge)
+        incident = (field + derivative / (1j * frequency)) * right_boundary / 2
+
+        def integrand(position):
+            delta_z, log_derivative = medium(position)
+            field, derivative = solution.sol(position) / incident
+            metric_wave = np.exp(1j * radiation_k * position)
+            source = 2 * pump_frequency * frequency * delta_z * field + log_derivative * derivative
+            emission = 1j * metric_wave.conjugate() * source / (2 * radiation_k)
+            # Even Z gives the left outgoing Maxwell solution by reflection.
+            left_outgoing = solution.sol(-position)[0]
+            delta_z_prime = (1 + delta_z) * log_derivative
+            readout_source = -.5j * radiation_k * metric_wave * delta_z_prime
+            readout = left_outgoing * readout_source / (2j * frequency * incident)
+            return np.array([emission, readout])
+
+        result, _ = quad_vec(integrand, -edge, edge, epsabs=1e-13, epsrel=1e-10)
+        return result
+
+    np.testing.assert_array_equal(solve_layer(0.), np.zeros(2))
+    contrast = 1e-4
+    numerical = solve_layer(contrast) / contrast
+    np.testing.assert_allclose(numerical, predicted, rtol=1e-4, atol=1e-11)
+    return {
+        "status": "conditional_5d_compact_radiation_example",
+        "pump_frequency": pump_frequency,
+        "signal_frequency": frequency,
+        "radiation_frequency": pump_frequency + frequency,
+        "radiation_wavenumber": radiation_k,
+        "momentum_mismatch": mismatch,
+        "layer_width": width,
+        "layer_contrast": contrast,
+        "leading_emission_per_contrast": [predicted[0].real, predicted[0].imag],
+        "leading_readout_per_contrast": [predicted[1].real, predicted[1].imag],
+        "numerical_emission_per_contrast": [numerical[0].real, numerical[0].imag],
+        "numerical_readout_per_contrast": [numerical[1].real, numerical[1].imag],
+    }
 
 
 def verify_geometric_coupling():
@@ -237,7 +312,12 @@ def main():
     mode.add_argument('--check',action='store_true')
     mode.add_argument('--radar-reference',action='store_true',
                       help='print the calibrated compact-phase example')
+    mode.add_argument('--compact-radiation',action='store_true',
+                      help='print the propagating-mode conversion example')
     args=parser.parse_args()
+    if args.compact_radiation:
+        print(json.dumps(verify_compact_radiation(), indent=2))
+        return
     if args.radar_reference:
         print(json.dumps(verify_radar_phase_reference(), indent=2))
         return
@@ -253,6 +333,7 @@ def main():
         assert result['feynman_parameter_absolute_error']<1e-16
         assert result['gauge_kinetic_derivative_relative_error']<1e-5
         verify_radar_phase_reference()
+        verify_compact_radiation()
         print('Maxwell variation, compact phase selection and restricted scalar-loop matching checks agree.')
     else:
         path.parent.mkdir(parents=True,exist_ok=True)
