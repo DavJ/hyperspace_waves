@@ -172,4 +172,7 @@ copies have zero transfer. Finite Fourier truncation can fake cross response
 and pre-front signals. The real circle and compact kinetic term remain
 additional assumptions; neither is derived from UBT imaginary time.
 
+The higher-mode example recovers a point target from coherent returns at two
+adjacent harmonics on the real circle. Run `python scripts/verify_compact_locality.py --radar-resonance`.
+
 Run `python scripts/verify_compact_locality.py --check`.

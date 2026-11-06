@@ -1,4 +1,5 @@
-"""Travel-time localization and a massless Born echo on an assumed real torus."""
+"""Radar comparators on an assumed real circle or torus."""
+import cmath
 from itertools import product
 import math
 
@@ -119,3 +120,59 @@ def torus_born_echo_2d(circumferences, speed, source, target, receiver, time, st
             complementary_parameter = (2 * a / left) * (2 * b / right)
             terms.append(ellipkm1(complementary_parameter) / math.sqrt(left) / math.sqrt(right))
     return -stiffness * math.fsum(terms) / (2 * math.pi**2 * speed**4)
+
+
+def circle_modal_echo(circumference, speed, mass, damping, frequency, target, stiffness, *, harmonic=1):
+    """Return empty-ring susceptibilities and the coherent point-target difference.
+
+    Drive and readout use the same orthonormal real profiles, ordered as
+    cos(n), sin(n), cos(n+1), sin(n+1), at one positive drive frequency.
+    The two susceptibilities are in ascending harmonic order. The echo
+    includes scattering through the entire circle spectrum.
+    """
+    length = _positive(circumference, "circumference")
+    speed = _positive(speed, "speed")
+    mass = _positive(mass, "mass", allow_zero=True)
+    damping = _positive(damping, "damping")
+    frequency = _positive(frequency, "frequency")
+    stiffness = _positive(stiffness, "stiffness", allow_zero=True)
+    if (isinstance(harmonic, (bool, np.bool_))
+            or not isinstance(harmonic, (int, np.integer)) or harmonic < 1):
+        raise ValueError("harmonic must be a positive integer")
+    target = float(target)
+    if not math.isfinite(target):
+        raise ValueError("target coordinate must be finite")
+
+    phase = 2 * math.pi * ((target % length) / length)
+    harmonics = np.array([int(harmonic), int(harmonic) + 1], dtype=float)
+    spectral_parameter = (mass - frequency) * (mass + frequency) - 2j * damping * frequency
+    wave_numbers = (2 * math.pi / length) * harmonics
+    susceptibilities = 1 / (spectral_parameter + (speed * wave_numbers)**2)
+    angles = harmonics * phase
+    profiles = math.sqrt(2 / length) * np.column_stack((np.cos(angles), np.sin(angles)))
+    amplitudes = (susceptibilities[:, None] * profiles).ravel()
+
+    # The periodic coincident Green function includes all harmonics of the defect.
+    kappa = cmath.sqrt(spectral_parameter) / speed
+    denominator = -np.expm1(-kappa * length)
+    coincident_green = (2 - denominator) / (2 * speed**2 * kappa * denominator)
+    difference = -stiffness * np.outer(amplitudes, amplitudes) / (1 + stiffness * coincident_green)
+    return susceptibilities, difference
+
+
+def locate_circle_modal_target(circumference, susceptibilities, difference):
+    """Recover the angle modulo a period from adjacent, phase-calibrated harmonics."""
+    length = _positive(circumference, "circumference")
+    susceptibilities = np.asarray(susceptibilities, dtype=complex)
+    difference = np.asarray(difference, dtype=complex)
+    if (susceptibilities.shape != (2,) or difference.shape != (4, 4)
+            or not np.all(np.isfinite(susceptibilities) & (susceptibilities != 0))
+            or not np.all(np.isfinite(difference))):
+        raise ValueError("two nonzero susceptibilities and a finite 4 by 4 response are required")
+    reference = np.trace(difference[:2, :2])
+    mixed = difference[2:, :2]
+    angular_signal = np.trace(mixed) + 1j * (mixed[1, 0] - mixed[0, 1])
+    if reference == 0 or angular_signal == 0:
+        raise ValueError("localization requires nonzero reference and mixed echoes")
+    angle = np.angle((angular_signal / reference) * (susceptibilities[0] / susceptibilities[1]))
+    return (length * (angle / (2 * math.pi))) % length

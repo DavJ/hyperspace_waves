@@ -16,7 +16,8 @@ sys.path.insert(0,str(ROOT/'workspace-pydev'/'hyperspace_comm'))
 from compact_locality import (interval_concentration_matrix,maximum_interval_concentration,
     periodic_subgap_green,periodic_subgap_contrast,resonant_contrast,
     periodic_retarded_green,truncated_retarded_green,contact_box_transfer)
-from compact_radar import cross_ports, cross_port_times, locate_cross_port_target, torus_born_echo_2d
+from compact_radar import (circle_modal_echo, cross_ports, cross_port_times,
+    locate_circle_modal_target, locate_cross_port_target, torus_born_echo_2d)
 
 
 def radar_echo_example():
@@ -80,6 +81,37 @@ def radar_echo_example_2d():
                 periods, speed, port, target, port, time, stiffness)}
             for time in (7., 8., 10., 15.)
         ],
+    }
+
+
+def radar_resonance_example():
+    """Localize an example target from phase-resolved adjacent-mode echoes."""
+    length, speed, mass, damping = 12., 1., 1., .015
+    target, stiffness = 9.3, .01
+    resonance = math.hypot(mass, 2 * math.pi * speed / length)
+    detuned = (mass + resonance) / 2
+    calibration, resonant_echo = circle_modal_echo(
+        length, speed, mass, damping, resonance, target, stiffness)
+    _, detuned_echo = circle_modal_echo(length, speed, mass, damping, detuned, target, stiffness)
+    recovered = locate_circle_modal_target(length, calibration, resonant_echo)
+    np.testing.assert_allclose(recovered, target, rtol=0, atol=1e-12)
+    resonant_pair = np.linalg.norm(resonant_echo[:2, :2])
+    detuned_pair = np.linalg.norm(detuned_echo[:2, :2])
+    mixed_pair = np.linalg.norm(resonant_echo[2:, :2])
+    return {
+        "status": "conditional_real_circle_coherent_echo_example",
+        "circumference": length,
+        "speed": speed,
+        "mass": mass,
+        "damping": damping,
+        "point_stiffness": stiffness,
+        "resonant_frequency": resonance,
+        "detuned_frequency": detuned,
+        "resonant_echo_norm": resonant_pair,
+        "detuned_echo_norm": detuned_pair,
+        "resonant_to_detuned_amplitude": resonant_pair / detuned_pair,
+        "mixed_to_resonant_amplitude": mixed_pair / resonant_pair,
+        "recovered_target": recovered,
     }
 
 
@@ -171,7 +203,12 @@ def main():
                       help='print the dimensionless target-present and target-absent impulse traces')
     mode.add_argument('--radar-example-2d', action='store_true',
                       help='print five first returns, the reconstructed target and a 2D Born echo')
+    mode.add_argument('--radar-resonance', action='store_true',
+                      help='print the coherent resonant and mixed-mode echo example')
     args=parser.parse_args()
+    if args.radar_resonance:
+        print(json.dumps(radar_resonance_example(), indent=2))
+        return
     if args.radar_example_2d:
         print(json.dumps(radar_echo_example_2d(), indent=2))
         return
@@ -194,7 +231,8 @@ def main():
         np.testing.assert_allclose(list(old['prefront_truncation_counterexample'].values()),
             list(result['prefront_truncation_counterexample'].values()),rtol=1e-10,atol=1e-14)
         radar_echo_example_2d()
-        print('Conditional localization, causal fronts and one- and two-dimensional echo checks agree.')
+        radar_resonance_example()
+        print('Conditional localization, causal fronts, and impulse and coherent echo checks agree.')
     else:
         path.parent.mkdir(parents=True,exist_ok=True)
         path.write_text(json.dumps(result,indent=2)+'\n')

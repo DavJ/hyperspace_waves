@@ -124,6 +124,50 @@ G_\omega(d)=\frac1{L\Delta}
 =\frac{d(L-d)}{2Lv^2},\qquad \lim_{\omega\to\mu^-}\frac{G_\omega(d)}{G_\omega(0)}=1.
 ```
 
+<!-- BILINGUAL-UNIT: locality.modal-radar -->
+
+## A higher resonance enhances a position-dependent return
+
+Add uniform damping $\gamma>0$ to the reduced real-circle model. Put a stationary point stiffness $\lambda>0$ at $x$. The energy $E$ includes the positive defect energy $\lambda q(x)^2/2$. The work balance identifies the driven source $J$ as the energy input.
+
+```math
+[\partial_t^2+2\gamma\partial_t+\mu^2-v^2\partial_y^2+\lambda\delta_L(y-x)]q=J,
+\qquad \dot E=\int_0^L J\,\partial_tq\,dy-2\gamma\int_0^L(\partial_tq)^2\,dy.
+```
+
+Assume four phase-calibrated drive and readout profiles, the normalized cosine and sine of each of two adjacent harmonics $n,n+1$, with $n\ge 1$. They are distributed over the circle and measured at the same drive frequency $\omega>0$ with convention $e^{-i\omega t}$. The factor $\sqrt{2/L}$ normalizes each profile. Their values at the target are the entries of $\sqrt{2/L}\,u_j$.
+
+```math
+\theta=2\pi x/L,\qquad u_j=(\cos j\theta,\sin j\theta)^\top,
+\qquad \omega_j^2=\mu^2+(2\pi v j/L)^2,
+\qquad \chi_j=(\omega_j^2-\omega^2-2i\gamma\omega)^{-1}.
+```
+
+Subtract the empty-circle transfer from the transfer with the target. To compute its $2\times2$ block $B_{ab}$ from drive harmonic $b$ to readout harmonic $a$, solve the field at the defect from $q(x)=q_0(x)-\lambda G_\omega(0)q(x)$ and project the scattered field onto the readout profiles. The coincident Green function includes all circle harmonics. Choose the square root with positive real part.
+
+```math
+\kappa=\frac{\sqrt{\mu^2-\omega^2-2i\gamma\omega}}{v},\qquad
+G_\omega(0)=\frac{\coth(\kappa L/2)}{2v^2\kappa},\qquad
+B_{ab}=-\frac{2\lambda}{L}\frac{\chi_a\chi_b}{1+\lambda G_\omega(0)}u_a u_b^\top.
+```
+
+The same-harmonic block $B_{nn}$ is proportional to $u_nu_n^\top$. It carries the double angle $2n\theta$, with indistinguishable positions spaced by $L/(2n)$. The cross-harmonic block $C$ gives the difference angle $(n+1)\theta-n\theta$. Its trace and antisymmetric part give the cosine and sine times one common complex factor. Divide by the trace of $B_{nn}$ and correct the ratio of the empty-circle susceptibilities to recover the target modulo $L$. The Frobenius norms also give the relative size of the mixed return.
+
+```math
+e^{i\theta}
+=\frac{\chi_n}{\chi_{n+1}}
+ \frac{C_{cc}+C_{ss}+i(C_{sc}-C_{cs})}{\operatorname{tr}B_{nn}},
+\qquad C=B_{n+1,n},\qquad
+\frac{\lVert C\rVert_F}{\lVert B_{nn}\rVert_F}
+=\left|\frac{\chi_{n+1}}{\chi_n}\right|.
+```
+
+At the empty-circle natural frequency $\omega_n$, $|\chi_n|=1/(2\gamma\omega_n)$. For $|\lambda G_\omega(0)|\ll1$ and an isolated resonance pair, the same-harmonic echo scales as $\gamma^{-2}$ and the mixed echo as $\gamma^{-1}$. At fixed stiffness and sufficiently small damping, the term $G_\omega(0)\sim(2/L)\chi_n$ in the exact denominator changes the scaling. The same-harmonic norm grows as $|\chi_n|$, while the mixed norm approaches the finite $|\chi_{n+1}|$. The strongest return and the return that resolves the position can thus differ substantially.
+
+For $L=12$, $v=\mu=1$, $\gamma=0.015$, $\lambda=0.01$ and $x=9.3$, the $n=1$ block has 18.4 times the amplitude at $\omega_1$ compared with the midpoint of $\mu$ and $\omega_1$. The mixed block at $\omega_1$ has 4.11% of the resonant block norm. Its phase distinguishes $x=9.3$ from $x=3.3$. All numbers are dimensionless. This calculation assumes steady, coherent, calibrated profiles and one point target. For a UBT application the compact propagation law and physical mode overlaps must be derived for the constrained biquaternionic dynamics.
+
+Run `python scripts/verify_compact_locality.py --radar-resonance` for the example. The test suite also compares the closed form with a direct standing-wave matrix solve.
+
 <!-- BILINGUAL-UNIT: locality.front -->
 
 ## A nonzero steady response is not instantaneous communication
