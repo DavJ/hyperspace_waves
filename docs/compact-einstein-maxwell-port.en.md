@@ -105,6 +105,6 @@ Drive and readout at the same compact harmonic yield a diagonal target response 
 
 <!-- BILINGUAL-UNIT: compact-port.check -->
 
-The command `python scripts/verify_source_matching.py --check` checks the beat stress, its conservation, the inverse propagator at the beat and the reciprocal Maxwell source by symbolic matrix calculation. The comparison gives no experimental parameters. LEAN-PENDING.
+The command `python scripts/verify_source_matching.py --check` checks the beat stress, its conservation, the inverse propagator at the beat and the reciprocal Maxwell source by symbolic matrix calculation. The comparison gives no experimental parameters. The [compensated-jet invariance](../HyperspaceWaves/Radiation.lean) is checked in Lean. The Maxwell conversion uses the symbolic checks above.
 
 [Linearized Einstein equations and transverse traceless polarization](https://arxiv.org/abs/gr-qc/9712019) · [Einstein–Maxwell field mixing](https://doi.org/10.1140/epjc/s10052-023-12304-1)

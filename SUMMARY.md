@@ -1,4 +1,4 @@
-# Current research ledger — 2026-11-01
+# Current research ledger — 2026-11-06
 
 The algebra and conditional effective wave toolkit have been improved. A new
 physical propagation channel is not established. The old completion/FTL claims
@@ -27,8 +27,9 @@ are superseded by [UBT_ANALYSIS.md](UBT_ANALYSIS.md).
 
 Run `python -m pytest -q` and `python scripts/verify_wave_bridge.py --check`.
 [Recorded checks and versions](docs/results/wave-bridge.json).
-Lean formalization is pending. AI-assisted working research; exhaustive human
-review is not claimed. No experimental result or author attestation is inferred
+The [achievement summary](README.md#what-we-achieved) links the checked Lean
+results and their scope. AI-assisted working research. Exhaustive human review
+is not claimed. No experimental result or author attestation is inferred
 from passing software checks.
 
 - Composite response: the free scalar pair gives a Bessel/Yukawa continuum;
@@ -55,3 +56,12 @@ from passing software checks.
   and a transmission-line calibration analog. Physical UBT port and target
   couplings remain open. [English](docs/electromagnetic-theta-coupling.en.md) ·
   [Czech](docs/electromagnetic-theta-coupling.cs.md).
+- Radar localization: noiseless first returns at a cross of ports determine a
+  target on the real rectangular torus. A uniform port pair is position blind
+  on a translation-invariant background. Calibrated mixed harmonics carry the
+  angle. [Lean geometry](HyperspaceWaves/CompactGeometry.lean) and
+  [Lean phase identities](HyperspaceWaves/Phase.lean).
+- Compact conversion: a specified scalar layer supplies longitudinal momentum
+  for emission and readout in the 5D Einstein–Maxwell comparator. The compact
+  pump is an input. [English](docs/compact-radiation-layer.en.md) ·
+  [Czech](docs/compact-radiation-layer.cs.md).

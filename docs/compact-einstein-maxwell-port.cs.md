@@ -105,6 +105,6 @@ Buzení a čtení na stejné kompaktní harmonické dávají na posuvně invaria
 
 <!-- BILINGUAL-UNIT: compact-port.check -->
 
-Příkaz `python scripts/verify_source_matching.py --check` symbolickým maticovým výpočtem ověřuje záznějovou část tenzoru energie a hybnosti, její zachování, inverzní propagátor na zázněji i reciproční Maxwellův zdroj. Srovnání nedává experimentální parametry. LEAN-PENDING.
+Příkaz `python scripts/verify_source_matching.py --check` symbolickým maticovým výpočtem ověřuje záznějovou část tenzoru energie a hybnosti, její zachování, inverzní propagátor na zázněji i reciproční Maxwellův zdroj. Srovnání nedává experimentální parametry. [Invariance kompenzovaného jetu](../HyperspaceWaves/Radiation.lean) je ověřená v Leanu. Maxwellův převod používá výše uvedené symbolické kontroly.
 
 [Linearizované Einsteinovy rovnice a příčná bezestopá polarizace](https://arxiv.org/abs/gr-qc/9712019) · [Míchání polí v Einsteinově–Maxwellově teorii](https://doi.org/10.1140/epjc/s10052-023-12304-1)

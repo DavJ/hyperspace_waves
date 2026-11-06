@@ -4,7 +4,8 @@
 claimed. Mathematical comparator only: neighboring multiverse segments and a
 laboratory coupling to them have not been established. This note derives an
 operational criterion, a stable example and blocking selection rules. It does
-not derive or finalize a new fundamental UBT action. **LEAN-PENDING**.
+not derive or finalize a new fundamental UBT action. The two-mode potential
+positivity and transfer algebra are checked in [Lean](../HyperspaceWaves/Transfer.lean).
 
 ## 1. What can a segment mean?
 
