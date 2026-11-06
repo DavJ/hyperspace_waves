@@ -32,6 +32,8 @@ h_{\mu\nu}&=b_\sharp(\delta E_\mu,\bar E_\nu)+b_\sharp(\bar E_\mu,\delta E_\nu),
 
 If a canonically normalized physical coordinate \(u\) has a local algebraic metric polarization \(h_{\mu\nu}=C_{\mu\nu}u\), its geometric source is \(J_u=C_{\mu\nu}T_{\rm EM}^{\mu\nu}/2\). For a differential polarization the source is the adjoint of the linearized metric map applied to \(T_{\rm EM}/2\), with the appropriate measure and boundary conditions. A magnetic field along \(z\) gives \(J_u=B_z^2(C_{00}+C_{xx}+C_{yy}-C_{zz})/4\) in a local inertial frame. Conformal polarizations give zero because \(T^\mu{}_\mu=0\) in four classical Maxwell dimensions.
 
+The [compact Einstein–Maxwell comparator](compact-einstein-maxwell-port.en.md) derives the harmonic drive and reciprocal readout when a physical compact pump is supplied.
+
 <!-- BILINGUAL-UNIT: em-coupling.flat -->
 
 Take an affine flat tetrad and freeze its geometric connection at zero as a control. In a constant Lorentz tetrad basis, write \(\delta\Theta/\sqrt{N_0}=\xi^a b_a\) with complex coefficients. On admissible perturbations the symmetric gradient is already real. Its imaginary part vanishes by the metric reality condition. Integrate by parts for compactly supported variations, or impose vanishing boundary terms. Source-free Maxwell fields on shell have conserved stress, hence this geometric source vanishes in the stated control. Regions containing currents require the field and source stresses together for an apparatus calculation.
