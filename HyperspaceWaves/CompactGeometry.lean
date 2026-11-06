@@ -112,7 +112,7 @@ theorem sideSquared_sub_reference {ι : Type*} [Fintype ι] [DecidableEq ι]
       quarter i ^ 2 *
         (normalizedDistance (point i) port ^ 2 - normalizedDistance (point i) 0 ^ 2) := by
   rw [sideSquared, referenceSquared, ← Finset.sum_sub_distrib, Finset.sum_eq_single i]
-  · simp <;> ring
+  · simp [mul_sub]
   · intro j _ different
     simp [different]
   · simp
