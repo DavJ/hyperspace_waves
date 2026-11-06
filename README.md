@@ -4,9 +4,51 @@
 
 This repository studies the original complex-frequency wave proposal alongside
 biquaternion algebra, signal processing and conditional effective dynamics.
-**A new physical wave, faster-than-light communication, retrocausality and
-universal barrier penetration have not been established.** The 2025 claims of
-completion are superseded by the [current derivation and gap ledger](UBT_ANALYSIS.md).
+The [current derivation and gap ledger](UBT_ANALYSIS.md) supersedes the 2025
+completion claims.
+
+## What we achieved
+
+| Result | What we established | Verification |
+|---|---|---|
+| Passive transfer between two modes | With positive gaps and nonnegative coupling, the quadratic potential is positive away from zero. The driven response follows by eliminating one mode away from a pole. | [Lean transfer proof](HyperspaceWaves/Transfer.lean) and [time-domain controls](docs/intersegment-channel.md). |
+| Compact propagation | On a specified real circle, we derived the periodic attenuation kernel and the causal front. Finite Fourier truncation can produce an apparent response before that front. | [Analytic derivation and numerical controls](docs/compact-locality.en.md) ([česky](docs/compact-locality.cs.md)). |
+| Radar localization in several dimensions | A reference port and two quarter-period ports per axis determine one target from noiseless first-return times at known speed on a flat rectangular torus. We derived the point-target transfer and computed the 2D scattered impulse with later wrapped paths in the first Born approximation. | [Lean range-uniqueness proof](HyperspaceWaves/CompactGeometry.lean), [Lean point-target response](HyperspaceWaves/Transfer.lean) and [radar derivation and simulation](docs/electromagnetic-theta-coupling.en.md#radar-on-a-real-torus). |
+| Phase-sensitive localization | On a translation-invariant background, two uniform ports are blind to the position of a translated target. With phase-calibrated adjacent harmonics, the mixed response carries the angle. A simulation recovers positions that give identical same-mode responses. | [Lean phase identities](HyperspaceWaves/Phase.lean), [port derivation](docs/electromagnetic-theta-coupling.en.md#a-compact-phase-reference-for-radar) and [resonance example](docs/compact-locality.en.md#a-higher-resonance-enhances-a-position-dependent-return). |
+| Electromagnetic drive and readout | The geometric Maxwell coupling vanishes for a compensated carrier shift that keeps the metric fixed. In the separate 5D Einstein–Maxwell model, a prepared compact pump and localized layer give a propagating metric mode and reciprocal electromagnetic readout. | [Lean cutoff and source algebra](HyperspaceWaves/Radiation.lean), [Maxwell variation](docs/compact-einstein-maxwell-port.en.md) and [direct scattering calculation](docs/compact-radiation-layer.en.md) ([česky](docs/compact-radiation-layer.cs.md)). |
+
+**Physical status.** The real circle and torus are assumptions of the comparison
+models. A physical UBT radar still needs a constrained propagating sector, a
+way to prepare and detect its modes, and a measured target echo.
+
+## Verify the results
+
+With [Elan](https://lean-lang.org/doc/reference/latest/Build-Tools-and-Distribution/Managing-Toolchains-with-Elan/)
+installed, run
+
+```sh
+lake exe cache get
+lake build
+```
+
+The Lean and Mathlib revisions are pinned. GitHub Actions builds the proofs and
+audits their transitive axioms against `propext`, `Classical.choice` and
+`Quot.sound`. The Lean theorems cover the hypotheses and conclusions in their
+statements. The linked derivations and Python checks cover the physical
+comparators and numerical examples.
+
+The Python examples run with Python 3.10 or later.
+
+```sh
+python -m pip install -r requirements.txt pytest sympy
+python -m pytest -q
+python scripts/verify_wave_bridge.py --check
+python scripts/verify_compact_locality.py --radar-example-2d
+python scripts/verify_compact_locality.py --radar-resonance
+python scripts/verify_source_matching.py --compact-radiation
+```
+
+## Original waveform and signal-processing tools
 
 The original samples are ordinary damped sinusoids:
 
@@ -17,8 +59,6 @@ u(t)=\exp[2\pi f(s_1+i s_2)t],\qquad t\geq0.
 Any negative `s1` gives a decaying half-line template. The historical value
 `-1/sqrt(2)` is not selected by finite energy. Complex frequency alone supplies
 neither a spatial dispersion law nor a new propagation channel.
-
-## What is now implemented
 
 - Correct complex biquaternion inverse and exponential, including nonzero zero
   divisors and nilpotents; independently checked with faithful 2×2 matrices.
@@ -42,16 +82,6 @@ Subsequent calculations link their own upstream audits and the open
 [neutrality correction](https://github.com/UBT-Institute/unified-biquaternion-theory/pull/825).
 No number of physical Theta components is assumed here; four complex
 coefficients describe one algebra element, not the full physical field content.
-
-## Run
-
-Python 3.10 or later:
-
-```sh
-python -m pip install -r requirements.txt pytest sympy
-python -m pytest -q
-python scripts/verify_wave_bridge.py --check
-```
 
 ```python
 import sys
@@ -122,7 +152,7 @@ python scripts/verify_compact_locality.py --radar-example-2d
 states tool versions and scope. `COMPLETION_REPORT.md` and
 `DETECTION_AND_APPLICATIONS.md` retain superseded historical text under explicit
 warnings. The GNU Radio tree remains historical and is not covered by the new
-Python verification. Lean formalization and experimental validation are pending.
+Python verification. Experimental validation remains open.
 
 The 2026 revision is AI-assisted working research; exhaustive human review is
 not claimed. [Research-origin record](docs/research-origin-2026-10-31.json).

@@ -1,4 +1,6 @@
-import HyperspaceWaves.Transfer
-import HyperspaceWaves.CompactGeometry
-import HyperspaceWaves.Phase
-import HyperspaceWaves.Radiation
+module
+
+public import HyperspaceWaves.Transfer
+public import HyperspaceWaves.CompactGeometry
+public import HyperspaceWaves.Phase
+public import HyperspaceWaves.Radiation

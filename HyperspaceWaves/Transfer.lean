@@ -1,6 +1,10 @@
-import Mathlib.Data.Complex.Basic
-import Mathlib.Tactic.LinearCombination
-import Mathlib.Tactic.Positivity
+module
+
+public import Mathlib.Basic.Complex.Basic
+public import Mathlib.Tactic.LinearCombination
+public import Mathlib.Tactic.Positivity
+
+public section
 
 namespace HyperspaceWaves
 
@@ -24,5 +28,15 @@ theorem coupledTransfer {a b coupling drive x y : ℂ}
     y = coupling * drive / (a * b - coupling ^ 2) := by
   apply (eq_div_iff hdet).2
   linear_combination coupling * hx + a * hy
+
+/-- Point-target echo after solving the target's own Green-function response. -/
+theorem pointTargetEcho {stiffness localGreen driveGreen receiveGreen drive atTarget echo : ℂ}
+    (htarget : atTarget = driveGreen * drive - stiffness * localGreen * atTarget)
+    (hecho : echo = -stiffness * receiveGreen * atTarget)
+    (hpole : 1 + stiffness * localGreen ≠ 0) :
+    echo = (-stiffness * receiveGreen * driveGreen * drive) /
+      (1 + stiffness * localGreen) := by
+  apply (eq_div_iff hpole).2
+  linear_combination (1 + stiffness * localGreen) * hecho - stiffness * receiveGreen * htarget
 
 end HyperspaceWaves

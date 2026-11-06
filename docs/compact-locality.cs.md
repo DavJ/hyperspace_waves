@@ -2,7 +2,7 @@
 
 <!-- BILINGUAL-UNIT: locality.scope -->
 
-**ODVOZENO_ZA_PŘEDPOKLADŮ · 2026-11-02 · pracovní výzkum.** Uzavíráme matematickou mezeru po výpočtu obsazenosti páry: obsadit Fourierovy módy je něco jiného než lokalizovat zdroj, stav nebo přijímač. Nejprve dáváme přesnou mez lokalizace s konečným počtem módů, nezávislou na navrhované akci UBT. Potom počítáme šíření pouze ve výslovně předpokládaném srovnávacím modelu redukovaného módu na reálné kružnici. Tím neodvozujeme kompaktní kinetický člen UBT, transport dříve vytvořených skalárních párů ani nový pól složené hustoty. Reálnou souřadnici y tiše neztotožňujeme s imaginární částí ψ veličiny τ=t+i*ψ. Nevybíráme počet složek Θ ani nové fundamentální pole. S pomocí AI; netvrdíme úplnou lidskou revizi. `LEAN-PENDING`.
+**ODVOZENO_ZA_PŘEDPOKLADŮ · 2026-11-02 · pracovní výzkum.** Uzavíráme matematickou mezeru po výpočtu obsazenosti páry: obsadit Fourierovy módy je něco jiného než lokalizovat zdroj, stav nebo přijímač. Nejprve dáváme přesnou mez lokalizace s konečným počtem módů, nezávislou na navrhované akci UBT. Potom počítáme šíření pouze ve výslovně předpokládaném srovnávacím modelu redukovaného módu na reálné kružnici. Tím neodvozujeme kompaktní kinetický člen UBT, transport dříve vytvořených skalárních párů ani nový pól složené hustoty. Reálnou souřadnici y tiše neztotožňujeme s imaginární částí ψ veličiny τ=t+i*ψ. Nevybíráme počet složek Θ ani nové fundamentální pole. S pomocí AI. Úplná lidská revize se netvrdí.
 
 <!-- BILINGUAL-UNIT: locality.basis -->
 
@@ -193,7 +193,7 @@ Současná upstream kontrola toroidální akce výslovně uvádí, že čtyřroz
 
 ## Reprodukce a omezení
 
-Nezávislé kontroly zahrnují kvadraturu vlnové funkce na intervalu, přesné meze vlastních čísel a stopy, defázování, konvoluci zdroje a čtení, periodické obrazové a Fourierovy součty, diferenciální rovnici a skok, normalizaci nulového módu, odečtení rezonance a numerickou Laplaceovu transformaci kauzálního obrazového jádra s výslovnou mezí chvostu. Besselovu rovnici uvnitř kužele a Bernoulliho limitu kontroluje CAS. Jde o matematické kontroly srovnávacího modelu, nikoli o fyzikální validaci UBT nebo experimentální výsledek. Zdrojem překladu je angličtina; netvrdíme úplnou lidskou revizi. `LEAN-PENDING`: lean/lake nejsou dostupné; nemáme přeložený formální důkaz.
+Nezávislé kontroly zahrnují kvadraturu vlnové funkce na intervalu, přesné meze vlastních čísel a stopy, defázování, konvoluci zdroje a čtení, periodické obrazové a Fourierovy součty, diferenciální rovnici a skok, normalizaci nulového módu, odečtení rezonance a numerickou Laplaceovu transformaci kauzálního obrazového jádra s výslovnou mezí chvostu. Besselovu rovnici uvnitř kužele a Bernoulliho limitu kontroluje CAS. Jde o matematické kontroly srovnávacího modelu, nikoli o fyzikální validaci UBT nebo experimentální výsledek. Zdrojem překladu je angličtina; netvrdíme úplnou lidskou revizi. Goniometrická identita pro sousední módy je ověřená v [Leanu](../HyperspaceWaves/Phase.lean). Pro Greenovy funkce a meze lokalizace platí výše popsané kontroly.
 
 ```sh
 python -m pytest -q

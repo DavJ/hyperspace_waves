@@ -1,6 +1,10 @@
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
-import Mathlib.Data.Matrix.Mul
-import Mathlib.Tactic.Ring
+module
+
+public import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
+public import Mathlib.Data.Matrix.Mul
+public import Mathlib.Tactic.Ring
+
+public section
 
 namespace HyperspaceWaves
 
@@ -36,6 +40,14 @@ theorem uniformPortInvariant {ι : Type*} [Fintype ι] [DecidableEq ι]
         port port = response port port := by
   rw [translatedEntry, hport]
   simp
+
+/-- A translated harmonic entry carries the receive-minus-transmit index. -/
+theorem harmonicDifferencePhase (receive transmit θ : ℂ) :
+    Complex.exp (-Complex.I * receive * θ) * Complex.exp (Complex.I * transmit * θ) =
+      Complex.exp (-Complex.I * (receive - transmit) * θ) := by
+  rw [← Complex.exp_add]
+  congr 1
+  ring
 
 /-- Trace and antisymmetric component of the adjacent-mode response recover the angle. -/
 theorem adjacentModePhase (n θ : ℝ) :

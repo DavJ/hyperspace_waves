@@ -3,7 +3,8 @@
 **Working research revision: 2026-10-31.** AI-assisted derivation and code;
 exhaustive human review is not claimed. This supersedes the November 2025
 physical conclusions without assigning new historical priority. It does not
-finalize the UBT action. Lean: **LEAN-PENDING**.
+finalize the UBT action. The [Lean follow-up](README.md#what-we-achieved) checks
+selected transfer and radar statements.
 
 ## 1. Algebra and the original waveform
 
@@ -294,9 +295,9 @@ versions, source SHAs, assumptions and exclusions in
 [docs/results/wave-bridge.json](docs/results/wave-bridge.json).
 
 Analytical energy and domain-of-dependence statements are not proved by the
-finite numerical examples. No checked Lean proof exists here; the exact scope
-is algebraic CAS checks plus numerical controls. The new CI repeats those checks
-on supported Python versions; it does not test the historical GNU Radio build.
+finite numerical examples. The checks for the general quadratic-mode dynamics
+here are algebraic CAS checks and numerical controls. The CI repeats them on
+supported Python versions. The historical GNU Radio build is outside that suite.
 
 | Gate | Current state | Required next evidence |
 |---|---|---|

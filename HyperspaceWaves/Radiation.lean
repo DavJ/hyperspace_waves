@@ -1,8 +1,22 @@
-import Mathlib.Data.Complex.Basic
-import Mathlib.Tactic.LinearCombination
-import Mathlib.Tactic.Linarith
+module
+
+public import Mathlib.Basic.Complex.Basic
+public import Mathlib.Tactic.Abel
+public import Mathlib.Tactic.LinearCombination
+public import Mathlib.Tactic.Linarith
+
+public section
 
 namespace HyperspaceWaves
+
+/-- A response depending only on the jet is invariant under a compensated carrier shift. -/
+theorem compensatedJetResponse {V W R : Type*} [AddMonoid V] [AddCommGroup W]
+    (derivative : V →+ W) (observe : W → R) (carrier shift : V) (auxiliary : W) :
+    observe (derivative (carrier + shift) + (auxiliary - derivative shift)) =
+      observe (derivative carrier + auxiliary) := by
+  congr 1
+  rw [map_add]
+  abel
 
 /-- Relative to the first compact mass, the sum propagates and the difference is below cutoff. -/
 theorem sidebandCutoffs {pump signal : ℝ}

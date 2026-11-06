@@ -2,7 +2,7 @@
 
 <!-- BILINGUAL-UNIT: locality.scope -->
 
-**DERIVED_WITH_ASSUMPTIONS · 2026-11-02 · working research.** We close a mathematical gap left by the pair-occupation calculation: populating Fourier modes is different from localizing a source, state or receiver. First we give an exact finite-mode localization bound, independent of any proposed UBT action. Then we calculate propagation only in an explicitly assumed real-circle reduced-mode comparator. This does not derive a compact UBT kinetic term, transport of the previously created scalar pairs, or a new pole of the composite density. The real coordinate y is not silently identified with the imaginary part psi of tau=t+i*psi. No Theta component count or new fundamental field is selected. AI-assisted; exhaustive human review is not claimed. `LEAN-PENDING`.
+**DERIVED_WITH_ASSUMPTIONS · 2026-11-02 · working research.** We close a mathematical gap left by the pair-occupation calculation: populating Fourier modes is different from localizing a source, state or receiver. First we give an exact finite-mode localization bound, independent of any proposed UBT action. Then we calculate propagation only in an explicitly assumed real-circle reduced-mode comparator. This does not derive a compact UBT kinetic term, transport of the previously created scalar pairs, or a new pole of the composite density. The real coordinate y is not silently identified with the imaginary part psi of tau=t+i*psi. No Theta component count or new fundamental field is selected. AI-assisted. Exhaustive human review is not claimed.
 
 <!-- BILINGUAL-UNIT: locality.basis -->
 
@@ -193,7 +193,7 @@ The current upstream torus-action gate explicitly states that the four-dimension
 
 ## Reproduction and limits
 
-Independent checks include interval wavefunction quadrature, exact eigenvalue/trace bounds, dephasing, source/readout convolution, periodic image/Fourier sums, the differential equation and jump, zero-mode normalization, resonance subtraction, and a numerical Laplace transform of the causal image kernel with an explicit tail bound. The Bessel interior equation and Bernoulli limit are checked by CAS. These are mathematical/comparator checks, not physical UBT validation or an experimental result. English is the translation source; exhaustive human review is not claimed. `LEAN-PENDING`: lean/lake are unavailable; no compiled formal proof.
+Independent checks include interval wavefunction quadrature, exact eigenvalue/trace bounds, dephasing, source/readout convolution, periodic image/Fourier sums, the differential equation and jump, zero-mode normalization, resonance subtraction, and a numerical Laplace transform of the causal image kernel with an explicit tail bound. The Bessel interior equation and Bernoulli limit are checked by CAS. These are mathematical/comparator checks, not physical UBT validation or an experimental result. English is the translation source; exhaustive human review is not claimed. The adjacent-mode trigonometric identity is checked in [Lean](../HyperspaceWaves/Phase.lean). The Green functions and localization bounds use the checks described above.
 
 ```sh
 python -m pytest -q
