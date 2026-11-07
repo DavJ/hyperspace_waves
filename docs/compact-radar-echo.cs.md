@@ -88,3 +88,5 @@ Vzdálenost je jednoznačná na známém intervalu o šířce menší než $2\pi
 Novým výsledkem tohoto srovnávacího modelu je pasivní koherentní návrat s oddělenou rekonstrukcí podélné vzdálenosti a kompaktního úhlu i při neznámé rezonanci cíle. Spojuje slapovou odezvu, rozptyl vlny a koherentní fázovou kalibraci. Kompaktní souřadnice, příprava kompaktní pumpy a vazba cíle mají pro použití v UBT status předpokladů.
 
 Příkaz `python scripts/verify_compact_echo.py` spustí bezrozměrný příklad $R=1$, $a=0.4$, $g=0.12$, $\nu_a=2.3$, $\nu_b=2.8$. Perioda nejednoznačnosti vzdálenosti je $22.46$. Rekonstrukce dává $d=7.4$ a $\alpha=1.2$ pro obě vlastní frekvence $\omega_0=2.45$ a $4$. Kód kontroluje průměrované Greenovo jádro kvadraturou a bilanci toku s otevřenými i uzavřenými módy. [Lean](../HyperspaceWaves/Echo.lean) ověřuje konečněrozměrný kinetický čtverec, algebru odezvy cíle, skalární optickou identitu a obě fázová vykrácení. Model pole a oddělení portů jsou předpoklady výpočtu.
+
+[Výpočet opakovaných návratů](compact-radar-feedback.cs.md) sečte odražené dráhy a určí podmínku, za které kalibrovaný poměr zůstává platný.

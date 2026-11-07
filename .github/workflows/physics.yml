@@ -30,6 +30,7 @@ jobs:
       - run: python scripts/verify_segment_channel.py --check
       - run: python scripts/verify_source_matching.py --check
       - run: python scripts/verify_compact_echo.py
+      - run: python scripts/verify_compact_echo_feedback.py
       - run: python scripts/verify_composite_response.py --check
       - run: python scripts/verify_occupation_channel.py --check
       - run: python scripts/verify_compact_locality.py --check
