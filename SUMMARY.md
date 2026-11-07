@@ -1,4 +1,4 @@
-# Current research ledger — 2026-11-06
+# Current research ledger — 2026-11-07
 
 The algebra and conditional effective wave toolkit have been improved. A new
 physical propagation channel is not established. The old completion/FTL claims
@@ -65,3 +65,7 @@ from passing software checks.
   for emission and readout in the 5D Einstein–Maxwell comparator. The compact
   pump is an input. [English](docs/compact-radiation-layer.en.md) ·
   [Czech](docs/compact-radiation-layer.cs.md).
+- Single radar return: a passive finite-profile tidal oscillator closes the
+  scattering calculation between isolated free-wave ports. The two-frequency
+  ratio recovers distance and compact angle without the bare target resonance.
+  [English](docs/compact-radar-echo.en.md) · [Czech](docs/compact-radar-echo.cs.md).
