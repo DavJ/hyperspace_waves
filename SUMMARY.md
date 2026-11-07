@@ -69,3 +69,8 @@ from passing software checks.
   scattering calculation between isolated free-wave ports. The two-frequency
   ratio recovers distance and compact angle without the bare target resonance.
   [English](docs/compact-radar-echo.en.md) · [Czech](docs/compact-radar-echo.cs.md).
+- Repeated radar returns: rank-one scattering preserves the calibrated ratio
+  after direct background subtraction, even with mode mixing at the station.
+  A passive station with nonzero readout of the target pattern gives a
+  convergent loop and preserves the net flux bound.
+  [English](docs/compact-radar-feedback.en.md) · [Czech](docs/compact-radar-feedback.cs.md).

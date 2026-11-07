@@ -17,6 +17,7 @@ completion claims.
 | Phase-sensitive localization | On a translation-invariant background, two uniform ports are blind to the position of a translated target. With phase-calibrated adjacent harmonics, the mixed response carries the angle. A simulation recovers positions that give identical same-mode responses. | [Lean phase identities](HyperspaceWaves/Phase.lean), [port derivation](docs/electromagnetic-theta-coupling.en.md#a-compact-phase-reference-for-radar) and [resonance example](docs/compact-locality.en.md#a-higher-resonance-enhances-a-position-dependent-return). |
 | Electromagnetic drive and readout | The geometric Maxwell coupling vanishes for a compensated carrier shift that keeps the metric fixed. In the separate 5D Einstein–Maxwell model, a prepared compact pump and localized layer give a propagating metric mode and reciprocal electromagnetic readout. | [Lean cutoff and source algebra](HyperspaceWaves/Radiation.lean), [Maxwell variation](docs/compact-einstein-maxwell-port.en.md) and [direct scattering calculation](docs/compact-radiation-layer.en.md) ([česky](docs/compact-radiation-layer.cs.md)). |
 | Single-return reconstruction | In the isolated-port 5D comparator a passive tidal oscillator scatters the transmitted mode. Two calibrated return channels at two frequencies separate distance and compact angle while cancelling the target resonance. | [Derivation and numerical check](docs/compact-radar-echo.en.md) ([česky](docs/compact-radar-echo.cs.md)) and [Lean](HyperspaceWaves/Echo.lean). |
+| Repeated-return reconstruction | At separated ports, repeated reflections multiply a rank-one target echo by a common scalar. A passive station gives a convergent sum whenever it reads out part of that pattern. After coherent baseline subtraction, the two-frequency ratio still separates distance and compact angle. | [Feedback derivation and numerical check](docs/compact-radar-feedback.en.md) ([česky](docs/compact-radar-feedback.cs.md)) and [Lean](HyperspaceWaves/Echo.lean). |
 
 **Physical status.** The real circle and torus are assumptions of the comparison
 models. A physical UBT radar still needs a constrained propagating sector, a
@@ -48,6 +49,7 @@ python scripts/verify_compact_locality.py --radar-example-2d
 python scripts/verify_compact_locality.py --radar-resonance
 python scripts/verify_source_matching.py --compact-radiation
 python scripts/verify_compact_echo.py
+python scripts/verify_compact_echo_feedback.py
 ```
 
 ## Original waveform and signal-processing tools
