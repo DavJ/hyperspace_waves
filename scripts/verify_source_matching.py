@@ -48,6 +48,19 @@ def verify_compact_geometric_port():
         metric * plus * conjugate_raised + conjugate_raised * plus * metric)
 
 
+def compact_layer_coefficients(pump_frequency, frequency, width):
+    """Wave number and first-order coefficients per unit contrast and pump.
+
+    The phase reference is at the centre of the even scalar layer.
+    The metric conversion coefficient uses unit M5^3.
+    """
+    k = math.sqrt(frequency * (frequency + 2 * pump_frequency))
+    mismatch = k - frequency
+    wall_transform = math.pi * width**2 * mismatch / math.sinh(math.pi * width * mismatch / 2)
+    coefficients = 1j * mismatch * wall_transform * np.array([.5, k / (4 * frequency)])
+    return k, coefficients
+
+
 def verify_compact_radiation():
     """Compare the radiated coefficients with a direct Maxwell scattering solve."""
     z = s.symbols("z", real=True)
@@ -58,10 +71,8 @@ def verify_compact_radiation():
 
     # Unit R, wall width, pump amplitude and M5^3 for the transfer coefficients.
     pump_frequency, frequency, width = 1., .5, 1.
-    radiation_k = math.sqrt(frequency * (frequency + 2 * pump_frequency))
+    radiation_k, predicted = compact_layer_coefficients(pump_frequency, frequency, width)
     mismatch = radiation_k - frequency
-    wall_transform = math.pi * width**2 * mismatch / math.sinh(math.pi * width * mismatch / 2)
-    predicted = 1j * mismatch * wall_transform * np.array([.5, radiation_k / (4 * frequency)])
     np.testing.assert_allclose(predicted[1] * math.sqrt(2 * frequency / radiation_k),
                                -predicted[0].conjugate() * math.sqrt(radiation_k / (2 * frequency)))
 
